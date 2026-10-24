@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d2l4fw6s2rd8v"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_e7ie6"]
+
+[node name="5M_L3_Intro" unique_id=804122041 instance=ExtResource("1_e7ie6")]
+_levelPath = "uid://cn5dyrvvt1lnb"
+
+[node name="LevelTitleAndDesc" parent="." index="2" unique_id=1692661727]
+text = "5M - L3: \"Get to work!  On the Double!\""

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c0fre5igrp8of"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_1u7gf"]
+
+[node name="10M_L2_Intro" unique_id=804122041 instance=ExtResource("1_1u7gf")]
+_levelPath = "uid://d0oxu6ywomjkx"
+
+[node name="LevelTitleAndDesc" parent="." index="2" unique_id=1692661727]
+text = "10M - L2: \"A Wrecking Pair\""

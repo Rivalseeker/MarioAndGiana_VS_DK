@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bmwh3ldx8t2m8"]
+
+[ext_resource type="Script" uid="uid://cl4ttfrlsy8w1" path="res://Scripts/Gizmos/ConveyorBelt.cs" id="1_72djc"]
+[ext_resource type="Texture2D" uid="uid://dk713kce8d27c" path="res://Assets/Art/Gizmos/ConveyorEnds.png" id="1_e4xhp"]
+[ext_resource type="Shader" uid="uid://bud4fw63g6t7g" path="res://Scripts/Shaders/conveyor_belt.gdshader" id="3_1xee7"]
+[ext_resource type="Texture2D" uid="uid://i3mnan3tuvgv" path="res://Assets/Art/Gizmos/ConveyorBeltFrames/ConveyorBeltCombined.png" id="3_ep3hv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bi753"]
+resource_local_to_scene = true
+size = Vector2(40, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e6ikh"]
+resource_local_to_scene = true
+shader = ExtResource("3_1xee7")
+shader_parameter/num_frames = 8
+shader_parameter/current_frame = 0
+shader_parameter/tile_count = 3.0
+
+[sub_resource type="Animation" id="Animation_e132s"]
+resource_name = "Move"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftEnd:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 3, 2, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightEnd:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 0]
+}
+
+[sub_resource type="Animation" id="Animation_72djc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftEnd:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RightEnd:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7rdf"]
+_data = {
+&"Move": SubResource("Animation_e132s"),
+&"RESET": SubResource("Animation_72djc")
+}
+
+[node name="ConveyorBelt" type="StaticBody2D" unique_id=1279322400 node_paths=PackedStringArray("_leftEnd", "_middle", "_rightEnd", "_collision", "_beltEndsAnim")]
+collision_mask = 0
+script = ExtResource("1_72djc")
+_leftEnd = NodePath("LeftEnd")
+_middle = NodePath("Middle")
+_rightEnd = NodePath("RightEnd")
+_collision = NodePath("Collision")
+_beltEndsAnim = NodePath("BeltEndsAnim")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1713928738]
+position = Vector2(20, 4)
+shape = SubResource("RectangleShape2D_bi753")
+one_way_collision = true
+
+[node name="LeftEnd" type="Sprite2D" parent="." unique_id=2092015003]
+texture = ExtResource("1_e4xhp")
+centered = false
+offset = Vector2(0, -4)
+hframes = 2
+vframes = 2
+
+[node name="Middle" type="TextureRect" parent="." unique_id=1713121741]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_e6ikh")
+offset_left = 8.0
+offset_right = 32.0
+offset_bottom = 8.0
+texture = ExtResource("3_ep3hv")
+expand_mode = 1
+
+[node name="RightEnd" type="Sprite2D" parent="." unique_id=654500385]
+position = Vector2(32, 0)
+texture = ExtResource("1_e4xhp")
+centered = false
+offset = Vector2(-8, -4)
+flip_h = true
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="BeltEndsAnim" type="AnimationPlayer" parent="." unique_id=1454542811]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_h7rdf")

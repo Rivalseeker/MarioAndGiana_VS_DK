@@ -1,0 +1,1183 @@
+[gd_scene format=4 uid="uid://bfs2v21qg6owa"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_osokq"]
+[ext_resource type="Script" uid="uid://dm1y0h8umc00g" path="res://Scripts/Levels/Main/Mario/20M/Mario20mL1.cs" id="2_86i7f"]
+[ext_resource type="PackedScene" uid="uid://ci655u6aqeen5" path="res://Scenes/Characters/Enemies/Commons/fireball.tscn" id="3_ieosu"]
+[ext_resource type="AudioStream" uid="uid://cd77886evr340" path="res://Assets/Audio/BGM/NES_DK_100M_Clear.ogg" id="4_6ow04"]
+[ext_resource type="PackedScene" uid="uid://bmpd3slaq02q4" path="res://Scenes/Characters/Players/mario.tscn" id="5_xvbgh"]
+[ext_resource type="AudioStream" uid="uid://c1ftup3g0mq1a" path="res://Assets/Audio/BGM/NES_DK_100M.ogg" id="6_tr64s"]
+[ext_resource type="Shader" uid="uid://cw6xn50q0rv6f" path="res://Scripts/Shaders/sprite_recolor.gdshader" id="7_43ypw"]
+[ext_resource type="TileSet" uid="uid://bi7rohw4n748g" path="res://Assets/Art/Tilemaps/dk_nes_tile_set.tres" id="8_15bun"]
+[ext_resource type="PackedScene" uid="uid://bmwh3ldx8t2m8" path="res://Scenes/Gizmos/conveyor_belt.tscn" id="9_ae6hy"]
+[ext_resource type="PackedScene" uid="uid://m54mijhp3n5g" path="res://Scenes/Gizmos/rivet.tscn" id="10_5qa0q"]
+[ext_resource type="PackedScene" uid="uid://bxf1ogjt674xh" path="res://Scenes/PickUps/Collectibles/Pauline/purse.tscn" id="11_byd7i"]
+[ext_resource type="PackedScene" uid="uid://bbapt6q6oka7b" path="res://Scenes/PickUps/Collectibles/Pauline/hat.tscn" id="12_6ndb3"]
+[ext_resource type="PackedScene" uid="uid://dceew3t6ho7hy" path="res://Scenes/PickUps/Collectibles/Pauline/umbrella.tscn" id="13_d00rc"]
+[ext_resource type="PackedScene" uid="uid://dmwp15ybt31xe" path="res://Scenes/PickUps/Weapons/hammer.tscn" id="14_y36h8"]
+[ext_resource type="PackedScene" uid="uid://dkaomh2simm78" path="res://Scenes/Characters/NPCs/pauline.tscn" id="15_j7l8l"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="16_86i7f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnfu0"]
+shader = ExtResource("7_43ypw")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(1, 0.63529414, 0, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26xw8"]
+shader = ExtResource("7_43ypw")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(1, 0.63529414, 0, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dbfi8"]
+shader = ExtResource("7_43ypw")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(1, 0.63529414, 0, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="Animation" id="Animation_26xw8"]
+resource_name = "MarioComplete"
+length = 15.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Environment:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnvironmentEnding:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Entities/Gizmos/ConveyorBelts/ConveyorBelt5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.6000001, 2.8000002, 3.1000001, 3.3000002, 3.6000001, 3.8000002, 4.1, 4.2999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(136, -168), Vector2(136, -168), Vector2(136, -136), Vector2(136, -136), Vector2(136, -104), Vector2(136, -104), Vector2(136, -72), Vector2(136, -72), Vector2(136, -40)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Entities/Gizmos/ConveyorBelts/ConveyorBelt6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.6000001, 2.8000002, 3.1000001, 3.3000002, 3.6000001, 3.8000002, 4.1, 4.2999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(200, -168), Vector2(200, -168), Vector2(200, -136), Vector2(200, -136), Vector2(200, -104), Vector2(200, -104), Vector2(200, -72), Vector2(200, -72), Vector2(200, -40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Entities/Gizmos/ConveyorBelts/ConveyorBelt:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3.6000001, 3.8000002, 4.1, 4.2999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(136, -88), Vector2(136, -88), Vector2(136, -56), Vector2(136, -56), Vector2(136, -24)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnvironmentEnding/LadderHider:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.6000001, 2.8000002, 2.9, 3.1000001, 3.3000002, 3.4, 3.6000001, 3.8000002, 3.9, 4.1, 4.2999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(114, 8), Vector2(114, 8), Vector2(114, 40), Vector2(114, 48), Vector2(114, 48), Vector2(114, 80), Vector2(114, 88), Vector2(114, 88), Vector2(114, 120), Vector2(114, 128), Vector2(114, 128), Vector2(114, 160)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnvironmentEnding/TopGirder:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 2.6000001, 2.8000002, 3.1000001, 3.3000002, 3.6000001, 3.8000002, 4.1, 4.2999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 32), Vector2(0, 32), Vector2(0, 64), Vector2(0, 64), Vector2(0, 96), Vector2(0, 96), Vector2(0, 128)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LevelCamera:position")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.5500002, 2.6000001, 2.65, 2.7, 2.7500002, 2.8, 2.85, 2.9, 2.95, 3, 3.05, 3.0999997, 3.15, 3.2, 3.25, 3.3, 3.35, 3.4, 3.45, 3.5, 3.55, 3.5999997, 3.65, 3.7, 3.75, 3.8, 3.85, 3.9, 3.95, 4, 4.05, 4.0999994, 4.15, 4.2, 4.25, 4.3, 4.3500004, 4.4000006, 4.4500003, 4.5, 4.55, 6.21, 6.26, 6.3100004, 6.36, 6.41, 6.46),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(192, -108), Vector2(192, -108), Vector2(192, -106), Vector2(192, -108), Vector2(192, -106), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -106), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -106), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -106), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108), Vector2(192, -104), Vector2(192, -108)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("EnvironmentEnding/FinalTopGirder:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 6.21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("EnvironmentEnding/TopMiddleGirder:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 3.1000001, 3.3000002, 3.6000001, 3.8000002, 4.1, 4.2999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 32), Vector2(0, 32), Vector2(0, 64), Vector2(0, 64), Vector2(0, 96)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("EnvironmentEnding/BottomMiddleGirder:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 4.1, 4.2999997),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 32)]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath(".")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 2.6, 2.65, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"PlayDkDefeatAnimation"
+}, {
+"args": [Vector2(260, -168)],
+"method": &"SnapMarioToPosition"
+}, {
+"args": [],
+"method": &"BindMarioToCutsceneTransform"
+}, {
+"args": [],
+"method": &"PlayRivetVictoryMusic"
+}]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Entities/Characters/Enemies/Bosses/DonkeyKong:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 5.11, 6.21),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(192, -168), Vector2(192, -168), Vector2(192, -40)]
+}
+tracks/13/type = "method"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath(".")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(2.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"HaltAllConveyors"
+}]
+}
+tracks/14/type = "animation"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Entities/Characters/Captive/Pauline/CaptiveAnim")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": PackedStringArray("SavedRight"),
+"times": PackedFloat32Array(6.21)
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Entities/Characters/Captive/Pauline:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 6.21, 6.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(152, -184), Vector2(152, -184), Vector2(152, -168)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("EnvironmentEnding/CaptiveGirder:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 6.21),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Entities/Characters/Heart:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("MarioPath2D/MarioPathFollow2D:progress_ratio")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 7, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/19/type = "method"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath(".")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(2.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PlayMarioMoveCompleteAnimation"
+}]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("HUD/MainHudControl/LevelPrompt2:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_m2ln2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Environment:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnvironmentEnding:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Entities/Gizmos/ConveyorBelts/ConveyorBelt5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(136, -168)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Entities/Gizmos/ConveyorBelts/ConveyorBelt6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, -168)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Entities/Gizmos/ConveyorBelts/ConveyorBelt:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(136, -88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("EnvironmentEnding/LadderHider:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(114, 8)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("EnvironmentEnding/TopGirder:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("LevelCamera:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, -108)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("EnvironmentEnding/FinalTopGirder:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("EnvironmentEnding/TopMiddleGirder:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("EnvironmentEnding/BottomMiddleGirder:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Entities/Characters/Enemies/Bosses/DonkeyKong:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(192, -168)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Entities/Characters/Heart:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Entities/Characters/Captive/Pauline:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(152, -184)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("EnvironmentEnding/CaptiveGirder:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("MarioPath2D/MarioPathFollow2D:progress_ratio")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("HUD/MainHudControl/LevelPrompt2:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rnkrb"]
+_data = {
+&"MarioComplete": SubResource("Animation_26xw8"),
+&"RESET": SubResource("Animation_m2ln2")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_26xw8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 260, -168, 0, 0, 0, 0, 200, -168)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_rnkrb"]
+resource_name = "HurryUp"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["HURRY
+UP!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.9, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(72, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(304, 48)]
+}
+
+[sub_resource type="Animation" id="Animation_27osg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_7hnt1"]
+resource_name = "StageClear"
+length = 5.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.65, 3.3, 3.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["CLEARED!", "CLEARED.", "CLEARED..", "CLEARED...?"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+
+[sub_resource type="Animation" id="Animation_32rvl"]
+resource_name = "Start"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.75000006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_emstc"]
+resource_name = "TooBad"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["TOO BAD!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.7490196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_egrg1"]
+_data = {
+&"HurryUp": SubResource("Animation_rnkrb"),
+&"RESET": SubResource("Animation_27osg"),
+&"StageClear": SubResource("Animation_7hnt1"),
+&"Start": SubResource("Animation_32rvl"),
+&"TooBad": SubResource("Animation_emstc")
+}
+
+[node name="Mario_20M_L3" unique_id=182671849 node_paths=PackedStringArray("_leftEnemySpawns", "_rightEnemySpawns", "MarioCompleteAnim", "_rivetsContainer", "_dkAnimPlayer", "_dkCharacter", "_marioCutsceneTransform", "_conveyorsContainer") instance=ExtResource("1_osokq")]
+script = ExtResource("2_86i7f")
+_fireballScene = ExtResource("3_ieosu")
+_fireballSpawnInterval = 3.0
+_maxFireballs = 8
+_leftEnemySpawns = [NodePath("EnemySpawnPoints/EnemySpawn1"), NodePath("EnemySpawnPoints/EnemySpawn2"), NodePath("EnemySpawnPoints/EnemySpawn3"), NodePath("EnemySpawnPoints/EnemySpawn4")]
+_rightEnemySpawns = [NodePath("EnemySpawnPoints/EnemySpawn5"), NodePath("EnemySpawnPoints/EnemySpawn6"), NodePath("EnemySpawnPoints/EnemySpawn7"), NodePath("EnemySpawnPoints/EnemySpawn8")]
+MarioCompleteAnim = NodePath("StageCutsceneAnim")
+_rivetsContainer = NodePath("Entities/Gizmos/Rivets")
+_dkAnimPlayer = NodePath("Entities/Characters/Enemies/Bosses/DonkeyKong/DkAnim")
+_rivetVictoryMusicTrack = ExtResource("4_6ow04")
+_dkCharacter = NodePath("Entities/Characters/Enemies/Bosses/DonkeyKong")
+_marioCutsceneTransform = NodePath("MarioPath2D/MarioPathFollow2D/RemoteTransform2D")
+_conveyorsContainer = NodePath("Entities/Gizmos/ConveyorBelts")
+_playerScene = ExtResource("5_xvbgh")
+_levelMusicTrack = ExtResource("6_tr64s")
+StartTime = 80.0
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+material = SubResource("ShaderMaterial_jnfu0")
+tile_map_data = PackedByteArray("AAALAPr/AAAIAAAAAgAMAPr/AAAIAAAAAAANAPr/AAAIAAAAAAAOAPr/AAAIAAAAAAAPAPr/AAAIAAAAAAAkAPr/AAAIAAAAAgAjAPr/AAAIAAAAAAAiAPr/AAAIAAAAAAAhAPr/AAAIAAAAAAAgAPr/AAAIAAAAAAAMAPX/AAAIAAAAAgANAPX/AAAIAAAAAAAOAPX/AAAIAAAAAAAPAPX/AAAIAAAAAAAUAPX/AAAIAAgAAQAbAPX/AAAIAAgAAQAgAPX/AAAIAAAAAAAhAPX/AAAIAAAAAAAiAPX/AAAIAAAAAAAjAPX/AAAIAAAAAgANAPD/AAAIAAgAAQAOAOv/AAAIAAgAAQASAOv/AAAIAAgAAQAdAOv/AAAIAAgAAQAhAOv/AAAIAAgAAQAXAP7/AAAAAA8AAAAXAP3/AAAAAA8AAAAXAPz/AAAAAA8AAAAXAPv/AAAAAA8AAAAUAPn/AAAAAA8AAAAUAPj/AAAAAA8AAAAUAPf/AAAAAA8AAAAUAPb/AAAAAA8AAAAbAPn/AAAAAA8AAAAbAPj/AAAAAA8AAAAbAPf/AAAAAA8AAAAbAPb/AAAAAA8AAAAYAPT/AAAAAA8AAAAYAPP/AAAAAA8AAAAYAPL/AAAAAA8AAAAYAPH/AAAAAA8AAAAQAPr/AAAKAAAAAAAfAPr/AAAKAAAAAAAfAPX/AAAKAAAAAAAQAPX/AAAKAAAAAAAQAPD/AAAKAAAAAAAfAPD/AAAKAAAAAAAfAOv/AAAKAAAAAAAQAOv/AAAKAAAAAAATAOn/AAAIAAAAAAASAOn/AAAIAAAAAAALAPv/AAAAAA8AAAALAPz/AAAAAA8AAAALAP3/AAAAAA8AAAALAP7/AAAAAA8AAAAMAPb/AAAAAA8AAAAMAPf/AAAAAA8AAAAMAPj/AAAAAA8AAAAMAPn/AAAAAA8AAAANAPH/AAAAAA8AAAANAPL/AAAAAA8AAAANAPP/AAAAAA8AAAANAPT/AAAAAA8AAAAOAOz/AAAAAA8AAAAOAO3/AAAAAA8AAAAOAO7/AAAAAA8AAAAOAO//AAAAAA8AAAASAOz/AAAAAA8AAAASAO3/AAAAAA8AAAASAO7/AAAAAA8AAAASAO//AAAAAA8AAAAKAPr/AAAIAAAAAAALAPX/AAAIAAAAAAAhAOz/AAAAAA8AAAAhAO3/AAAAAA8AAAAhAO7/AAAAAA8AAAAhAO//AAAAAA8AAAAiAPH/AAAAAA8AAAAiAPL/AAAAAA8AAAAiAPP/AAAAAA8AAAAiAPT/AAAAAA8AAAAjAPb/AAAAAA8AAAAjAPf/AAAAAA8AAAAjAPj/AAAAAA8AAAAjAPn/AAAAAA8AAAAkAPv/AAAAAA8AAAAkAPz/AAAAAA8AAAAkAP3/AAAAAA8AAAAkAP7/AAAAAA8AAAAkAPX/AAAIAAAAAAAlAPr/AAAIAAAAAAAdAOz/AAAAAA8AAAAdAO3/AAAAAA8AAAAdAO7/AAAAAA8AAAAdAO//AAAAAA8AAAAiAPD/AAAIAAgAAQAJAP//AAAIAAAAAAAmAP//AAAIAAAAAAAXAOv/AAAIAAAAAAAYAOv/AAAIAAAAAAARAPD/AAAIAAAAAAASAPD/AAAIAAAAAAATAPD/AAAIAAAAAAAUAPD/AAAIAAAAAAAVAPD/AAAIAAAAAAAWAPD/AAAIAAAAAAAXAPD/AAAIAAAAAAAYAPD/AAAIAAAAAgAZAPD/AAAIAAAAAAAaAPD/AAAIAAAAAAAbAPD/AAAIAAAAAAAcAPD/AAAIAAAAAAAdAPD/AAAIAAAAAAAeAPD/AAAIAAAAAAARAPr/AAAIAAAAAAASAPr/AAAIAAAAAAATAPr/AAAIAAAAAAAUAPr/AAAIAAAAAAAVAPr/AAAIAAAAAAAWAPr/AAAIAAAAAAAXAPr/AAAIAAAAAgAYAPr/AAAIAAAAAAAZAPr/AAAIAAAAAAAaAPr/AAAIAAAAAAAbAPr/AAAIAAAAAAAcAPr/AAAIAAAAAAAdAPr/AAAIAAAAAAAeAPr/AAAIAAAAAAA=")
+
+[node name="EnvironmentEnding" type="Node2D" parent="." index="2" unique_id=395105276]
+visible = false
+
+[node name="SideGirdersAndLadders" type="TileMapLayer" parent="EnvironmentEnding" index="0" unique_id=1607453470]
+material = SubResource("ShaderMaterial_26xw8")
+tile_map_data = PackedByteArray("AAAmAP//AAAIAAAAAwAlAPr/AAAIAAAAAwAgAPr/AAAIAAAAAwAPAPr/AAAIAAAAAwAKAPr/AAAIAAAAAwALAPX/AAAIAAAAAwAPAPX/AAAIAAAAAwAgAPX/AAAIAAAAAwAkAPX/AAAIAAAAAwAJAP//AAAIAAAAAwALAPr/AAAIAAAAAwAMAPr/AAAIAAAAAwANAPr/AAAIAAAAAwAOAPr/AAAIAAAAAwAkAPr/AAAIAAAAAwAjAPr/AAAIAAAAAwAiAPr/AAAIAAAAAwAhAPr/AAAIAAAAAwAhAPX/AAAIAAAAAwAiAPX/AAAIAAAAAwAjAPX/AAAIAAAAAwAOAPX/AAAIAAAAAwANAPX/AAAIAAAAAwAMAPX/AAAIAAAAAwAkAP7/AAAQAA8AAAAkAP3/AAAQAA8AAAAkAPz/AAAQAA8AAAAkAPv/AAAQAA8AAAAjAPn/AAAQAA8AAAAjAPj/AAAQAA8AAAAjAPf/AAAQAA8AAAAjAPb/AAAQAA8AAAAiAPT/AAAQAA8AAAAiAPP/AAAQAA8AAAAiAPL/AAAQAA8AAAAiAPH/AAAQAA8AAAAhAO//AAAQAA8AAAAhAO7/AAAQAA8AAAAhAO3/AAAQAA8AAAAhAOz/AAAQAA8AAAAOAO//AAAQAA8AAAAOAO7/AAAQAA8AAAAOAO3/AAAQAA8AAAAOAOz/AAAQAA8AAAANAPT/AAAQAA8AAAANAPP/AAAQAA8AAAANAPL/AAAQAA8AAAANAPH/AAAQAA8AAAAMAPn/AAAQAA8AAAAMAPj/AAAQAA8AAAAMAPf/AAAQAA8AAAAMAPb/AAAQAA8AAAALAP7/AAAQAA8AAAALAP3/AAAQAA8AAAALAPz/AAAQAA8AAAALAPv/AAAQAA8AAAA=")
+tile_set = ExtResource("8_15bun")
+
+[node name="MiddleLadders" type="TileMapLayer" parent="EnvironmentEnding" index="1" unique_id=663566877]
+material = SubResource("ShaderMaterial_dbfi8")
+tile_map_data = PackedByteArray("AAAXAP7/AAAQAA8AAAAXAP3/AAAQAA8AAAAXAPz/AAAQAA8AAAAXAPv/AAAQAA8AAAAbAPn/AAAQAA8AAAAbAPj/AAAQAA8AAAAbAPf/AAAQAA8AAAAbAPb/AAAQAA8AAAAUAPn/AAAQAA8AAAAUAPj/AAAQAA8AAAAUAPf/AAAQAA8AAAAUAPb/AAAQAA8AAAAYAPT/AAAQAA8AAAAYAPP/AAAQAA8AAAAYAPL/AAAQAA8AAAAYAPH/AAAQAA8AAAAdAO7/AAAQAA8AAAAdAO//AAAQAA8AAAAdAO3/AAAQAA8AAAAdAOz/AAAQAA8AAAASAOz/AAAQAA8AAAASAO3/AAAQAA8AAAASAO7/AAAQAA8AAAASAO//AAAQAA8AAAA=")
+tile_set = ExtResource("8_15bun")
+
+[node name="LadderHider" type="ColorRect" parent="EnvironmentEnding" index="2" unique_id=1497626018]
+offset_left = 135.0
+offset_top = -168.0
+offset_right = 249.0
+offset_bottom = -160.0
+color = Color(0, 0, 0, 1)
+
+[node name="CaptiveGirder" type="TileMapLayer" parent="EnvironmentEnding" index="3" unique_id=342720497]
+tile_map_data = PackedByteArray("AAASAOn/AAAIAAAAAwATAOn/AAAIAAAAAwA=")
+tile_set = ExtResource("8_15bun")
+
+[node name="TopGirder" type="TileMapLayer" parent="EnvironmentEnding" index="4" unique_id=724822745]
+tile_map_data = PackedByteArray("AAAXAOv/AAAIAAAAAwAYAOv/AAAIAAAAAwA=")
+tile_set = ExtResource("8_15bun")
+
+[node name="FinalTopGirder" type="TileMapLayer" parent="EnvironmentEnding" index="5" unique_id=584260216]
+visible = false
+tile_map_data = PackedByteArray("AAAXAOv/AAAIAAAAAwAYAOv/AAAIAAAAAwARAOv/AAAIAAAAAwASAOv/AAAIAAAAAwATAOv/AAAIAAAAAwAUAOv/AAAIAAAAAwAVAOv/AAAIAAAAAwAWAOv/AAAIAAAAAwAZAOv/AAAIAAAAAwAaAOv/AAAIAAAAAwAbAOv/AAAIAAAAAwAcAOv/AAAIAAAAAwAdAOv/AAAIAAAAAwAeAOv/AAAIAAAAAwAQAOv/AAAIAAAAAwAfAOv/AAAIAAAAAwA=")
+tile_set = ExtResource("8_15bun")
+
+[node name="TopMiddleGirder" type="TileMapLayer" parent="EnvironmentEnding" index="6" unique_id=1133827508]
+tile_map_data = PackedByteArray("AAARAPD/AAAIAAAAAwASAPD/AAAIAAAAAwATAPD/AAAIAAAAAwAUAPD/AAAIAAAAAwAVAPD/AAAIAAAAAwAWAPD/AAAIAAAAAwAXAPD/AAAIAAAAAwAYAPD/AAAIAAAAAwAZAPD/AAAIAAAAAwAaAPD/AAAIAAAAAwAbAPD/AAAIAAAAAwAcAPD/AAAIAAAAAwAdAPD/AAAIAAAAAwAeAPD/AAAIAAAAAwA=")
+tile_set = ExtResource("8_15bun")
+
+[node name="BottomMiddleGirder" type="TileMapLayer" parent="EnvironmentEnding" index="7" unique_id=883952772]
+tile_map_data = PackedByteArray("AAARAPr/AAAIAAAAAwASAPr/AAAIAAAAAwATAPr/AAAIAAAAAwAUAPr/AAAIAAAAAwAVAPr/AAAIAAAAAwAWAPr/AAAIAAAAAwAXAPr/AAAIAAAAAwAYAPr/AAAIAAAAAwAZAPr/AAAIAAAAAwAaAPr/AAAIAAAAAwAbAPr/AAAIAAAAAwAcAPr/AAAIAAAAAwAdAPr/AAAIAAAAAwAeAPr/AAAIAAAAAwA=")
+tile_set = ExtResource("8_15bun")
+
+[node name="ConveyorBelts" type="Node2D" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="1" unique_id=2081616720]
+
+[node name="ConveyorBelt" parent="Entities/Gizmos/ConveyorBelts" index="0" unique_id=1279322400 instance=ExtResource("9_ae6hy")]
+position = Vector2(136, -88)
+MiddleTileCount = 12
+Speed = 48.0
+Alternates = true
+
+[node name="ConveyorBelt2" parent="Entities/Gizmos/ConveyorBelts" index="1" unique_id=55877284 instance=ExtResource("9_ae6hy")]
+position = Vector2(96, -128)
+MiddleTileCount = 2
+Speed = 48.0
+Alternates = true
+
+[node name="ConveyorBelt3" parent="Entities/Gizmos/ConveyorBelts" index="2" unique_id=2090369214 instance=ExtResource("9_ae6hy")]
+position = Vector2(256, -128)
+MiddleTileCount = 2
+Speed = 48.0
+IsMovingRight = false
+Alternates = true
+
+[node name="ConveyorBelt4" parent="Entities/Gizmos/ConveyorBelts" index="3" unique_id=3436958 instance=ExtResource("9_ae6hy")]
+position = Vector2(104, -168)
+MiddleTileCount = 1
+Speed = 48.0
+Alternates = true
+
+[node name="ConveyorBelt5" parent="Entities/Gizmos/ConveyorBelts" index="4" unique_id=1649849298 instance=ExtResource("9_ae6hy")]
+position = Vector2(136, -168)
+MiddleTileCount = 4
+Speed = 48.0
+IsMovingRight = false
+Alternates = true
+
+[node name="ConveyorBelt6" parent="Entities/Gizmos/ConveyorBelts" index="5" unique_id=2141571465 instance=ExtResource("9_ae6hy")]
+position = Vector2(200, -168)
+MiddleTileCount = 4
+Speed = 48.0
+IsMovingRight = false
+Alternates = true
+
+[node name="ConveyorBelt7" parent="Entities/Gizmos/ConveyorBelts" index="6" unique_id=207971399 instance=ExtResource("9_ae6hy")]
+position = Vector2(256, -168)
+MiddleTileCount = 1
+Speed = 48.0
+Alternates = true
+
+[node name="ConveyorBelt8" parent="Entities/Gizmos/ConveyorBelts" index="7" unique_id=200342148 instance=ExtResource("9_ae6hy")]
+position = Vector2(80, -8)
+MiddleTileCount = 26
+Speed = 48.0
+IsMovingRight = false
+Alternates = true
+
+[node name="Rivets" type="Node2D" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="2" unique_id=1011378058]
+
+[node name="Rivet" parent="Entities/Gizmos/Rivets" index="0" unique_id=1649966432 instance=ExtResource("10_5qa0q")]
+position = Vector2(132, -40)
+
+[node name="Rivet2" parent="Entities/Gizmos/Rivets" index="1" unique_id=1851416387 instance=ExtResource("10_5qa0q")]
+position = Vector2(252, -40)
+
+[node name="Rivet3" parent="Entities/Gizmos/Rivets" index="2" unique_id=1659615427 instance=ExtResource("10_5qa0q")]
+position = Vector2(132, -80)
+
+[node name="Rivet4" parent="Entities/Gizmos/Rivets" index="3" unique_id=812044265 instance=ExtResource("10_5qa0q")]
+position = Vector2(252, -80)
+
+[node name="Rivet5" parent="Entities/Gizmos/Rivets" index="4" unique_id=1102128474 instance=ExtResource("10_5qa0q")]
+position = Vector2(132, -120)
+
+[node name="Rivet6" parent="Entities/Gizmos/Rivets" index="5" unique_id=1690858955 instance=ExtResource("10_5qa0q")]
+position = Vector2(252, -120)
+
+[node name="Rivet7" parent="Entities/Gizmos/Rivets" index="6" unique_id=659263956 instance=ExtResource("10_5qa0q")]
+position = Vector2(132, -160)
+
+[node name="Rivet8" parent="Entities/Gizmos/Rivets" index="7" unique_id=1806574832 instance=ExtResource("10_5qa0q")]
+position = Vector2(252, -160)
+
+[node name="Purse" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("11_byd7i")]
+position = Vector2(212, -8)
+
+[node name="Hat" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=848046291 instance=ExtResource("12_6ndb3")]
+position = Vector2(180, -88)
+
+[node name="Umbrella" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=1582900372 instance=ExtResource("13_d00rc")]
+position = Vector2(108, -168)
+
+[node name="Hammer" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="0" unique_id=968284547 instance=ExtResource("14_y36h8")]
+position = Vector2(88, -105)
+
+[node name="Hammer2" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="1" unique_id=368352574 instance=ExtResource("14_y36h8")]
+position = Vector2(192, -145)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517]
+position = Vector2(192, -168)
+StartingState = 0
+
+[node name="Pauline" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("15_j7l8l")]
+position = Vector2(152, -184)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Pauline" index="1" unique_id=300254388]
+position = Vector2(24, -4)
+
+[node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
+position = Vector2(180, -184)
+
+[node name="PlayerSpawn" parent="." index="4" unique_id=248777857]
+position = Vector2(136, -8)
+
+[node name="EnemySpawnPoints" type="Node2D" parent="." index="5" unique_id=665791641]
+
+[node name="EnemySpawn1" type="Marker2D" parent="EnemySpawnPoints" index="0" unique_id=582836244]
+position = Vector2(88, -8)
+
+[node name="EnemySpawn2" type="Marker2D" parent="EnemySpawnPoints" index="1" unique_id=261313420]
+position = Vector2(96, -48)
+
+[node name="EnemySpawn3" type="Marker2D" parent="EnemySpawnPoints" index="2" unique_id=1029591148]
+position = Vector2(104, -88)
+
+[node name="EnemySpawn4" type="Marker2D" parent="EnemySpawnPoints" index="3" unique_id=249790643]
+position = Vector2(112, -128)
+
+[node name="EnemySpawn5" type="Marker2D" parent="EnemySpawnPoints" index="4" unique_id=649886371]
+position = Vector2(296, -8)
+
+[node name="EnemySpawn6" type="Marker2D" parent="EnemySpawnPoints" index="5" unique_id=1895688362]
+position = Vector2(288, -48)
+
+[node name="EnemySpawn7" type="Marker2D" parent="EnemySpawnPoints" index="6" unique_id=694524110]
+position = Vector2(280, -88)
+
+[node name="EnemySpawn8" type="Marker2D" parent="EnemySpawnPoints" index="7" unique_id=1203705749]
+position = Vector2(272, -128)
+
+[node name="StageCutsceneAnim" type="AnimationPlayer" parent="." index="8" unique_id=640194966]
+libraries/ = SubResource("AnimationLibrary_rnkrb")
+autoplay = &"RESET"
+
+[node name="MarioPath2D" type="Path2D" parent="." index="9" unique_id=1052001531]
+curve = SubResource("Curve2D_26xw8")
+
+[node name="MarioPathFollow2D" type="PathFollow2D" parent="MarioPath2D" index="0" unique_id=677696115]
+position = Vector2(260, -168)
+rotation = 3.1415927
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MarioPath2D/MarioPathFollow2D" index="0" unique_id=1664822063]
+update_rotation = false
+update_scale = false
+
+[node name="PromptAnim" parent="HUD/MainHudControl/LevelPrompt" parent_id_path=PackedInt32Array(67024084) index="1" unique_id=1226467105]
+libraries/ = SubResource("AnimationLibrary_egrg1")
+
+[node name="LevelPrompt2" type="ColorRect" parent="HUD/MainHudControl" parent_id_path=PackedInt32Array(1135149742) index="1" unique_id=1685644399]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -20.0
+offset_right = 72.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.75000006)
+
+[node name="PromptLabel2" parent="HUD/MainHudControl/LevelPrompt2" index="0" unique_id=1692661727 instance=ExtResource("16_86i7f")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "CLEARED!"
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "20M"
+
+[node name="TransitionLayer" parent="." index="13" unique_id=815634781]
+visible = true
+
+[editable path="Entities/Characters/Enemies/Bosses/DonkeyKong"]
+[editable path="Entities/Characters/Captive/Pauline"]

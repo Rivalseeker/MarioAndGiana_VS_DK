@@ -1,0 +1,561 @@
+[gd_scene format=4 uid="uid://6omvg236fmbl"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_c8gbb"]
+[ext_resource type="PackedScene" uid="uid://bmpd3slaq02q4" path="res://Scenes/Characters/Players/mario.tscn" id="2_bkjvq"]
+[ext_resource type="AudioStream" uid="uid://da1s8ndonieae" path="res://Assets/Audio/BGM/NES_DK_25M.ogg" id="3_1qbjd"]
+[ext_resource type="Shader" uid="uid://cw6xn50q0rv6f" path="res://Scripts/Shaders/sprite_recolor.gdshader" id="4_1x0w0"]
+[ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="5_lq0vh"]
+[ext_resource type="PackedScene" uid="uid://ci8iuorprrjcd" path="res://Scenes/Gizmos/oil_drum.tscn" id="6_ctmso"]
+[ext_resource type="PackedScene" uid="uid://bbapt6q6oka7b" path="res://Scenes/PickUps/Collectibles/Pauline/hat.tscn" id="7_ox8wu"]
+[ext_resource type="PackedScene" uid="uid://hv5njwnlsq4w" path="res://Scenes/Gizmos/Hazards/barrel_direction_area.tscn" id="7_yodme"]
+[ext_resource type="PackedScene" uid="uid://bxf1ogjt674xh" path="res://Scenes/PickUps/Collectibles/Pauline/purse.tscn" id="8_6cvtj"]
+[ext_resource type="PackedScene" uid="uid://dceew3t6ho7hy" path="res://Scenes/PickUps/Collectibles/Pauline/umbrella.tscn" id="9_tikbd"]
+[ext_resource type="PackedScene" uid="uid://dmwp15ybt31xe" path="res://Scenes/PickUps/Weapons/hammer.tscn" id="10_1rld7"]
+[ext_resource type="PackedScene" uid="uid://ci655u6aqeen5" path="res://Scenes/Characters/Enemies/Commons/fireball.tscn" id="11_ljhbh"]
+[ext_resource type="PackedScene" uid="uid://dkaomh2simm78" path="res://Scenes/Characters/NPCs/pauline.tscn" id="12_s46uy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_epuet"]
+shader = ExtResource("4_1x0w0")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o7n5u"]
+size = Vector2(8, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_25noy"]
+size = Vector2(6, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yodme"]
+size = Vector2(16, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lec2o"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_yodme"]
+resource_name = "HurryUp"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["HURRY UP!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.9, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+
+[sub_resource type="Animation" id="Animation_o7n5u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(52, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_tm0yt"]
+resource_name = "StageClear"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.65, 3.3, 3.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["CLEARED!", "CLEARED.", "CLEARED..", "CLEARED...?"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+
+[sub_resource type="Animation" id="Animation_vb7en"]
+resource_name = "Start"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.75000006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+
+[sub_resource type="Animation" id="Animation_0me4b"]
+resource_name = "TooBad"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["TOO BAD!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.7490196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c8gbb"]
+_data = {
+&"HurryUp": SubResource("Animation_yodme"),
+&"RESET": SubResource("Animation_o7n5u"),
+&"StageClear": SubResource("Animation_tm0yt"),
+&"Start": SubResource("Animation_vb7en"),
+&"TooBad": SubResource("Animation_0me4b")
+}
+
+[node name="Mario_5M_L2" unique_id=182671849 instance=ExtResource("1_c8gbb")]
+_playerScene = ExtResource("2_bkjvq")
+_levelMusicTrack = ExtResource("3_1qbjd")
+_nextScene = "uid://c0fre5igrp8of"
+UseTimer = false
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+material = SubResource("ShaderMaterial_epuet")
+tile_map_data = PackedByteArray("AAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAAAAAAAAAAMAP//AAAAAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAhAP3/AAAAAAAAAAAiAP3/AAAAAAAAAAAjAP3/AAAAAAAAAAAqAPv/AAAAAA8AAAAqAPr/AAAAAA8AAAAqAPn/AAAAAA8AAAAqAPj/AAAAAA8AAAAqAPz/AAAQAAsAAQAqAPf/AAAAAAAAAwApAPf/AAAAAAAAAAAoAPf/AAAAAAAAAAAnAPf/AAAAAAAAAAArAPf/AAAAAAAAAAAsAPf/AAAAAAAAAAAtAPf/AAAAAAAAAAAuAPf/AAAAAAAAAAAoAPX/AAAAAAAAAAAmAPf/AAAAAAAAAAAlAPf/AAAAAAAAAAAkAPf/AAAAAAAAAAAjAPf/AAAAAAAAAAAnAPb/AAAAAAAAAAAmAPb/AAAAAAAAAAAlAPb/AAAAAAAAAAAkAPb/AAAAAAAAAAAjAPb/AAAAAAAAAAAiAPf/AAAAAAAAAAAhAPf/AAAAAAAAAAAmAPX/AAAAAAQAAAAkAPX/AAAAAAQAAAAqAPT/AAAAAAAAAAAsAPT/AAAAAAAAAAArAPT/AAAAAAAAAAAsAO3/AAAAAAAAAAArAO3/AAAAAAAAAAAqAO3/AAAAAAAAAAApAO3/AAAAAAAAAAAoAO3/AAAAAAAAAwArAPD/AAAAAAAAAwAqAPD/AAAAAAAAAAApAPD/AAAAAAAAAAAoAPD/AAAAAAAAAAAoAO//AAAAAA0AAAAoAO7/AAAQAAoAAAAiAPP/AAAAAAAAAAAhAPP/AAAAAAAAAAAiAPL/AAAAAAQAAAAiAPH/AAAAAAQAAAAhAPH/AAAAAAQAAAAhAPL/AAAAAAQAAAAlAPX/AAAAAAQAAAAfAPn/AAAAAAAAAAAeAPn/AAAAAAAAAAAdAPn/AAAAAAAAAwAcAPn/AAAAAAAAAAAbAPn/AAAAAAAAAAAgAPn/AAAAAAAAAAAZAPn/AAAAAAAAAAAYAPn/AAAAAAAAAAAXAPn/AAAAAAAAAAAPAPv/AAAAAAAAAAAOAPv/AAAAAAAAAAAHAPj/AAAQAAwAAgAHAPf/AAAAAA8AAAAHAPb/AAAAAA8AAAAHAPX/AAAAAA8AAAAHAPT/AAAAAAAAAwAFAPX/AAAAAAAAAAAJAPX/AAAAAAAAAAAJAPL/AAAAAAAAAAAKAPL/AAAAAAAAAAALAPL/AAAAAAAAAAAFAPL/AAAAAAAAAAAEAPL/AAAAAAAAAAADAPL/AAAAAAAAAAAOAPL/AAAAAAAAAAAPAPL/AAAAAAAAAwAQAPL/AAAAAAAAAAAQAPX/AAAAAAAAAAAPAPX/AAAAAAAAAAAOAPX/AAAAAAAAAAANAPX/AAAAAAAAAAAPAPT/AAAAAA8AAAAPAPP/AAAAAA8AAAARAPb/AAAAAAAAAAASAPb/AAAAAAAAAwATAPb/AAAAAAAAAAAUAPb/AAAAAAAAAAAVAPb/AAAAAAAAAAAWAPb/AAAAAAAAAwAXAPb/AAAAAAAAAAAYAPb/AAAAAAAAAAAZAPb/AAAAAAAAAAAaAPb/AAAAAAAAAAAbAPb/AAAAAAAAAwAcAPb/AAAAAAAAAAAdAPb/AAAAAAAAAAAdAPX/AAAAAAAAAAAcAPX/AAAAAAAAAAAcAPT/AAAAAAAAAAAbAPT/AAAAAAAAAAAZAPP/AAAAAAAAAAAYAPP/AAAAAAAAAAAWAPL/AAAAAAAAAAAVAPL/AAAAAAAAAAAVAPH/AAAAAAAAAAAWAPH/AAAAAAAAAAAZAPD/AAAAAAAAAAAaAPD/AAAAAAAAAAAaAO//AAAAAA8AAAAaAO7/AAAAAA8AAAAaAO3/AAAAAA8AAAAaAOz/AAAAAA8AAAAaAOv/AAAAAA8AAAAaAOr/AAAAAAAAAwAZAOr/AAAAAAAAAAAYAOr/AAAAAAAAAAAXAOr/AAAAAAAAAAAUAOz/AAAAAAAAAAATAOz/AAAAAAAAAAASAOz/AAAAAAAAAAARAOz/AAAAAAAAAAAQAOz/AAAAAAAAAAAPAOz/AAAAAAAAAAAOAOz/AAAAAAAAAAANAOz/AAAAAAAAAAAMAOz/AAAAAAAAAAALAOz/AAAAAAAAAAAKAOz/AAAAAAAAAwAJAOz/AAAAAAAAAAAIAOz/AAAAAAAAAAAHAOz/AAAAAAAAAAAGAOz/AAAAAAAAAAAFAOz/AAAAAAAAAwAEAOz/AAAAAAAAAAADAOz/AAAAAAAAAAACAOz/AAAAAAAAAAABAOz/AAAAAAAAAAAAAOz/AAAAAAAAAAANAOn/AAAAAAAAAwAMAOn/AAAAAAAAAAALAOn/AAAAAAAAAAAKAOn/AAAAAAAAAAAJAOn/AAAAAAAAAAAIAOn/AAAQAA8AAQAIAOj/AAAQAA8AAQAIAOf/AAAQAA8AAQAIAOb/AAAQAA8AAQAIAOX/AAAQAA8AAQAGAOX/AAAQAA8AAQAGAOb/AAAQAA8AAQAGAOf/AAAQAA8AAQAGAOj/AAAQAA8AAQAGAOn/AAAQAA8AAQAIAOr/AAAAAAAAAgAHAOr/AAAAAAAAAgAGAOr/AAAAAAAAAgAIAOv/AAAQAA8AAAAGAOv/AAAQAA8AAAANAOv/AAAAAA8AAQANAOr/AAAAAA8AAQAKAO7/AAAAAA8AAAAKAPD/AAAAAA8AAAAKAO//AAAAAA8AAAAKAO3/AAAAAA8AAAAFAO3/AAAAAA8AAAAFAO7/AAAAAA8AAAAFAPD/AAAAAA8AAAAFAPH/AAAAAA8AAAAKAPH/AAAIAAgAAAAFAO//AAAIAAgAAAARAP7/AAAQAA4AAAARAPv/AAAAAAkAAAARAP3/AAAIAAgAAAARAPz/AAAIAAgAAAAPAPr/AAAAAA8AAAAPAPn/AAAAAAoAAQAUAP7/AAAQAA0AAAAUAPv/AAAAAA8AAAAUAPr/AAAAAA8AAAAUAPn/AAAAAAgAAAAWAPf/AAAQAAkAAAAWAPj/AAANAAsAAAAbAPf/AAAQAAsAAAAbAPj/AAAAAAsAAAAdAPr/AAAQAAwAAAAdAP3/AAAQAA4AAAAdAPz/AAAIAAgAAAAdAPv/AAAIAAgAAAAUAPz/AAAIAAgAAAAUAP3/AAAIAAgAAAArAPH/AAAAAA8AAAArAPL/AAAAAA8AAAAsAPD/AAAAAAAAAAArAPP/AAAIAAgAAAAWAOr/AAAAAAAAAAAVAOr/AAAAAAAAAAAaAPz/AAAAAAAAAAAZAPz/AAAAAAAAAAAbAPz/AAAAAAAAAAASAPf/AAAAAA8AAAASAPj/AAAAAA8AAAASAPn/AAAIAAgAAAASAPr/AAAOAAsAAAAgAPP/AAAAAAAAAAAgAPL/AAAAAAQAAAAgAPH/AAAAAAQAAAA=")
+
+[node name="LevelTileMap2" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="1" unique_id=699004260]
+tile_map_data = PackedByteArray("AAAPAP//AAAAAAAAAAAQAP//AAAAAAAAAAARAP//AAAAAAAAAAAbAP7/AAAAAAAAAAAcAP7/AAAAAAAAAAAdAP7/AAAAAAAAAAAWAPn/AAAAAAAAAAAVAPn/AAAAAAAAAAAUAPn/AAAAAAAAAwAQAPv/AAAAAAAAAAA=")
+
+[node name="LevelTileMap3" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="2" unique_id=1302995735]
+tile_map_data = PackedByteArray("AAASAP//AAAAAAAAAAATAP//AAAAAAAAAAAUAP//AAAAAAAAAAAqAPb/AAAAAAAAAAArAPb/AAAAAAAAAAAsAPb/AAAAAAAAAAARAPv/AAAAAAAAAwAHAPP/AAAAAAAAAAASAPv/AAAAAAAAAAA=")
+
+[node name="LevelTileMap4" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="3" unique_id=1022846052]
+tile_map_data = PackedByteArray("AAAQAPn/AAAAAAAAAAAPAPn/AAAAAAAAAwAOAPn/AAAAAAAAAAANAPn/AAAAAAAAAAAMAPn/AAAAAAAAAAALAPn/AAAAAAAAAAAKAPn/AAAAAAAAAAAJAPn/AAAAAAAAAAAIAPn/AAAAAAAAAAAHAPn/AAAAAAAAAAAGAPn/AAAAAAAAAAA=")
+
+[node name="LevelTileMap5" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="4" unique_id=1845843692]
+tile_map_data = PackedByteArray("AAAVAP//AAAAAAAAAAAWAP//AAAAAAAAAAAXAP//AAAAAAAAAAAeAP7/AAAAAAAAAAAfAP7/AAAAAAAAAAAgAP7/AAAAAAAAAAAkAP3/AAAAAAAAAAAlAP3/AAAAAAAAAAAmAP3/AAAAAAAAAAAnAP3/AAAAAAAAAAAoAP3/AAAAAAAAAAApAP3/AAAAAAAAAAAqAP3/AAAAAAAAAAArAP3/AAAAAAAAAAAsAP3/AAAAAAAAAAApAPb/AAAAAAAAAAApAPX/AAAAAAAAAAAGAPX/AAAAAAAAAAAIAPX/AAAAAAAAAAAGAPP/AAAAAAAAAAAIAPP/AAAAAAAAAAA=")
+
+[node name="LevelTileMap7" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="6" unique_id=1609967899]
+tile_map_data = PackedByteArray("AAAYAP//AAAAAAAAAAAZAP//AAAAAAAAAAAaAP//AAAAAAAAAAA=")
+
+[node name="CheckpointFlag" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="0" unique_id=342376629 instance=ExtResource("5_lq0vh")]
+position = Vector2(256, -20)
+CheckpointId = "Checkpoint1"
+
+[node name="CheckpointFlag2" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="1" unique_id=716501791 instance=ExtResource("5_lq0vh")]
+position = Vector2(272, -72)
+CheckpointId = "Checkpoint2"
+
+[node name="CheckpointFlag3" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="2" unique_id=76816176 instance=ExtResource("5_lq0vh")]
+position = Vector2(112, -59)
+CheckpointId = "Checkpoint3"
+
+[node name="FlagDetect" parent="Entities/Gizmos/Checkpoints/CheckpointFlag3" index="1" unique_id=448701158]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_o7n5u")
+
+[node name="CheckpointFlag4" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="3" unique_id=481189099 instance=ExtResource("5_lq0vh")]
+position = Vector2(136, -88)
+CheckpointId = "Checkpoint4"
+
+[node name="FlagDetect" parent="Entities/Gizmos/Checkpoints/CheckpointFlag4" index="1" unique_id=448701158]
+position = Vector2(-4, -6)
+shape = SubResource("RectangleShape2D_25noy")
+
+[node name="OilDrum" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="1" unique_id=1374861913 instance=ExtResource("6_ctmso")]
+position = Vector2(80, -8)
+LeapHorizontalSpeed = 56.0
+SpawnVerticalOffset = 16.0
+
+[node name="Hat" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("7_ox8wu")]
+position = Vector2(32, -112)
+
+[node name="Purse" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=1219923816 instance=ExtResource("8_6cvtj")]
+position = Vector2(96, -160)
+
+[node name="Umbrella" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=1889634222 instance=ExtResource("9_tikbd")]
+position = Vector2(200, -14)
+
+[node name="Hammer" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="0" unique_id=968284547 instance=ExtResource("10_1rld7")]
+position = Vector2(240, -88)
+
+[node name="Hammer2" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="1" unique_id=585488686 instance=ExtResource("10_1rld7")]
+position = Vector2(176, -96)
+
+[node name="Hammer3" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="2" unique_id=2003967083 instance=ExtResource("10_1rld7")]
+position = Vector2(176, -192)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517 node_paths=PackedStringArray("BarrelContainer")]
+position = Vector2(24, -160)
+EscapeDirection = 1
+BarrelContainer = NodePath("../../Commons/Barrels")
+
+[node name="Fireball" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="0" unique_id=1568614461 instance=ExtResource("11_ljhbh")]
+position = Vector2(156, -160)
+
+[node name="Fireball2" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="1" unique_id=1741370562 instance=ExtResource("11_ljhbh")]
+position = Vector2(336, -128)
+
+[node name="Fireball3" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="2" unique_id=995840756 instance=ExtResource("11_ljhbh")]
+position = Vector2(224, -96)
+
+[node name="Barrels" type="Node2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="3" unique_id=928529455]
+
+[node name="BarrelDirectionArea" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="4" unique_id=1679233478 instance=ExtResource("7_yodme")]
+ForcedDirection = -1
+
+[node name="BarrelDirectionDetect2" type="CollisionPolygon2D" parent="Entities/Characters/Enemies/Commons/BarrelDirectionArea" index="1" unique_id=1609715555]
+polygon = PackedVector2Array(88, -8, 88, -24, 256, -24, 256, -32, 288, -32, 288, -8)
+
+[node name="BarrelDirectionDetect1" type="CollisionShape2D" parent="Entities/Characters/Enemies/Commons/BarrelDirectionArea" index="2" unique_id=1858968655]
+position = Vector2(120, -36)
+shape = SubResource("RectangleShape2D_yodme")
+debug_color = Color(0.653324, 0.51855904, 0, 0.41960785)
+
+[node name="Pauline" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("12_s46uy")]
+position = Vector2(56, -176)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Pauline" index="1" unique_id=300254388]
+position = Vector2(32, -4)
+
+[node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
+position = Vector2(88, -192)
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=248777857]
+position = Vector2(96, -8)
+
+[node name="GoalArea" parent="." index="5" unique_id=1127886652]
+position = Vector2(108, -192)
+
+[node name="GoalDetect" parent="GoalArea" index="0" unique_id=431830692]
+shape = SubResource("RectangleShape2D_lec2o")
+
+[node name="PromptLabel" parent="HUD/MainHudControl/LevelPrompt" parent_id_path=PackedInt32Array(67024084) index="0" unique_id=1710127306]
+offset_left = -20.0
+offset_right = 84.0
+
+[node name="PromptAnim" parent="HUD/MainHudControl/LevelPrompt" parent_id_path=PackedInt32Array(67024084) index="1" unique_id=1226467105]
+libraries/ = SubResource("AnimationLibrary_c8gbb")
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "5M"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "2"
+
+[editable path="Entities/Gizmos/Checkpoints/CheckpointFlag3"]
+[editable path="Entities/Gizmos/Checkpoints/CheckpointFlag4"]
+[editable path="Entities/Characters/Captive/Pauline"]

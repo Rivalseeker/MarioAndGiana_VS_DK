@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bg5qug4lxohej"]
+
+[ext_resource type="PackedScene" uid="uid://cf53ol163qggf" path="res://Scenes/PickUps/Collectibles/base_collectible.tscn" id="1_searj"]
+[ext_resource type="Texture2D" uid="uid://cwhdwrgh1eqxk" path="res://Assets/Art/PickUps/Collectibles/Maria/SodaBottle.png" id="2_2mk5m"]
+
+[node name="Soda" unique_id=1836820992 instance=ExtResource("1_searj")]
+UniqueId = "Item_2"
+
+[node name="Sprite2D" parent="." index="0" unique_id=348359129]
+texture = ExtResource("2_2mk5m")
+offset = Vector2(-16, -32)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1731533093]
+position = Vector2(0, -8)

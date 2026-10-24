@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://fjtcd51ikiqd"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_c0bac"]
+
+[node name="5M_L1_Intro" unique_id=804122041 instance=ExtResource("1_c0bac")]
+_levelPath = "uid://cvxmdi22c6v1e"

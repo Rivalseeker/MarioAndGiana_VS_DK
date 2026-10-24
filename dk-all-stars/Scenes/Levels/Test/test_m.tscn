@@ -1,0 +1,119 @@
+[gd_scene format=4 uid="uid://b1stwlml1n7l8"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_rcuw1"]
+[ext_resource type="PackedScene" uid="uid://blrdhej0dx6y0" path="res://Scenes/Characters/Players/giana.tscn" id="2_7f1x3"]
+[ext_resource type="AudioStream" uid="uid://da1s8ndonieae" path="res://Assets/Audio/BGM/NES_DK_25M.ogg" id="3_kri4y"]
+[ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="4_0nlbc"]
+[ext_resource type="Shader" uid="uid://cw6xn50q0rv6f" path="res://Scripts/Shaders/sprite_recolor.gdshader" id="4_7f1x3"]
+[ext_resource type="PackedScene" uid="uid://ci655u6aqeen5" path="res://Scenes/Characters/Enemies/Commons/fireball.tscn" id="5_vrqd5"]
+[ext_resource type="PackedScene" uid="uid://dkaomh2simm78" path="res://Scenes/Characters/NPCs/pauline.tscn" id="6_2bg8o"]
+[ext_resource type="PackedScene" uid="uid://dceew3t6ho7hy" path="res://Scenes/PickUps/Collectibles/Pauline/umbrella.tscn" id="7_ml8l3"]
+[ext_resource type="PackedScene" uid="uid://dmwp15ybt31xe" path="res://Scenes/PickUps/Weapons/hammer.tscn" id="8_7f1x3"]
+[ext_resource type="PackedScene" uid="uid://bbapt6q6oka7b" path="res://Scenes/PickUps/Collectibles/Pauline/hat.tscn" id="8_7f46u"]
+[ext_resource type="PackedScene" uid="uid://bxf1ogjt674xh" path="res://Scenes/PickUps/Collectibles/Pauline/purse.tscn" id="9_7f1x3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2rbe"]
+shader = ExtResource("4_7f1x3")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kri4y"]
+size = Vector2(8, 8)
+
+[node name="TestM" unique_id=182671849 instance=ExtResource("1_rcuw1")]
+_playerScene = ExtResource("2_7f1x3")
+_levelMusicTrack = ExtResource("3_kri4y")
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+material = SubResource("ShaderMaterial_p2rbe")
+tile_map_data = PackedByteArray("AAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAAAAAAAAAAMAP//AAAAAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAqAPf/AAAAAAAAAwArAPf/AAAAAAAAAAAsAPf/AAAAAAAAAAApAPf/AAAAAAAAAAAoAPf/AAAAAAAAAAAnAPf/AAAAAAAAAAAmAPf/AAAAAAAAAAAlAPf/AAAAAAAAAAAkAPf/AAAAAAAAAAAjAPf/AAAAAAAAAAAiAPf/AAAAAAAAAAAhAPf/AAAAAAAAAAAtAPf/AAAAAAAAAAAuAPf/AAAAAAAAAAAsAPX/AAAAAAAAAAAoAPX/AAAAAAAAAAAmAPb/AAAAAAAAAAAlAPb/AAAAAAAAAAAkAPb/AAAAAAAAAAAjAPb/AAAAAAAAAAAkAPX/AAAAAAQAAAAlAPX/AAAAAAQAAAAmAPX/AAAAAAQAAAAmAPT/AAAAAAQAAAAlAPT/AAAAAAQAAAAiAPL/AAAAAAQAAAAhAPL/AAAAAAQAAAAhAPH/AAAAAAQAAAAiAPH/AAAAAAQAAAAiAPP/AAAAAAAAAAAhAPP/AAAAAAAAAAAdAPn/AAAAAAAAAwAcAPn/AAAAAAAAAAAbAPn/AAAAAAAAAAAZAPn/AAAAAAAAAAAYAPn/AAAAAAAAAAAXAPn/AAAAAAAAAAAdAPb/AAAAAAAAAAAcAPb/AAAAAAAAAAAaAPb/AAAAAAAAAAAZAPb/AAAAAAAAAAAYAPb/AAAAAAAAAAAXAPb/AAAAAAAAAAAWAPb/AAAAAAAAAAAUAPb/AAAAAAAAAAATAPb/AAAAAAAAAAASAPb/AAAAAAAAAAARAPb/AAAAAAAAAAAQAPX/AAAAAAAAAAAPAPX/AAAAAAAAAAAOAPX/AAAAAAAAAAAOAPL/AAAAAAAAAAAQAPL/AAAAAAAAAAAFAPL/AAAAAAAAAAAEAPL/AAAAAAAAAAADAPL/AAAAAAAAAAAJAPL/AAAAAAAAAAAKAPL/AAAAAAAAAAALAPL/AAAAAAAAAAAdAPX/AAAAAAAAAAAcAPX/AAAAAAAAAAAYAOr/AAAAAAAAAAAXAOr/AAAAAAAAAAASAOz/AAAAAAAAAAARAOz/AAAAAAAAAAAQAOz/AAAAAAAAAAAPAOz/AAAAAAAAAAAOAOz/AAAAAAAAAAANAOz/AAAAAAAAAAAMAOz/AAAAAAAAAAALAOz/AAAAAAAAAAAJAOz/AAAAAAAAAAAIAOz/AAAAAAAAAAAHAOz/AAAAAAAAAAAGAOz/AAAAAAAAAAAEAOz/AAAAAAAAAAADAOz/AAAAAAAAAAACAOz/AAAAAAAAAAABAOz/AAAAAAAAAAAAAOz/AAAAAAAAAAAoAO3/AAAAAAAAAAApAO3/AAAAAAAAAAAqAO3/AAAAAAAAAAAGAOr/AAAAAAAAAgAHAOr/AAAAAAAAAgAIAOr/AAAAAAAAAgAJAOn/AAAAAAAAAAAKAOn/AAAAAAAAAAALAOn/AAAAAAAAAAAMAOn/AAAAAAAAAAATAOz/AAAAAAAAAAAUAOz/AAAAAAAAAAAVAOz/AAAAAAAAAAAWAOz/AAAAAAAAAAAnAPb/AAAAAAAAAAAtAPb/AAAAAAAAAAAuAPb/AAAAAAAAAAAeAPn/AAAAAAAAAAAOAPv/AAAAAAAAAAAqAPv/AAAAAA8AAAAqAPr/AAAAAA8AAAAqAPn/AAAAAA8AAAAqAPj/AAAAAA8AAAAdAPr/AAAQAAwAAQAdAP3/AAAQAA4AAAAbAPb/AAAAAAAAAwAVAPb/AAAAAAAAAwAHAPT/AAAAAAAAAwAPAPL/AAAAAAAAAwANAOn/AAAAAAAAAwAKAOz/AAAAAAAAAwAFAOz/AAAAAAAAAwAPAPv/AAAAAAAAAAARAPv/AAAAAAkAAAARAP7/AAAQAA4AAAAUAPr/AAAAAA8AAAAUAPn/AAAAAAgAAAAUAPv/AAAAAA8AAAAUAP7/AAAQAA0AAAAVAPf/AAAQAAkAAAAVAPj/AAABAAsAAAAbAPf/AAAQAAsAAAAbAPj/AAAAAAsAAAAHAPj/AAAQAAwAAAAHAPf/AAAAAA8AAAAHAPb/AAAAAA8AAAAHAPX/AAAAAA8AAAAFAPH/AAAAAA8AAAAFAPD/AAAAAA8AAAAFAO7/AAAAAA8AAAAFAO3/AAAAAA8AAAAKAO3/AAAAAA8AAAAKAO7/AAAAAA8AAAAKAO//AAAAAA8AAAAKAPD/AAAAAA8AAAAPAPP/AAAAAA8AAAAPAPT/AAAAAA8AAAAPAPr/AAAAAA8AAAAPAPn/AAAAAAoAAAANAOv/AAAAAA8AAQANAOr/AAAAAA8AAQAGAOn/AAAQAA8AAQAGAOj/AAAQAA8AAQAGAOf/AAAQAA8AAQAGAOb/AAAQAA8AAQAGAOX/AAAQAA8AAQAIAOn/AAAQAA8AAQAIAOj/AAAQAA8AAQAIAOf/AAAQAA8AAQAIAOb/AAAQAA8AAQAIAOX/AAAQAA8AAQAVAPH/AAAAAAAAAAAVAPL/AAAAAAAAAAAYAPP/AAAAAAAAAAAbAPT/AAAAAAAAAAAWAPH/AAAAAAAAAAAWAPL/AAAAAAAAAAAZAPP/AAAAAAAAAAAcAPT/AAAAAAAAAAAZAPD/AAAAAAAAAAAaAOv/AAAAAA8AAAAaAOz/AAAAAA8AAAAaAO3/AAAAAA8AAAAaAO7/AAAAAA8AAAAaAO//AAAAAA8AAAAaAPD/AAAAAAAAAAAZAOr/AAAAAAAAAAAaAOr/AAAAAAAAAwAJAPX/AAAAAAAAAAAFAPX/AAAAAAAAAAANAPX/AAAAAAAAAAAfAPn/AAAAAAAAAAARAP3/AAAIAAgAAAARAPz/AAAIAAgAAAAUAP3/AAAIAAgAAAAUAPz/AAAIAAgAAAAdAPz/AAAIAAgAAAAdAPv/AAAIAAgAAAAKAPH/AAAIAAgAAAAsAO7/AAAAAA8AAAAsAO//AAAAAA8AAAAsAPD/AAAAAA8AAAAsAPH/AAAAAA8AAAAsAPL/AAAAAA8AAAAsAPP/AAAAAA8AAAAsAPT/AAAIAAgAAAArAO3/AAAAAAAAAAAsAO3/AAAAAAAAAwAGAOv/AAAQAA8AAAAIAOv/AAAQAA8AAAAFAO//AAAIAAgAAAAgAPn/AAAAAAAAAAAqAPz/AAAQAAwAAAA=")
+collision_visibility_mode = 1
+
+[node name="LevelTileMap2" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="1" unique_id=699004260]
+tile_map_data = PackedByteArray("AAAPAP//AAAAAAAAAAAQAP//AAAAAAAAAAARAP//AAAAAAAAAAAbAP7/AAAAAAAAAAAcAP7/AAAAAAAAAAAdAP7/AAAAAAAAAAAWAPn/AAAAAAAAAAAVAPn/AAAAAAAAAAAUAPn/AAAAAAAAAwAHAPP/AAAAAAAAAAAGAPP/AAAAAAAAAAAIAPP/AAAAAAAAAAAQAPv/AAAAAAAAAAA=")
+
+[node name="LevelTileMap3" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="2" unique_id=1302995735]
+tile_map_data = PackedByteArray("AAASAP//AAAAAAAAAAATAP//AAAAAAAAAAAUAP//AAAAAAAAAAAqAPb/AAAAAAAAAAARAPv/AAAAAAAAAwA=")
+
+[node name="LevelTileMap4" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="3" unique_id=1022846052]
+tile_map_data = PackedByteArray("AAAQAPn/AAAAAAAAAAAPAPn/AAAAAAAAAwAOAPn/AAAAAAAAAAANAPn/AAAAAAAAAAAMAPn/AAAAAAAAAAALAPn/AAAAAAAAAAAKAPn/AAAAAAAAAAAJAPn/AAAAAAAAAAAIAPn/AAAAAAAAAAAHAPn/AAAAAAAAAAAGAPn/AAAAAAAAAAAkAP3/AAAAAAAAAAAlAP3/AAAAAAAAAAAmAP3/AAAAAAAAAAAnAP3/AAAAAAAAAAAoAP3/AAAAAAAAAAApAP3/AAAAAAAAAAAqAP3/AAAAAAAAAAArAP3/AAAAAAAAAAAsAP3/AAAAAAAAAAA=")
+
+[node name="LevelTileMap5" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="4" unique_id=1845843692]
+tile_map_data = PackedByteArray("AAAVAP//AAAAAAAAAAAWAP//AAAAAAAAAAAXAP//AAAAAAAAAAAeAP7/AAAAAAAAAAAfAP7/AAAAAAAAAAAgAP7/AAAAAAAAAAApAPb/AAAAAAAAAAArAPb/AAAAAAAAAAAGAPX/AAAAAAAAAAAIAPX/AAAAAAAAAAA=")
+
+[node name="LevelTileMap7" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="6" unique_id=1609967899]
+tile_map_data = PackedByteArray("AAAYAP//AAAAAAAAAAAZAP//AAAAAAAAAAAaAP//AAAAAAAAAAA=")
+
+[node name="LevelTileMap8" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="7" unique_id=789452681]
+tile_map_data = PackedByteArray("AAAiAP7/AAAAAAAAAAAjAP7/AAAAAAAAAAAhAP7/AAAAAAAAAAA=")
+
+[node name="CheckpointFlag" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="0" unique_id=342376629 instance=ExtResource("4_0nlbc")]
+position = Vector2(276, -23)
+CheckpointId = "Checkpoint1"
+
+[node name="CheckpointFlag2" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="1" unique_id=1248041639 instance=ExtResource("4_0nlbc")]
+position = Vector2(272, -72)
+CheckpointId = "Checkpoint2"
+
+[node name="CheckpointFlag3" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="2" unique_id=198971899 instance=ExtResource("4_0nlbc")]
+position = Vector2(120, -59)
+CheckpointId = "Checkpoint3"
+
+[node name="ColorRect" parent="Entities/Gizmos/Checkpoints/CheckpointFlag3" index="4" unique_id=105470078]
+offset_left = -48.0
+offset_top = -45.0
+offset_right = 0.0
+offset_bottom = -18.0
+
+[node name="CheckpointFlag4" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="3" unique_id=170475443 instance=ExtResource("4_0nlbc")]
+position = Vector2(136, -88)
+CheckpointId = "Checkpoint4"
+
+[node name="Hat" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("8_7f46u")]
+position = Vector2(180, -12)
+
+[node name="Purse" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=239078533 instance=ExtResource("9_7f1x3")]
+position = Vector2(152, -10)
+
+[node name="Umbrella" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=1386390813 instance=ExtResource("7_ml8l3")]
+position = Vector2(124, -9)
+
+[node name="Hammer" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="0" unique_id=968284547 instance=ExtResource("8_7f1x3")]
+position = Vector2(104, -24)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517]
+position = Vector2(24, -160)
+EscapeDirection = 1
+
+[node name="Fireball" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="0" unique_id=995840756 instance=ExtResource("5_vrqd5")]
+position = Vector2(204, -14)
+
+[node name="Fireball2" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="1" unique_id=1513512109 instance=ExtResource("5_vrqd5")]
+position = Vector2(180, -164)
+
+[node name="Pauline" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("6_2bg8o")]
+position = Vector2(56, -176)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Pauline" index="1" unique_id=300254388]
+position = Vector2(30, -4)
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=248777857]
+position = Vector2(80, -8)
+
+[node name="GoalArea" parent="." index="5" unique_id=1127886652]
+position = Vector2(108, -192)
+
+[node name="GoalDetect" parent="GoalArea" index="0" unique_id=431830692]
+shape = SubResource("RectangleShape2D_kri4y")
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "TEST"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "T"
+
+[editable path="Entities/Gizmos/Checkpoints/CheckpointFlag3"]
+[editable path="Entities/Characters/Captive/Pauline"]

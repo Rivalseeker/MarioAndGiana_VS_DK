@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://cuqxevd2frvsd"]
+
+[ext_resource type="FontFile" uid="uid://bdcy0d6dekdpf" path="res://Assets/Art/Fonts/Super Mario Bros. NES.ttf" id="1_pjhga"]
+[ext_resource type="Script" uid="uid://32ne34ylidc0" path="res://Scripts/GUI/MainMenu/MainMenu.cs" id="1_yo53v"]
+[ext_resource type="Texture2D" uid="uid://dnpffxu8gqbdk" path="res://Assets/Art/Tilemaps/monochrome_tilemap_transparent.png" id="3_ifp7l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ifp7l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viuc2"]
+atlas = ExtResource("3_ifp7l")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_viuc2"]
+resource_name = "Blink"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2vrav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgej0"]
+_data = {
+&"Blink": SubResource("Animation_viuc2"),
+&"RESET": SubResource("Animation_2vrav")
+}
+
+[node name="MainMenu" type="Control" unique_id=1115478695 node_paths=PackedStringArray("_mainGameButton", "_optionsButton", "_creditsButton", "_quitButton", "_cursorIcon", "_cursorAnim")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yo53v")
+_mainGameButton = NodePath("MainMenuList/MainGameButton")
+_optionsButton = NodePath("MainMenuList/OptionsButton")
+_creditsButton = NodePath("MainMenuList/CreditsButton")
+_quitButton = NodePath("MainMenuList/QuitButton")
+_cursorIcon = NodePath("CursorIcon")
+_cursorAnim = NodePath("CursorIcon/CursorAnim")
+_cursorOffset = Vector2(-16, 0)
+_mainGamePath = "uid://fjtcd51ikiqd"
+_optionsPath = "uid://cosd58fqpvniu"
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=873710898]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MainMenuList" type="VBoxContainer" parent="." unique_id=346001578]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="MainGameButton" type="Button" parent="MainMenuList" unique_id=1712871380]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_pjhga")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ifp7l")
+text = "MAIN GAME"
+flat = true
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="MainMenuList" unique_id=248746464]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_pjhga")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ifp7l")
+text = "OPTIONS"
+flat = true
+alignment = 0
+
+[node name="CreditsButton" type="Button" parent="MainMenuList" unique_id=546193902]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_pjhga")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ifp7l")
+text = "CREDITS"
+flat = true
+alignment = 0
+
+[node name="QuitButton" type="Button" parent="MainMenuList" unique_id=822865107]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_pjhga")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ifp7l")
+text = "CLOSE GAME"
+flat = true
+alignment = 0
+
+[node name="CursorIcon" type="TextureRect" parent="." unique_id=1901015757]
+texture_filter = 1
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_viuc2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CursorAnim" type="AnimationPlayer" parent="CursorIcon" unique_id=1441549671]
+libraries/ = SubResource("AnimationLibrary_cgej0")
+autoplay = &"Blink"

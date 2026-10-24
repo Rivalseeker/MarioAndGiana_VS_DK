@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bp4yx3qkbqsau"]
+
+[ext_resource type="Script" uid="uid://jglmh7n81t0x" path="res://Scripts/Globals/GameContainer.cs" id="1_6bq7i"]
+[ext_resource type="PackedScene" uid="uid://dg4d6ujf37b61" path="res://Scenes/GUI/LoadingScreen/loading_screen_view.tscn" id="2_a3xfu"]
+[ext_resource type="PackedScene" uid="uid://cedsls53ao7hd" path="res://Scenes/GUI/splash_screen.tscn" id="3_6bq7i"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="5_a3xfu"]
+[ext_resource type="Script" uid="uid://m7b26l1abv5p" path="res://Scripts/Debug/GamePerformanceDebug.cs" id="5_xmrv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmrv8"]
+bg_color = Color(0, 0, 0, 0.5019608)
+
+[node name="GameContainer" type="Node" unique_id=930406646 node_paths=PackedStringArray("_viewportContainer", "_subViewport", "_world2D", "_guiLayer", "_loadingScreenLayer", "_debugLayer")]
+script = ExtResource("1_6bq7i")
+_viewportContainer = NodePath("SubViewportContainer")
+_subViewport = NodePath("SubViewportContainer/SubViewport")
+_world2D = NodePath("SubViewportContainer/SubViewport/World2D")
+_guiLayer = NodePath("GUI")
+_loadingScreenLayer = NodePath("LoadingScreen")
+_debugLayer = NodePath("GamePerformanceDebug")
+_loadingScreenPrefab = ExtResource("2_a3xfu")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1881449564]
+process_mode = 3
+texture_filter = 1
+offset_right = 384.0
+offset_bottom = 216.0
+focus_mode = 0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=1851415076]
+process_mode = 3
+disable_3d = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(384, 216)
+render_target_update_mode = 4
+
+[node name="World2D" type="Node2D" parent="SubViewportContainer/SubViewport" unique_id=1744169343]
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1723310024]
+layer = 10
+
+[node name="SplashScreen" parent="GUI" unique_id=397755261 instance=ExtResource("3_6bq7i")]
+
+[node name="LoadingScreen" type="CanvasLayer" parent="." unique_id=1281203293]
+layer = 50
+
+[node name="GamePerformanceDebug" type="CanvasLayer" parent="." unique_id=1633792615 node_paths=PackedStringArray("_debugTextLabel")]
+layer = 100
+visible = false
+script = ExtResource("5_xmrv8")
+_debugTextLabel = NodePath("DebugPanel/MarginContainer/NES_Label")
+
+[node name="DebugPanel" type="PanelContainer" parent="GamePerformanceDebug" unique_id=1044829700]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xmrv8")
+
+[node name="MarginContainer" type="MarginContainer" parent="GamePerformanceDebug/DebugPanel" unique_id=417289485]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="NES_Label" parent="GamePerformanceDebug/DebugPanel/MarginContainer" unique_id=1692661727 instance=ExtResource("5_a3xfu")]
+layout_mode = 2
+horizontal_alignment = 2

@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://bxo53eqde025i"]
+
+[ext_resource type="Texture2D" uid="uid://cu6etwwk686wm" path="res://Assets/Art/Hazards/Barrels.png" id="1_8e7rs"]
+[ext_resource type="Script" uid="uid://wfsqbnjt1qn6" path="res://Scripts/Gizmos/Hazards/Barrel.cs" id="1_tyrm5"]
+[ext_resource type="Script" uid="uid://brel44xd7m0co" path="res://Scripts/StatesAndMachines/Base/EnemyStateMachine.cs" id="3_iyqms"]
+[ext_resource type="Script" uid="uid://ox8jjn6l3cup" path="res://Scripts/Gizmos/Hazards/BarrelIdle.cs" id="4_0y2se"]
+[ext_resource type="Script" uid="uid://3owggmxtcrar" path="res://Scripts/Gizmos/Hazards/BarrelRoll.cs" id="4_lyw6s"]
+[ext_resource type="Script" uid="uid://c6r1pld265n1l" path="res://Scripts/Gizmos/Hazards/BarrelFall.cs" id="5_0y2se"]
+[ext_resource type="Script" uid="uid://bpat38436mx48" path="res://Scripts/Gizmos/Hazards/BarrelBounce.cs" id="6_lyw6s"]
+[ext_resource type="Script" uid="uid://cuxwjh3fxt4kp" path="res://Scripts/Gizmos/Hazards/BarrelLadder.cs" id="6_xlx3b"]
+[ext_resource type="Script" uid="uid://krwteov04kob" path="res://Scripts/Gizmos/Hazards/BarrelWild.cs" id="9_is2kx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8e7rs"]
+size = Vector2(4, 7.8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyrm5"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bf3ve"]
+size = Vector2(6, 7)
+
+[sub_resource type="Animation" id="Animation_tyrm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NormalBarrel:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlammableBarrel:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_bf3ve"]
+resource_name = "Roll"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NormalBarrel:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlammableBarrel:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19]
+}
+
+[sub_resource type="Animation" id="Animation_idyhp"]
+resource_name = "Wild"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NormalBarrel:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FlammableBarrel:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [24, 26]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iyqms"]
+_data = {
+&"RESET": SubResource("Animation_tyrm5"),
+&"Roll": SubResource("Animation_bf3ve"),
+&"Wild": SubResource("Animation_idyhp")
+}
+
+[node name="Barrel" type="CharacterBody2D" unique_id=2087501913 node_paths=PackedStringArray("NormalBarrelSprite", "FlammableBarrelSprite", "BarrelAnim", "Hitbox", "StepDetector", "LedgeDetectorLeft", "LedgeDetectorRight")]
+z_index = 1
+collision_layer = 4
+platform_on_leave = 2
+script = ExtResource("1_tyrm5")
+WildHorizontalSpeed = 50.0
+WildBounceVelocity = 10.0
+WildPassThroughTime = 0.1
+NormalBarrelSprite = NodePath("NormalBarrel")
+FlammableBarrelSprite = NodePath("FlammableBarrel")
+BarrelAnim = NodePath("BarrelAnim")
+Hitbox = NodePath("HitBox")
+StepDetector = NodePath("RayCasts/StepDetector")
+LedgeDetectorLeft = NodePath("RayCasts/LedgeDetectorLeft")
+LedgeDetectorRight = NodePath("RayCasts/LedgeDetectorRight")
+FallGravity = 650.0
+
+[node name="NormalBarrel" type="Sprite2D" parent="." unique_id=933248885]
+texture = ExtResource("1_8e7rs")
+centered = false
+offset = Vector2(-8, -16)
+hframes = 4
+vframes = 7
+
+[node name="FlammableBarrel" type="Sprite2D" parent="." unique_id=475409400]
+texture = ExtResource("1_8e7rs")
+centered = false
+offset = Vector2(-8, -16)
+hframes = 4
+vframes = 7
+frame = 16
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1463270340]
+position = Vector2(0, -3.9)
+shape = SubResource("RectangleShape2D_8e7rs")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=484770066]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="HitDetect" type="CollisionShape2D" parent="HitBox" unique_id=1031627783]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_tyrm5")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=380408789]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="HurtDetect" type="CollisionShape2D" parent="HurtBox" unique_id=1699885247]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_bf3ve")
+debug_color = Color(0, 0.6508862, 0.08305838, 0.41960785)
+
+[node name="RayCasts" type="Node2D" parent="." unique_id=1146578886]
+
+[node name="StepDetector" type="RayCast2D" parent="RayCasts" unique_id=417024099]
+target_position = Vector2(4, 0)
+
+[node name="LedgeDetectorRight" type="RayCast2D" parent="RayCasts" unique_id=1056794381]
+position = Vector2(0.9, 0.2)
+target_position = Vector2(0, 0.8)
+collision_mask = 16
+hit_from_inside = true
+
+[node name="LedgeDetectorLeft" type="RayCast2D" parent="RayCasts" unique_id=20270752]
+position = Vector2(-0.9, 0.2)
+target_position = Vector2(0, 0.8)
+collision_mask = 16
+hit_from_inside = true
+
+[node name="StateMachine" type="Node" parent="." unique_id=277805117 node_paths=PackedStringArray("_enemy")]
+script = ExtResource("3_iyqms")
+_initialStatePath = NodePath("BarrelIdle")
+_enemy = NodePath("..")
+
+[node name="BarrelIdle" type="Node" parent="StateMachine" unique_id=1438888581]
+script = ExtResource("4_0y2se")
+
+[node name="BarrelRoll" type="Node" parent="StateMachine" unique_id=206783524]
+script = ExtResource("4_lyw6s")
+
+[node name="BarrelLadder" type="Node" parent="StateMachine" unique_id=1137097046]
+script = ExtResource("6_xlx3b")
+
+[node name="BarrelFall" type="Node" parent="StateMachine" unique_id=745490794]
+script = ExtResource("5_0y2se")
+
+[node name="BarrelBounce" type="Node" parent="StateMachine" unique_id=1057878005]
+script = ExtResource("6_lyw6s")
+
+[node name="BarrelWild" type="Node" parent="StateMachine" unique_id=90588903]
+script = ExtResource("9_is2kx")
+
+[node name="BarrelAnim" type="AnimationPlayer" parent="." unique_id=1353534997]
+libraries/ = SubResource("AnimationLibrary_iyqms")
+autoplay = &"Roll"

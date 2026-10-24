@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bggael7143aal"]
+
+[ext_resource type="Script" uid="uid://b13fn0fv4l301" path="res://Scripts/Gizmos/Hazards/Spring.cs" id="1_p7de8"]
+[ext_resource type="Texture2D" uid="uid://bhdjdwrwhi8cw" path="res://Assets/Art/Gizmos/Springs.png" id="1_pnaph"]
+[ext_resource type="AudioStream" uid="uid://3dagvf4ngl7l" path="res://Assets/Audio/SFX/NES_DK_Bounce.ogg" id="2_rh2nw"]
+[ext_resource type="AudioStream" uid="uid://ufpwbyem6t6f" path="res://Assets/Audio/SFX/NES_DK_Fall.ogg" id="3_p7de8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4nrh"]
+size = Vector2(8, 12)
+
+[node name="Spring" type="Area2D" unique_id=1395237498 node_paths=PackedStringArray("fallSound")]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_p7de8")
+fallSound = NodePath("Fall")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1198001710]
+texture = ExtResource("1_pnaph")
+centered = false
+offset = Vector2(-8, -16)
+hframes = 3
+
+[node name="HitDetect" type="CollisionShape2D" parent="." unique_id=245123777]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_m4nrh")
+debug_color = Color(1, 0, 0, 0.41960785)
+
+[node name="Bounce" type="AudioStreamPlayer" parent="." unique_id=554044630]
+stream = ExtResource("2_rh2nw")
+bus = &"Sound"
+
+[node name="Fall" type="AudioStreamPlayer" parent="." unique_id=1742946661]
+stream = ExtResource("3_p7de8")
+bus = &"Sound"

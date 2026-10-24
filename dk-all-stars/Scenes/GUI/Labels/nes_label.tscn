@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://e8qb2xhlj28f"]
+
+[ext_resource type="FontFile" uid="uid://bdcy0d6dekdpf" path="res://Assets/Art/Fonts/Super Mario Bros. NES.ttf" id="1_fvgtw"]
+
+[node name="NES_Label" type="Label" unique_id=1692661727]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_fvgtw")
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+vertical_alignment = 1

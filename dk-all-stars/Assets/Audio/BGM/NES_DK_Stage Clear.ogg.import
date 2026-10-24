@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://6j11wdpvkqxv"
+path="res://.godot/imported/NES_DK_Stage Clear.ogg-bac5f28eef9aea914c4d3416765086c3.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/BGM/NES_DK_Stage Clear.ogg"
+dest_files=["res://.godot/imported/NES_DK_Stage Clear.ogg-bac5f28eef9aea914c4d3416765086c3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

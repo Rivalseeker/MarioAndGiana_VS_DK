@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bf501c4qgvan0"]
+
+[ext_resource type="PackedScene" uid="uid://cf53ol163qggf" path="res://Scenes/PickUps/Collectibles/base_collectible.tscn" id="1_4h5sd"]
+[ext_resource type="Texture2D" uid="uid://cj00pf77uffiu" path="res://Assets/Art/PickUps/Collectibles/Maria/BubbleGum.png" id="2_vlqbx"]
+
+[node name="Gum" unique_id=1836820992 instance=ExtResource("1_4h5sd")]
+UniqueId = "Item_3"
+
+[node name="Sprite2D" parent="." index="0" unique_id=348359129]
+texture = ExtResource("2_vlqbx")
+offset = Vector2(-16, -32)
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1731533093]
+position = Vector2(0, -5)

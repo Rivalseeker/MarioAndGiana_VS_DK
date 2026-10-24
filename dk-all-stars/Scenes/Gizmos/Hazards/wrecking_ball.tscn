@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bitvhq4pmvh2"]
+
+[ext_resource type="Script" uid="uid://dmccc1jk1mts6" path="res://Scripts/Gizmos/Hazards/WreckingBall.cs" id="1_xliux"]
+[ext_resource type="Texture2D" uid="uid://cur410fi6o4h0" path="res://Assets/Art/Hazards/WreckingBall.png" id="2_d50tu"]
+[ext_resource type="Texture2D" uid="uid://cvgifm01ody3p" path="res://Assets/Art/Hazards/BallChain.png" id="2_txhid"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txhid"]
+size = Vector2(6, 6)
+
+[node name="WreckingBall" type="Node2D" unique_id=121134934 node_paths=PackedStringArray("_pivot", "_ballSprite", "_hitbox")]
+z_index = 1
+script = ExtResource("1_xliux")
+_pivot = NodePath("Pivot")
+_ballSprite = NodePath("Pivot/BallSprite")
+_hitbox = NodePath("Pivot/Hitbox")
+_arcColor = Color(0.5512729, 0.52906805, 0.5246614, 0.5019608)
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1158556120]
+
+[node name="ChainSprite" type="Sprite2D" parent="Pivot" unique_id=1213587299]
+texture = ExtResource("2_txhid")
+centered = false
+offset = Vector2(-8, 0)
+
+[node name="BallSprite" type="Sprite2D" parent="Pivot" unique_id=1741897992]
+position = Vector2(0, 120)
+texture = ExtResource("2_d50tu")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="Hitbox" type="Area2D" parent="Pivot" unique_id=198439991]
+position = Vector2(0, 120)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="HitboxDetect" type="CollisionShape2D" parent="Pivot/Hitbox" unique_id=956120597]
+position = Vector2(0, -8)
+shape = SubResource("RectangleShape2D_txhid")
+debug_color = Color(1.540184e-06, 0.6493065, 0.1610817, 0.41960785)

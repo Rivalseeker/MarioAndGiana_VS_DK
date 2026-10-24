@@ -1,0 +1,604 @@
+[gd_scene format=4 uid="uid://c8103y5twkgyp"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_ygdni"]
+[ext_resource type="Script" uid="uid://dphpmimpa1xq4" path="res://Scripts/Levels/Main/Giana/15G/Giana15gL1.cs" id="2_4v3u2"]
+[ext_resource type="AudioStream" uid="uid://da1s8ndonieae" path="res://Assets/Audio/BGM/NES_DK_25M.ogg" id="3_ryf1f"]
+[ext_resource type="PackedScene" uid="uid://blrdhej0dx6y0" path="res://Scenes/Characters/Players/giana.tscn" id="3_vl06t"]
+[ext_resource type="Texture2D" uid="uid://bogxo0fdxugxk" path="res://Assets/Art/Tilemaps/mud_tile_group.png" id="4_ryf1f"]
+
+[sub_resource type="Animation" id="Animation_ryf1f"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_vl06t"]
+resource_name = "Sink"
+length = 60.0
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7e6ts"]
+_data = {
+&"RESET": SubResource("Animation_ryf1f"),
+&"Sink": SubResource("Animation_vl06t")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryf1f"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(1, 1, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vl06t"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(10, 1, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7e6ts"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(19, 1, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r61y1"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(28, 1, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohv0o"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(37, 1, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_typju"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(46, 1, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3l17p"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(55, 1, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nkkik"]
+atlas = ExtResource("4_ryf1f")
+region = Rect2(64, 1, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1caxu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryf1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vl06t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7e6ts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r61y1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohv0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_typju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3l17p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nkkik")
+}],
+"loop": true,
+"name": &"MudFlow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryf1f"]
+size = Vector2(24, 8)
+
+[node name="Giana_15G_L1" unique_id=182671849 instance=ExtResource("1_ygdni")]
+script = ExtResource("2_4v3u2")
+_playerScene = ExtResource("3_vl06t")
+_levelMusicTrack = ExtResource("3_ryf1f")
+UseTimer = false
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+tile_map_data = PackedByteArray("AAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAHAPz/AAAAAAAAAAAIAPz/AAAAAAAAAAAJAPz/AAAAAAAAAAAKAPz/AAAAAAAAAAALAPz/AAAAAAAAAAAOAPz/AAAAAAAAAAAPAPz/AAAAAAAAAAARAPz/AAAAAAAAAAASAPz/AAAAAAAAAAATAPz/AAAAAAAAAAAQAPz/AAAAAAAAAAAYAPz/AAAAAAAAAAAZAPz/AAAAAAAAAAAaAPz/AAAAAAAAAAAbAPz/AAAAAAAAAAAcAPz/AAAAAAAAAAAdAPz/AAAAAAAAAAAeAPz/AAAAAAAAAAAfAPz/AAAAAAAAAAAgAPz/AAAAAAAAAAAhAPz/AAAAAAAAAAAiAPz/AAAAAAAAAAAjAPz/AAAAAAAAAAAkAPz/AAAAAAAAAAAlAPz/AAAAAAAAAAAmAPz/AAAAAAAAAAAnAPz/AAAAAAAAAAAoAPz/AAAAAAAAAAApAPz/AAAAAAAAAAAqAPz/AAAAAAAAAAA=")
+use_kinematic_bodies = true
+
+[node name="LevelTileMap2" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="1" unique_id=699004260]
+use_kinematic_bodies = true
+
+[node name="LevelTileMap3" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="2" unique_id=1302995735]
+use_kinematic_bodies = true
+
+[node name="LevelTileMap4" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="3" unique_id=1022846052]
+use_kinematic_bodies = true
+
+[node name="LevelTileMap5" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="4" unique_id=1845843692]
+use_kinematic_bodies = true
+
+[node name="LevelTileMap6" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="5" unique_id=501829157]
+use_kinematic_bodies = true
+
+[node name="LevelTileMap7" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="6" unique_id=1609967899]
+use_kinematic_bodies = true
+
+[node name="LevelTileMap8" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="7" unique_id=789452681]
+use_kinematic_bodies = true
+
+[node name="StageAnim" type="AnimationPlayer" parent="." index="2" unique_id=1029044087]
+root_node = NodePath("../Environment")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_7e6ts")
+autoplay = &"Sink"
+
+[node name="Mud" type="AnimatedSprite2D" parent="." index="3" unique_id=206515814]
+z_index = 5
+position = Vector2(-8, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud2" type="AnimatedSprite2D" parent="Mud" index="0" unique_id=450316983]
+z_index = 5
+position = Vector2(8, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud3" type="AnimatedSprite2D" parent="Mud" index="1" unique_id=1227252529]
+z_index = 5
+position = Vector2(16, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud4" type="AnimatedSprite2D" parent="Mud" index="2" unique_id=1841271388]
+z_index = 5
+position = Vector2(24, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud5" type="AnimatedSprite2D" parent="Mud" index="3" unique_id=256773375]
+z_index = 5
+position = Vector2(32, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud6" type="AnimatedSprite2D" parent="Mud" index="4" unique_id=784078505]
+z_index = 5
+position = Vector2(40, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud7" type="AnimatedSprite2D" parent="Mud" index="5" unique_id=1224392415]
+z_index = 5
+position = Vector2(48, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud8" type="AnimatedSprite2D" parent="Mud" index="6" unique_id=22084528]
+z_index = 5
+position = Vector2(56, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud9" type="AnimatedSprite2D" parent="Mud" index="7" unique_id=678027600]
+z_index = 5
+position = Vector2(64, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud10" type="AnimatedSprite2D" parent="Mud" index="8" unique_id=779644393]
+z_index = 5
+position = Vector2(72, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud11" type="AnimatedSprite2D" parent="Mud" index="9" unique_id=1401333927]
+z_index = 5
+position = Vector2(80, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud12" type="AnimatedSprite2D" parent="Mud" index="10" unique_id=972615867]
+z_index = 5
+position = Vector2(88, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud13" type="AnimatedSprite2D" parent="Mud" index="11" unique_id=877180463]
+z_index = 5
+position = Vector2(96, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud14" type="AnimatedSprite2D" parent="Mud" index="12" unique_id=1412954195]
+z_index = 5
+position = Vector2(104, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud15" type="AnimatedSprite2D" parent="Mud" index="13" unique_id=1199386174]
+z_index = 5
+position = Vector2(112, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud16" type="AnimatedSprite2D" parent="Mud" index="14" unique_id=215379737]
+z_index = 5
+position = Vector2(120, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud17" type="AnimatedSprite2D" parent="Mud" index="15" unique_id=1488997691]
+z_index = 5
+position = Vector2(128, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud18" type="AnimatedSprite2D" parent="Mud" index="16" unique_id=1490401176]
+z_index = 5
+position = Vector2(136, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud19" type="AnimatedSprite2D" parent="Mud" index="17" unique_id=1149472506]
+z_index = 5
+position = Vector2(144, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud20" type="AnimatedSprite2D" parent="Mud" index="18" unique_id=1415798356]
+z_index = 5
+position = Vector2(152, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud21" type="AnimatedSprite2D" parent="Mud" index="19" unique_id=1925252870]
+z_index = 5
+position = Vector2(160, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud22" type="AnimatedSprite2D" parent="Mud" index="20" unique_id=913435762]
+z_index = 5
+position = Vector2(168, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud23" type="AnimatedSprite2D" parent="Mud" index="21" unique_id=1970873540]
+z_index = 5
+position = Vector2(176, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud24" type="AnimatedSprite2D" parent="Mud" index="22" unique_id=1703992068]
+z_index = 5
+position = Vector2(184, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud25" type="AnimatedSprite2D" parent="Mud" index="23" unique_id=939779536]
+z_index = 5
+position = Vector2(192, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud26" type="AnimatedSprite2D" parent="Mud" index="24" unique_id=1981544091]
+z_index = 5
+position = Vector2(200, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud27" type="AnimatedSprite2D" parent="Mud" index="25" unique_id=1303845917]
+z_index = 5
+position = Vector2(208, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud28" type="AnimatedSprite2D" parent="Mud" index="26" unique_id=1494167321]
+z_index = 5
+position = Vector2(216, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud29" type="AnimatedSprite2D" parent="Mud" index="27" unique_id=1527856867]
+z_index = 5
+position = Vector2(224, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud30" type="AnimatedSprite2D" parent="Mud" index="28" unique_id=1600849045]
+z_index = 5
+position = Vector2(232, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud31" type="AnimatedSprite2D" parent="Mud" index="29" unique_id=729770372]
+z_index = 5
+position = Vector2(240, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud32" type="AnimatedSprite2D" parent="Mud" index="30" unique_id=312102222]
+z_index = 5
+position = Vector2(248, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud33" type="AnimatedSprite2D" parent="Mud" index="31" unique_id=1098223369]
+z_index = 5
+position = Vector2(256, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud34" type="AnimatedSprite2D" parent="Mud" index="32" unique_id=2041208272]
+z_index = 5
+position = Vector2(264, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud35" type="AnimatedSprite2D" parent="Mud" index="33" unique_id=884391052]
+z_index = 5
+position = Vector2(272, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud36" type="AnimatedSprite2D" parent="Mud" index="34" unique_id=324486315]
+z_index = 5
+position = Vector2(280, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud37" type="AnimatedSprite2D" parent="Mud" index="35" unique_id=1464412354]
+z_index = 5
+position = Vector2(288, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud38" type="AnimatedSprite2D" parent="Mud" index="36" unique_id=1355637513]
+z_index = 5
+position = Vector2(296, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud39" type="AnimatedSprite2D" parent="Mud" index="37" unique_id=2027863835]
+z_index = 5
+position = Vector2(304, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud40" type="AnimatedSprite2D" parent="Mud" index="38" unique_id=1448888501]
+z_index = 5
+position = Vector2(312, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud41" type="AnimatedSprite2D" parent="Mud" index="39" unique_id=1859118047]
+z_index = 5
+position = Vector2(320, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud42" type="AnimatedSprite2D" parent="Mud" index="40" unique_id=175530088]
+z_index = 5
+position = Vector2(328, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud43" type="AnimatedSprite2D" parent="Mud" index="41" unique_id=544675881]
+z_index = 5
+position = Vector2(336, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud44" type="AnimatedSprite2D" parent="Mud" index="42" unique_id=2083972465]
+z_index = 5
+position = Vector2(344, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud45" type="AnimatedSprite2D" parent="Mud" index="43" unique_id=270518756]
+z_index = 5
+position = Vector2(352, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud46" type="AnimatedSprite2D" parent="Mud" index="44" unique_id=1928712660]
+z_index = 5
+position = Vector2(360, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud47" type="AnimatedSprite2D" parent="Mud" index="45" unique_id=271927314]
+z_index = 5
+position = Vector2(368, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud48" type="AnimatedSprite2D" parent="Mud" index="46" unique_id=132752138]
+z_index = 5
+position = Vector2(376, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud49" type="AnimatedSprite2D" parent="Mud" index="47" unique_id=911325695]
+z_index = 5
+position = Vector2(384, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Mud50" type="AnimatedSprite2D" parent="Mud" index="48" unique_id=784125253]
+z_index = 5
+position = Vector2(392, 0)
+sprite_frames = SubResource("SpriteFrames_1caxu")
+animation = &"MudFlow"
+autoplay = "MudFlow"
+centered = false
+offset = Vector2(0, -8)
+
+[node name="Undermud" type="Polygon2D" parent="Mud" index="49" unique_id=483119368]
+color = Color(0.4745098, 0.25490198, 0, 1)
+polygon = PackedVector2Array(0, 0, 0, 8, 400, 8, 400, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="4" unique_id=1553435238]
+position = Vector2(-24, -88)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" index="0" unique_id=1657667195]
+position = Vector2(12, 4)
+shape = SubResource("RectangleShape2D_ryf1f")
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517]
+position = Vector2(-12, -88)
+StartingState = 0
+
+[node name="PlayerSpawn" parent="." index="6" unique_id=248777857]
+position = Vector2(40, -32)
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "15G"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "1"
+
+[node name="PauseScreen" parent="." index="11" unique_id=1998740680]
+_optionsMenuPrefab = null
+_mainMenuPath = ""

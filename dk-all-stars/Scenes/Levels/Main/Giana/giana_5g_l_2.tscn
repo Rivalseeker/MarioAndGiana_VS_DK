@@ -1,0 +1,164 @@
+[gd_scene format=4 uid="uid://eubk7enkwh66"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_fpj0l"]
+[ext_resource type="PackedScene" uid="uid://blrdhej0dx6y0" path="res://Scenes/Characters/Players/giana.tscn" id="2_e7sew"]
+[ext_resource type="AudioStream" uid="uid://da1s8ndonieae" path="res://Assets/Audio/BGM/NES_DK_25M.ogg" id="3_bo24a"]
+[ext_resource type="Shader" uid="uid://cw6xn50q0rv6f" path="res://Scripts/Shaders/sprite_recolor.gdshader" id="4_dao0f"]
+[ext_resource type="Texture2D" uid="uid://cu6etwwk686wm" path="res://Assets/Art/Hazards/Barrels.png" id="5_14foj"]
+[ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="6_dysso"]
+[ext_resource type="PackedScene" uid="uid://cfcd8o7ijm6bl" path="res://Scenes/PickUps/Collectibles/Maria/diamond.tscn" id="7_jlurx"]
+[ext_resource type="PackedScene" uid="uid://bg5qug4lxohej" path="res://Scenes/PickUps/Collectibles/Maria/soda.tscn" id="8_xuesj"]
+[ext_resource type="PackedScene" uid="uid://bf501c4qgvan0" path="res://Scenes/PickUps/Collectibles/Maria/gum.tscn" id="9_mrjdc"]
+[ext_resource type="PackedScene" uid="uid://dmwp15ybt31xe" path="res://Scenes/PickUps/Weapons/hammer.tscn" id="10_lrl4o"]
+[ext_resource type="PackedScene" uid="uid://hv5njwnlsq4w" path="res://Scenes/Gizmos/Hazards/barrel_direction_area.tscn" id="11_e7sew"]
+[ext_resource type="PackedScene" uid="uid://ci655u6aqeen5" path="res://Scenes/Characters/Enemies/Commons/fireball.tscn" id="11_myi7x"]
+[ext_resource type="PackedScene" uid="uid://bciwe378viuqe" path="res://Scenes/Characters/NPCs/maria.tscn" id="12_1w3ht"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yd0sl"]
+shader = ExtResource("4_dao0f")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bo24a"]
+size = Vector2(20, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd0sl"]
+size = Vector2(8, 8)
+
+[node name="Giana_5G_L2" unique_id=182671849 instance=ExtResource("1_fpj0l")]
+_playerScene = ExtResource("2_e7sew")
+_levelMusicTrack = ExtResource("3_bo24a")
+UseTimer = false
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+material = SubResource("ShaderMaterial_yd0sl")
+tile_map_data = PackedByteArray("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")
+
+[node name="BarrelStack" type="Node2D" parent="Entities" parent_id_path=PackedInt32Array(1185242110) index="0" unique_id=1808247739]
+position = Vector2(128, -208)
+
+[node name="Barrel1" type="Sprite2D" parent="Entities/BarrelStack" index="0" unique_id=1943485255]
+position = Vector2(0, 32)
+rotation = 1.5707964
+texture = ExtResource("5_14foj")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="Barrel2" type="Sprite2D" parent="Entities/BarrelStack" index="1" unique_id=1702058185]
+position = Vector2(12, 32)
+rotation = 1.5707964
+texture = ExtResource("5_14foj")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="Barrel3" type="Sprite2D" parent="Entities/BarrelStack" index="2" unique_id=109634770]
+position = Vector2(0, 16)
+rotation = 1.5707964
+texture = ExtResource("5_14foj")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="Barrel4" type="Sprite2D" parent="Entities/BarrelStack" index="3" unique_id=1921255014]
+position = Vector2(12, 16)
+rotation = 1.5707964
+texture = ExtResource("5_14foj")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="CheckpointFlag1" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="0" unique_id=30343195 instance=ExtResource("6_dysso")]
+position = Vector2(296, -24)
+CheckpointId = "Checkpoint1"
+
+[node name="CheckpointFlag2" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="1" unique_id=430976788 instance=ExtResource("6_dysso")]
+position = Vector2(72, -80)
+CheckpointId = "Checkpoint2"
+
+[node name="CheckpointFlag3" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="2" unique_id=967683661 instance=ExtResource("6_dysso")]
+position = Vector2(204, -120)
+CheckpointId = "Checkpoint3"
+
+[node name="Diamond" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("7_jlurx")]
+position = Vector2(136, -40)
+
+[node name="Soda" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=1009103455 instance=ExtResource("8_xuesj")]
+position = Vector2(360, -8)
+
+[node name="Gum" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=945111300 instance=ExtResource("9_mrjdc")]
+position = Vector2(296, -104)
+
+[node name="Hammer" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="0" unique_id=968284547 instance=ExtResource("10_lrl4o")]
+position = Vector2(200, -80)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517 node_paths=PackedStringArray("BarrelContainer")]
+position = Vector2(176, -168)
+StartingState = 3
+EscapeDirection = 1
+BarrelContainer = NodePath("../../Commons/Barrels")
+WildDropDirection = -1
+
+[node name="Barrels" type="Node2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="0" unique_id=2032340960]
+
+[node name="BarrelDirectionAreaLeft" parent="Entities/Characters/Enemies/Commons/Barrels" index="0" unique_id=1679233478 instance=ExtResource("11_e7sew")]
+ForcedDirection = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Characters/Enemies/Commons/Barrels/BarrelDirectionAreaLeft" index="1" unique_id=169610601]
+position = Vector2(220, -48)
+shape = SubResource("RectangleShape2D_bo24a")
+debug_color = Color(0.654902, 0.5176471, 0, 0.41960785)
+
+[node name="BarrelDirectionAreaRight" parent="Entities/Characters/Enemies/Commons/Barrels" index="1" unique_id=2072931233 instance=ExtResource("11_e7sew")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Characters/Enemies/Commons/Barrels/BarrelDirectionAreaRight" index="1" unique_id=1437194366]
+position = Vector2(268, -48)
+shape = SubResource("RectangleShape2D_bo24a")
+debug_color = Color(0.654902, 0.5176471, 0, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Entities/Characters/Enemies/Commons/Barrels/BarrelDirectionAreaRight" index="2" unique_id=2014417113]
+position = Vector2(114, -112)
+shape = SubResource("RectangleShape2D_bo24a")
+debug_color = Color(0.654902, 0.5176471, 0, 0.41960785)
+
+[node name="Fireball" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="1" unique_id=995840756 instance=ExtResource("11_myi7x")]
+position = Vector2(140, -88)
+
+[node name="Fireball2" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="2" unique_id=370990757 instance=ExtResource("11_myi7x")]
+position = Vector2(240, -160)
+
+[node name="Maria" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("12_1w3ht")]
+position = Vector2(208, -184)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Maria" index="1" unique_id=300254388]
+position = Vector2(32, 0)
+
+[node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
+position = Vector2(240, -200)
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=248777857]
+position = Vector2(16, -8)
+
+[node name="GoalDetect" parent="GoalArea" parent_id_path=PackedInt32Array(1127886652) index="0" unique_id=431830692]
+position = Vector2(260, -200)
+shape = SubResource("RectangleShape2D_yd0sl")
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "5G"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "2"
+
+[editable path="Entities/Characters/Captive/Maria"]

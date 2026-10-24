@@ -1,0 +1,396 @@
+[gd_scene format=3 uid="uid://cyj0i45r2xug2"]
+
+[ext_resource type="Script" uid="uid://3j045xf1us6o" path="res://Scripts/GUI/FileSelectMenu/FileSelectMenu.cs" id="1_7sqex"]
+[ext_resource type="Texture2D" uid="uid://j3uvevc52uau" path="res://Assets/Art/GUI/Buttons/file_slot_normal.png" id="1_uvb0j"]
+[ext_resource type="Script" uid="uid://b5bbtslq6mv0w" path="res://Scripts/GUI/FileSelectMenu/FileSlotButton.cs" id="2_ybq7p"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="4_6ked2"]
+[ext_resource type="Texture2D" uid="uid://b77bm8altnnyp" path="res://Assets/Art/Characters/Players/MarioIcon.png" id="5_d6w38"]
+[ext_resource type="Texture2D" uid="uid://ct554iy5ojxe7" path="res://Assets/Art/Characters/Players/GianaIcon.png" id="6_wkbwd"]
+
+[sub_resource type="Shader" id="Shader_ybq7p"]
+code = "shader_type canvas_item;
+
+// The exact colors currently on your sprite sheet
+uniform vec4 color_1_original : source_color;
+uniform vec4 color_1_replace : source_color;
+
+uniform vec4 color_2_original : source_color;
+uniform vec4 color_2_replace : source_color;
+
+// A tiny tolerance handles slight blending/compression artifacts
+uniform float tolerance : hint_range(0.0, 1.0) = 0.01;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+
+    // Swap Color 1
+    if (distance(current_color.rgb, color_1_original.rgb) < tolerance && current_color.a > 0.0) {
+        COLOR = vec4(color_1_replace.rgb, current_color.a);
+    }
+    // Swap Color 2
+    else if (distance(current_color.rgb, color_2_original.rgb) < tolerance && current_color.a > 0.0) {
+        COLOR = vec4(color_2_replace.rgb, current_color.a);
+    }
+    // Keep everything else the same
+    else {
+        COLOR = current_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ybq7p"]
+shader = SubResource("Shader_ybq7p")
+shader_parameter/color_1_original = Color(0.15686275, 0, 0.7294118, 1)
+shader_parameter/color_1_replace = Color(0.15686275, 0, 0.7294118, 1)
+shader_parameter/color_2_original = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kjisd"]
+texture = ExtResource("1_uvb0j")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kjisd"]
+shader = SubResource("Shader_ybq7p")
+shader_parameter/color_1_original = Color(0.15686275, 0, 0.7294118, 1)
+shader_parameter/color_1_replace = Color(0.15686275, 0, 0.7294118, 1)
+shader_parameter/color_2_original = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7sqex"]
+shader = SubResource("Shader_ybq7p")
+shader_parameter/color_1_original = Color(0.15686275, 0, 0.7294118, 1)
+shader_parameter/color_1_replace = Color(0.15686275, 0, 0.7294118, 1)
+shader_parameter/color_2_original = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/tolerance = 0.01
+
+[node name="FileSelectMenu" type="Control" unique_id=1012186244 node_paths=PackedStringArray("_firstSlot")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7sqex")
+_firstSlot = NodePath("CenterContainer/HBoxContainer/FileSlot1")
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=890050835]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1799341487]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=125141722]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="FileSlot1" type="Button" parent="CenterContainer/HBoxContainer" unique_id=1050808387]
+material = SubResource("ShaderMaterial_ybq7p")
+custom_minimum_size = Vector2(96, 152)
+layout_mode = 2
+focus_neighbor_left = NodePath("../FileSlot3")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/focus = SubResource("StyleBoxTexture_kjisd")
+script = ExtResource("2_ybq7p")
+NormalColor1 = Color(0.15686275, 0, 0.7294118, 1)
+FocusColor1 = Color(0.73, 0.73, 0.73, 1)
+NormalColor2 = Color(0.38039216, 0.827451, 0.8901961, 1)
+FocusColor2 = Color(0.89, 0.89, 0.89, 1)
+
+[node name="TitleLabel" parent="CenterContainer/HBoxContainer/FileSlot1" unique_id=1692661727 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_right = 0.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "FILE 1"
+
+[node name="EmptyState" type="Control" parent="CenterContainer/HBoxContainer/FileSlot1" unique_id=1854682796]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NewLabel" parent="CenterContainer/HBoxContainer/FileSlot1/EmptyState" unique_id=1368712952 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -4.5
+offset_right = 12.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEW"
+
+[node name="LoadedState" type="Control" parent="CenterContainer/HBoxContainer/FileSlot1" unique_id=2066873940]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CharacterIcons" type="HBoxContainer" parent="CenterContainer/HBoxContainer/FileSlot1/LoadedState" unique_id=134440073]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MarioIcon" type="TextureRect" parent="CenterContainer/HBoxContainer/FileSlot1/LoadedState/CharacterIcons" unique_id=964503471]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_d6w38")
+stretch_mode = 2
+
+[node name="GianaIcon" type="TextureRect" parent="CenterContainer/HBoxContainer/FileSlot1/LoadedState/CharacterIcons" unique_id=901220204]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_wkbwd")
+stretch_mode = 2
+
+[node name="PercentageLabel" parent="CenterContainer/HBoxContainer/FileSlot1/LoadedState" unique_id=131907337 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 0.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100%"
+
+[node name="FileSlot2" type="Button" parent="CenterContainer/HBoxContainer" unique_id=1980928151]
+material = SubResource("ShaderMaterial_kjisd")
+custom_minimum_size = Vector2(96, 152)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/focus = SubResource("StyleBoxTexture_kjisd")
+script = ExtResource("2_ybq7p")
+NormalColor1 = Color(0.15686275, 0, 0.7294118, 1)
+FocusColor1 = Color(0.73, 0.73, 0.73, 1)
+NormalColor2 = Color(0.38039216, 0.827451, 0.8901961, 1)
+FocusColor2 = Color(0.89, 0.89, 0.89, 1)
+
+[node name="TitleLabel" parent="CenterContainer/HBoxContainer/FileSlot2" unique_id=924391311 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_right = 0.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "FILE 2"
+
+[node name="EmptyState" type="Control" parent="CenterContainer/HBoxContainer/FileSlot2" unique_id=1157023256]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NewLabel" parent="CenterContainer/HBoxContainer/FileSlot2/EmptyState" unique_id=1115588571 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -4.5
+offset_right = 12.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEW"
+
+[node name="LoadedState" type="Control" parent="CenterContainer/HBoxContainer/FileSlot2" unique_id=1593744732]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CharacterIcons" type="HBoxContainer" parent="CenterContainer/HBoxContainer/FileSlot2/LoadedState" unique_id=1555333200]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MarioIcon" type="TextureRect" parent="CenterContainer/HBoxContainer/FileSlot2/LoadedState/CharacterIcons" unique_id=1713579398]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_d6w38")
+stretch_mode = 2
+
+[node name="GianaIcon" type="TextureRect" parent="CenterContainer/HBoxContainer/FileSlot2/LoadedState/CharacterIcons" unique_id=1194265906]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_wkbwd")
+stretch_mode = 2
+
+[node name="PercentageLabel" parent="CenterContainer/HBoxContainer/FileSlot2/LoadedState" unique_id=1056604043 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 0.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100%"
+
+[node name="FileSlot3" type="Button" parent="CenterContainer/HBoxContainer" unique_id=607154158]
+material = SubResource("ShaderMaterial_7sqex")
+custom_minimum_size = Vector2(96, 152)
+layout_mode = 2
+focus_neighbor_right = NodePath("../FileSlot1")
+theme_override_styles/normal = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kjisd")
+theme_override_styles/focus = SubResource("StyleBoxTexture_kjisd")
+script = ExtResource("2_ybq7p")
+NormalColor1 = Color(0.15686275, 0, 0.7294118, 1)
+FocusColor1 = Color(0.73, 0.73, 0.73, 1)
+NormalColor2 = Color(0.38039216, 0.827451, 0.8901961, 1)
+FocusColor2 = Color(0.89, 0.89, 0.89, 1)
+
+[node name="TitleLabel" parent="CenterContainer/HBoxContainer/FileSlot3" unique_id=2096567446 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_right = 0.0
+offset_bottom = 24.0
+grow_horizontal = 2
+text = "FILE 3"
+
+[node name="EmptyState" type="Control" parent="CenterContainer/HBoxContainer/FileSlot3" unique_id=140192856]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NewLabel" parent="CenterContainer/HBoxContainer/FileSlot3/EmptyState" unique_id=1862807832 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -4.5
+offset_right = 12.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEW"
+
+[node name="LoadedState" type="Control" parent="CenterContainer/HBoxContainer/FileSlot3" unique_id=468611763]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CharacterIcons" type="HBoxContainer" parent="CenterContainer/HBoxContainer/FileSlot3/LoadedState" unique_id=1943613]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="MarioIcon" type="TextureRect" parent="CenterContainer/HBoxContainer/FileSlot3/LoadedState/CharacterIcons" unique_id=2142743877]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("5_d6w38")
+stretch_mode = 2
+
+[node name="GianaIcon" type="TextureRect" parent="CenterContainer/HBoxContainer/FileSlot3/LoadedState/CharacterIcons" unique_id=71403699]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("6_wkbwd")
+stretch_mode = 2
+
+[node name="PercentageLabel" parent="CenterContainer/HBoxContainer/FileSlot3/LoadedState" unique_id=2059206671 instance=ExtResource("4_6ked2")]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+offset_right = 0.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "100%"

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://hv5njwnlsq4w"]
+
+[ext_resource type="Script" uid="uid://d4gm1mt6kluat" path="res://Scripts/Gizmos/Hazards/BarrelDirectionArea.cs" id="1_ty2bg"]
+
+[node name="BarrelDirectionArea" type="Area2D" unique_id=1679233478]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_ty2bg")
+
+[node name="BarrelDirectionDetect" type="CollisionPolygon2D" parent="." unique_id=77499961]
+position = Vector2(96, -8)

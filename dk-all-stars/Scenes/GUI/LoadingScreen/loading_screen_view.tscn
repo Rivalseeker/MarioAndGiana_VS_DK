@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://dg4d6ujf37b61"]
+
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="1_qvspv"]
+
+[sub_resource type="Animation" id="Animation_qvspv"]
+resource_name = "LoadDelay"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NES_Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_yo85t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NES_Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2eavx"]
+_data = {
+&"LoadDelay": SubResource("Animation_qvspv"),
+&"RESET": SubResource("Animation_yo85t")
+}
+
+[node name="LoadingScreenView" type="Control" unique_id=350171093]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="." unique_id=1419819641]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="NES_Label" parent="." unique_id=1692661727 instance=ExtResource("1_qvspv")]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -4.5
+offset_right = 20.0
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "LOADING..."
+
+[node name="LoadingAnim" type="AnimationPlayer" parent="." unique_id=629415289]
+libraries/ = SubResource("AnimationLibrary_2eavx")
+autoplay = &"LoadDelay"

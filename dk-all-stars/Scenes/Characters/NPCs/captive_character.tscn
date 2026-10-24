@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://ddmfcg5oakrvc"]
+
+[ext_resource type="Script" uid="uid://cjmxgg7sxwsj1" path="res://Scripts/Characters/NPCs/CaptiveCharacter.cs" id="1_mm4xv"]
+[ext_resource type="Texture2D" uid="uid://kqg5863j17w4" path="res://Assets/Art/Characters/NPCs/HelpText.png" id="1_rnc28"]
+
+[sub_resource type="Animation" id="Animation_lt8up"]
+resource_name = "HelpLeft"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_vfxjq"]
+resource_name = "HelpRight"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_14r2q"]
+resource_name = "SavedLeft"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_rnc28"]
+resource_name = "SavedRight"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_mm4xv"]
+resource_name = "TakenAway"
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lt8up"]
+_data = {
+&"HelpLeft": SubResource("Animation_lt8up"),
+&"HelpRight": SubResource("Animation_vfxjq"),
+&"SavedLeft": SubResource("Animation_14r2q"),
+&"SavedRight": SubResource("Animation_rnc28"),
+&"TakenAway": SubResource("Animation_mm4xv")
+}
+
+[node name="CaptiveCharacter" type="Node2D" unique_id=1482072916 node_paths=PackedStringArray("CharacterSprite", "HelpSprite", "CaptiveAnim")]
+script = ExtResource("1_mm4xv")
+FacingDirection = 1
+CharacterSprite = NodePath("CharacterSprite")
+HelpSprite = NodePath("HelpSprite")
+CaptiveAnim = NodePath("CaptiveAnim")
+
+[node name="CharacterSprite" type="Sprite2D" parent="." unique_id=1362367552]
+
+[node name="HelpSprite" type="Sprite2D" parent="." unique_id=300254388]
+position = Vector2(0, -32)
+texture = ExtResource("1_rnc28")
+centered = false
+offset = Vector2(-16, -32)
+hframes = 2
+
+[node name="CaptiveAnim" type="AnimationPlayer" parent="." unique_id=1383131213]
+libraries/ = SubResource("AnimationLibrary_lt8up")

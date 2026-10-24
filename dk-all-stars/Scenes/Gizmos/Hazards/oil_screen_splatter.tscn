@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://khhlmfkj66oj"]
+
+[ext_resource type="Texture2D" uid="uid://bxhq54ntg680f" path="res://Assets/Art/Hazards/OilScreenSplatter.png" id="1_23mle"]
+[ext_resource type="Script" uid="uid://cikjnosup444" path="res://Scripts/Gizmos/Hazards/OilScreenSplatter.cs" id="2_fw3xd"]
+
+[node name="OilScreenSplatter" type="Sprite2D" unique_id=1007947777]
+texture = ExtResource("1_23mle")
+centered = false
+offset = Vector2(-16, -32)
+script = ExtResource("2_fw3xd")
+Lifespan = 3.0

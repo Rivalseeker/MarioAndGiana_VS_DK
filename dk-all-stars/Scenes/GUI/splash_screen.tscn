@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://cedsls53ao7hd"]
+
+[ext_resource type="Script" uid="uid://yuwwstytfukm" path="res://Scripts/GUI/SplashScreen/SplashScreen.cs" id="1_kc7ra"]
+[ext_resource type="Texture2D" uid="uid://v8raqq7siduk" path="res://Assets/Art/GUI/Backgrounds/8bit_Godot_Logo.png" id="2_kc7ra"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="2_n7db3"]
+
+[sub_resource type="Animation" id="Animation_kc7ra"]
+resource_name = "LogoFadeInOut"
+length = 5.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GodotLogo:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 2.1, 2.1999998, 2.3, 2.3999999, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.25), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0.75000006), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.75000006), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0.25), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(5.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnSplashTimeout"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StudioLabel:modulate")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.6, 2.6999998, 2.8, 2.8999999, 3, 4.7, 4.7999997, 4.8999996, 5, 5.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 0.25), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0.75000006), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.75000006), Color(1, 1, 1, 0.5), Color(1, 1, 1, 0.25), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n7db3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GodotLogo:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StudioLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dq0pl"]
+_data = {
+&"LogoFadeInOut": SubResource("Animation_kc7ra"),
+&"RESET": SubResource("Animation_n7db3")
+}
+
+[node name="SplashScreen" type="Control" unique_id=397755261]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kc7ra")
+_titleScreenPath = "uid://clnsom3wb5nn4"
+
+[node name="Background" type="ColorRect" parent="." unique_id=1893686779]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Disclaimer" parent="." unique_id=1692661727 instance=ExtResource("2_n7db3")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GodotLogo" type="TextureRect" parent="." unique_id=350935661]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kc7ra")
+stretch_mode = 2
+
+[node name="StudioLabel" parent="." unique_id=782431606 instance=ExtResource("2_n7db3")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 16
+text = "PRESENTED BY
+
+RIVAL STUDIOS"
+
+[node name="SplashAnim" type="AnimationPlayer" parent="." unique_id=717778138]
+libraries/ = SubResource("AnimationLibrary_dq0pl")
+autoplay = &"LogoFadeInOut"

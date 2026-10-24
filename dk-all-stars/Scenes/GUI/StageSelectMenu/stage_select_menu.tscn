@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://bwq7qkxddudiv"]
+
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="1_xq8ep"]
+[ext_resource type="PackedScene" uid="uid://5hkng1s1ptkb" path="res://Scenes/GUI/MenuItems/retro_selector.tscn" id="2_eksbs"]
+
+[node name="StageSelectMenu" type="Control" unique_id=2090582866]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1527574544]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1408562411]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Character" parent="VBoxContainer" unique_id=1692661727 instance=ExtResource("1_xq8ep")]
+layout_mode = 2
+text = "MARIO"
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=249473497]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1737871263]
+layout_mode = 2
+
+[node name="StageLabel" parent="VBoxContainer/HBoxContainer" unique_id=1811329030 instance=ExtResource("1_xq8ep")]
+layout_mode = 2
+text = "STAGE
+-----"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=786872815]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+
+[node name="StageLabel2" parent="VBoxContainer/HBoxContainer" unique_id=461418232 instance=ExtResource("1_xq8ep")]
+layout_mode = 2
+text = "L
+-"
+
+[node name="5M" parent="VBoxContainer" unique_id=401346171 instance=ExtResource("2_eksbs")]
+layout_mode = 2
+TitleText = "5M"
+Options = PackedStringArray("1", "2", "3")
+
+[node name="TitleLabel" parent="VBoxContainer/5M" index="0" unique_id=1692661727]
+custom_minimum_size = Vector2(32, 0)
+text = "100M"
+
+[node name="ValueLabel" parent="VBoxContainer/5M" index="3" unique_id=473579157]
+custom_minimum_size = Vector2(8, 0)
+text = "1"
+
+[node name="10M" parent="VBoxContainer" unique_id=970336736 instance=ExtResource("2_eksbs")]
+layout_mode = 2
+TitleText = "10M"
+Options = PackedStringArray("1", "2", "3")
+
+[node name="TitleLabel" parent="VBoxContainer/10M" index="0" unique_id=1692661727]
+custom_minimum_size = Vector2(32, 0)
+text = "100M"
+
+[node name="ValueLabel" parent="VBoxContainer/10M" index="3" unique_id=473579157]
+custom_minimum_size = Vector2(8, 0)
+text = "1"
+
+[node name="15M" parent="VBoxContainer" unique_id=1927021627 instance=ExtResource("2_eksbs")]
+layout_mode = 2
+TitleText = "15M"
+Options = PackedStringArray("1", "2", "3")
+
+[node name="TitleLabel" parent="VBoxContainer/15M" index="0" unique_id=1692661727]
+custom_minimum_size = Vector2(32, 0)
+text = "100M"
+
+[node name="ValueLabel" parent="VBoxContainer/15M" index="3" unique_id=473579157]
+custom_minimum_size = Vector2(8, 0)
+text = "1"
+
+[node name="20M" parent="VBoxContainer" unique_id=1652651416 instance=ExtResource("2_eksbs")]
+layout_mode = 2
+TitleText = "20M"
+Options = PackedStringArray("1", "2", "3")
+
+[node name="TitleLabel" parent="VBoxContainer/20M" index="0" unique_id=1692661727]
+custom_minimum_size = Vector2(32, 0)
+text = "100M"
+
+[node name="ValueLabel" parent="VBoxContainer/20M" index="3" unique_id=473579157]
+custom_minimum_size = Vector2(8, 0)
+text = "1"
+
+[editable path="VBoxContainer/5M"]
+[editable path="VBoxContainer/10M"]
+[editable path="VBoxContainer/15M"]
+[editable path="VBoxContainer/20M"]

@@ -1,0 +1,1152 @@
+[gd_scene format=3 uid="uid://du3de7yx78m7j"]
+
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="1_0002j"]
+[ext_resource type="TileSet" uid="uid://bi7rohw4n748g" path="res://Assets/Art/Tilemaps/dk_nes_tile_set.tres" id="1_je30t"]
+[ext_resource type="Script" uid="uid://bv66py8lx5usv" path="res://Scripts/Levels/Base/BaseDkLevel.cs" id="1_lssxe"]
+[ext_resource type="Script" uid="uid://db5k717jxn642" path="res://Scripts/Levels/HUD/LevelHudControl.cs" id="2_647bi"]
+[ext_resource type="Texture2D" uid="uid://cfdymc7nirue1" path="res://Assets/Art/GUI/HUD/ui_bracket.png" id="2_uq7vi"]
+[ext_resource type="AudioStream" uid="uid://bfs7wnud3prwa" path="res://Assets/Audio/BGM/NES_DK_Miss.ogg" id="2_ury4g"]
+[ext_resource type="Texture2D" uid="uid://crhgvxrnhw6i" path="res://Assets/Art/GUI/HUD/hud_timer.png" id="3_647bi"]
+[ext_resource type="AudioStream" uid="uid://6j11wdpvkqxv" path="res://Assets/Audio/BGM/NES_DK_Stage Clear.ogg" id="3_b11xn"]
+[ext_resource type="AudioStream" uid="uid://w2t46uiu76mj" path="res://Assets/Audio/BGM/NES_DK_Hammer.ogg" id="4_0yfkl"]
+[ext_resource type="Script" uid="uid://cw5h0pgwt5110" path="res://Scripts/Levels/PauseScreen/PauseScreen.cs" id="5_5gonp"]
+[ext_resource type="PackedScene" uid="uid://xjyrgenimxvc" path="res://Scenes/ImpactFX/impact.tscn" id="5_lpf2b"]
+[ext_resource type="FontFile" uid="uid://bdcy0d6dekdpf" path="res://Assets/Art/Fonts/Super Mario Bros. NES.ttf" id="5_p43sq"]
+[ext_resource type="PackedScene" uid="uid://cjb2l3x4rccti" path="res://Scenes/Characters/Enemies/Bosses/donkey_kong.tscn" id="5_vav1i"]
+[ext_resource type="AudioStream" uid="uid://cxp8p1va8r2bg" path="res://Assets/Audio/BGM/NES_DK_HurryUp.ogg" id="6_brhxu"]
+[ext_resource type="Shader" uid="uid://cw6xn50q0rv6f" path="res://Scripts/Shaders/sprite_recolor.gdshader" id="6_lpf2b"]
+[ext_resource type="Texture2D" uid="uid://dnpffxu8gqbdk" path="res://Assets/Art/Tilemaps/monochrome_tilemap_transparent.png" id="6_xvvlc"]
+[ext_resource type="PackedScene" uid="uid://cosd58fqpvniu" path="res://Scenes/GUI/OptionsMenu/options_menu.tscn" id="8_3y74c"]
+[ext_resource type="AudioStream" uid="uid://djhn8hgfiuamr" path="res://Assets/Audio/SFX/NES_DK_Pause.ogg" id="8_je30t"]
+[ext_resource type="Texture2D" uid="uid://ddrmctxg7xh2w" path="res://Assets/Art/Characters/NPCs/Heart.png" id="10_2an6r"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lpf2b"]
+shader = ExtResource("6_lpf2b")
+shader_parameter/color_1_original = Color(0, 0, 0, 1)
+shader_parameter/color_1_replace = Color(0, 0, 0, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="Animation" id="Animation_2an6r"]
+resource_name = "Hide"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ou1js"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_q343l"]
+resource_name = "Show"
+length = 2.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8iqm"]
+_data = {
+&"Hide": SubResource("Animation_2an6r"),
+&"RESET": SubResource("Animation_ou1js"),
+&"Show": SubResource("Animation_q343l")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0002j"]
+size = Vector2(88, 48)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ury4g"]
+
+[sub_resource type="Animation" id="Animation_a8iqm"]
+resource_name = "HurryUp"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["HURRY UP!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.9, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+
+[sub_resource type="Animation" id="Animation_p43sq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_ury4g"]
+resource_name = "StageClear"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.65, 3.3, 3.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["CLEARED!", "CLEARED.", "CLEARED..", "CLEARED...?"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PromptLabel:anchors_preset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_xvvlc"]
+resource_name = "Start"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.75000006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_3y74c"]
+resource_name = "TooBad"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["TOO BAD!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.7490196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gonp"]
+_data = {
+&"HurryUp": SubResource("Animation_a8iqm"),
+&"RESET": SubResource("Animation_p43sq"),
+&"StageClear": SubResource("Animation_ury4g"),
+&"Start": SubResource("Animation_xvvlc"),
+&"TooBad": SubResource("Animation_3y74c")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5gonp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je30t"]
+atlas = ExtResource("6_xvvlc")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_viuc2"]
+resource_name = "Blink"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2vrav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lssxe"]
+_data = {
+&"Blink": SubResource("Animation_viuc2"),
+&"RESET": SubResource("Animation_2vrav")
+}
+
+[node name="Base_Dk_Level" type="Node2D" unique_id=182671849 node_paths=PackedStringArray("_playerSpawn", "_gizmosContainer", "_playersContainer", "_enemiesContainer", "_environmentContainer", "_checkpointContainer", "_captiveContainer", "heartAnim", "_pickupsContainer", "_promptAnim", "_pauseScreen", "_pitArea", "_goalArea", "_blackScreen", "_debugLayer", "_playerStateLabel", "_playerXVelocityLabel", "_playerYVelocityLabel", "_playerJumpsLabel", "_timerControl", "_timerLabel")]
+process_mode = 1
+script = ExtResource("1_lssxe")
+_failureMusicTrack = ExtResource("2_ury4g")
+_stageClearMusicTrack = ExtResource("3_b11xn")
+_hammerMusicTrack = ExtResource("4_0yfkl")
+_smashEffectScene = ExtResource("5_lpf2b")
+_playerSpawn = NodePath("PlayerSpawn")
+_gizmosContainer = NodePath("Entities/Gizmos")
+_playersContainer = NodePath("Entities/Characters/Players")
+_enemiesContainer = NodePath("Entities/Characters/Enemies")
+_environmentContainer = NodePath("Environment")
+_checkpointContainer = NodePath("Entities/Gizmos/Checkpoints")
+_captiveContainer = NodePath("Entities/Characters/Captive")
+heartAnim = NodePath("Entities/Characters/Heart/HeartAnim")
+_pickupsContainer = NodePath("Entities/PickUps")
+_promptAnim = NodePath("HUD/MainHudControl/LevelPrompt/PromptAnim")
+_pauseScreen = NodePath("PauseScreen")
+_pitArea = NodePath("LevelCamera/PitArea")
+_goalArea = NodePath("GoalArea")
+_blackScreen = NodePath("TransitionLayer/BlackScreen")
+_loadingScreenDelay = 0.5
+_hurryUpMusicTrack = ExtResource("6_brhxu")
+_debugLayer = NodePath("Debug")
+_playerStateLabel = NodePath("Debug/LevelDebugControl/ColorRect/VBoxContainer/PlayerState")
+_playerXVelocityLabel = NodePath("Debug/LevelDebugControl/ColorRect/VBoxContainer/PlayerXVelocity")
+_playerYVelocityLabel = NodePath("Debug/LevelDebugControl/ColorRect/VBoxContainer/PlayerYVelocity")
+_playerJumpsLabel = NodePath("Debug/LevelDebugControl/ColorRect/VBoxContainer/PlayerJumps")
+_timerControl = NodePath("HUD/MainHudControl/LevelHudControl/TimerControl")
+_timerLabel = NodePath("HUD/MainHudControl/LevelHudControl/TimerControl/Timer")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=526963599]
+layer = -10
+
+[node name="BackgroundColor" type="ColorRect" parent="BackgroundLayer" unique_id=575733718]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Environment" type="Node2D" parent="." unique_id=1656048164]
+
+[node name="LevelTileMap1" type="TileMapLayer" parent="Environment" unique_id=994874330]
+material = SubResource("ShaderMaterial_lpf2b")
+tile_set = ExtResource("1_je30t")
+
+[node name="LevelTileMap2" type="TileMapLayer" parent="Environment" unique_id=699004260]
+position = Vector2(0, -1)
+tile_set = ExtResource("1_je30t")
+
+[node name="LevelTileMap3" type="TileMapLayer" parent="Environment" unique_id=1302995735]
+position = Vector2(0, -2)
+tile_set = ExtResource("1_je30t")
+
+[node name="LevelTileMap4" type="TileMapLayer" parent="Environment" unique_id=1022846052]
+position = Vector2(0, -3)
+tile_set = ExtResource("1_je30t")
+
+[node name="LevelTileMap5" type="TileMapLayer" parent="Environment" unique_id=1845843692]
+position = Vector2(0, -4)
+tile_set = ExtResource("1_je30t")
+
+[node name="LevelTileMap6" type="TileMapLayer" parent="Environment" unique_id=501829157]
+position = Vector2(0, -5)
+tile_set = ExtResource("1_je30t")
+
+[node name="LevelTileMap7" type="TileMapLayer" parent="Environment" unique_id=1609967899]
+position = Vector2(0, -6)
+tile_set = ExtResource("1_je30t")
+
+[node name="LevelTileMap8" type="TileMapLayer" parent="Environment" unique_id=789452681]
+position = Vector2(0, -7)
+tile_set = ExtResource("1_je30t")
+
+[node name="Entities" type="Node2D" parent="." unique_id=1185242110]
+
+[node name="Gizmos" type="Node2D" parent="Entities" unique_id=1465137261]
+
+[node name="Checkpoints" type="Node2D" parent="Entities/Gizmos" unique_id=1145740845]
+
+[node name="PickUps" type="Node2D" parent="Entities" unique_id=805664897]
+
+[node name="Collectibles" type="Node2D" parent="Entities/PickUps" unique_id=754295626]
+
+[node name="Hammers" type="Node2D" parent="Entities/PickUps" unique_id=655353986]
+
+[node name="Characters" type="Node2D" parent="Entities" unique_id=1831603815]
+
+[node name="Players" type="Node2D" parent="Entities/Characters" unique_id=1895857052]
+
+[node name="Enemies" type="Node2D" parent="Entities/Characters" unique_id=1391212995]
+
+[node name="Bosses" type="Node2D" parent="Entities/Characters/Enemies" unique_id=740166802]
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" unique_id=1080315517 instance=ExtResource("5_vav1i")]
+
+[node name="Commons" type="Node2D" parent="Entities/Characters/Enemies" unique_id=1100678762]
+
+[node name="Captive" type="Node2D" parent="Entities/Characters" unique_id=1853909349]
+
+[node name="Heart" type="Sprite2D" parent="Entities/Characters" unique_id=901163973]
+visible = false
+texture = ExtResource("10_2an6r")
+centered = false
+offset = Vector2(-8, -16)
+hframes = 2
+
+[node name="HeartAnim" type="AnimationPlayer" parent="Entities/Characters/Heart" unique_id=1741779860]
+libraries/ = SubResource("AnimationLibrary_a8iqm")
+
+[node name="PlayerSpawn" type="Marker2D" parent="." unique_id=248777857]
+
+[node name="LevelCamera" type="Camera2D" parent="." unique_id=255088121]
+position = Vector2(192, -108)
+
+[node name="HudObscureZone" type="Area2D" parent="LevelCamera" unique_id=558144338]
+position = Vector2(148, -84)
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="HudObscureDetect" type="CollisionShape2D" parent="LevelCamera/HudObscureZone" unique_id=995477475]
+shape = SubResource("RectangleShape2D_0002j")
+debug_color = Color(1, 1, 1, 0.41960785)
+
+[node name="PitArea" type="Area2D" parent="LevelCamera" unique_id=1863843188]
+position = Vector2(-192, 124)
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="PitDetect" type="CollisionShape2D" parent="LevelCamera/PitArea" unique_id=744893727]
+shape = SubResource("WorldBoundaryShape2D_ury4g")
+
+[node name="GoalArea" type="Area2D" parent="." unique_id=1127886652]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="GoalDetect" type="CollisionShape2D" parent="GoalArea" unique_id=431830692]
+
+[node name="Debug" type="CanvasLayer" parent="." unique_id=297461879]
+layer = 3
+
+[node name="LevelDebugControl" type="Control" parent="Debug" unique_id=1844444877]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Debug/LevelDebugControl" unique_id=96454465]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.75000006)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Debug/LevelDebugControl/ColorRect" unique_id=269757768]
+layout_mode = 0
+offset_right = 80.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="PlayerState" parent="Debug/LevelDebugControl/ColorRect/VBoxContainer" unique_id=1692661727 instance=ExtResource("1_0002j")]
+layout_mode = 2
+text = "GROUNDMOVE"
+horizontal_alignment = 0
+
+[node name="PlayerXVelocity" parent="Debug/LevelDebugControl/ColorRect/VBoxContainer" unique_id=870110982 instance=ExtResource("1_0002j")]
+layout_mode = 2
+text = "X="
+horizontal_alignment = 0
+
+[node name="PlayerYVelocity" parent="Debug/LevelDebugControl/ColorRect/VBoxContainer" unique_id=711483200 instance=ExtResource("1_0002j")]
+layout_mode = 2
+text = "X="
+horizontal_alignment = 0
+
+[node name="PlayerJumps" parent="Debug/LevelDebugControl/ColorRect/VBoxContainer" unique_id=1968606447 instance=ExtResource("1_0002j")]
+layout_mode = 2
+text = "Jumps="
+horizontal_alignment = 0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=251705292]
+layer = 4
+
+[node name="MainHudControl" type="Control" parent="HUD" unique_id=1135149742]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelPrompt" type="ColorRect" parent="HUD/MainHudControl" unique_id=67024084]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -20.0
+offset_right = 72.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="PromptLabel" parent="HUD/MainHudControl/LevelPrompt" unique_id=1710127306 instance=ExtResource("1_0002j")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_top = -11.5
+offset_right = 52.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "START"
+
+[node name="PromptAnim" type="AnimationPlayer" parent="HUD/MainHudControl/LevelPrompt" unique_id=1226467105]
+libraries/ = SubResource("AnimationLibrary_5gonp")
+autoplay = &"Start"
+
+[node name="LevelHudControl" type="Control" parent="HUD/MainHudControl" unique_id=703563601 node_paths=PackedStringArray("_obscureZone")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -88.0
+offset_bottom = 48.0
+grow_horizontal = 0
+mouse_filter = 2
+script = ExtResource("2_647bi")
+_obscureZone = NodePath("../../../LevelCamera/HudObscureZone")
+
+[node name="StageControl" type="Control" parent="HUD/MainHudControl/LevelHudControl" unique_id=431331789]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftBracket" type="TextureRect" parent="HUD/MainHudControl/LevelHudControl/StageControl" unique_id=35596243]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource("2_uq7vi")
+stretch_mode = 2
+
+[node name="StageTitle" parent="HUD/MainHudControl/LevelHudControl/StageControl" unique_id=1820520240 instance=ExtResource("1_0002j")]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 34.0
+offset_bottom = 10.0
+text = "STG"
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" unique_id=2101962694 instance=ExtResource("1_0002j")]
+custom_minimum_size = Vector2(32, 9)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 10.0
+offset_right = 38.0
+offset_bottom = 19.0
+text = "100M"
+
+[node name="RightBracket" type="TextureRect" parent="HUD/MainHudControl/LevelHudControl/StageControl" unique_id=2006266112]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 4.0
+offset_right = 44.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource("2_uq7vi")
+stretch_mode = 2
+flip_h = true
+
+[node name="LoopControl" type="Control" parent="HUD/MainHudControl/LevelHudControl" unique_id=2134337103]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -16.0
+offset_right = 36.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftBracket" type="TextureRect" parent="HUD/MainHudControl/LevelHudControl/LoopControl" unique_id=1399987367]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource("2_uq7vi")
+stretch_mode = 2
+
+[node name="LoopTitle" parent="HUD/MainHudControl/LevelHudControl/LoopControl" unique_id=789462449 instance=ExtResource("1_0002j")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 14.0
+offset_bottom = 10.0
+text = "L"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" unique_id=757781299 instance=ExtResource("1_0002j")]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 10.0
+offset_right = 14.0
+offset_bottom = 19.0
+text = "3"
+
+[node name="RightBracket" type="TextureRect" parent="HUD/MainHudControl/LevelHudControl/LoopControl" unique_id=281114382]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 4.0
+offset_right = 20.0
+offset_bottom = 16.0
+mouse_filter = 2
+texture = ExtResource("2_uq7vi")
+stretch_mode = 2
+flip_h = true
+
+[node name="TimerControl" type="Control" parent="HUD/MainHudControl/LevelHudControl" unique_id=1500538388]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = 6.0
+offset_right = 28.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LeftBracket" type="TextureRect" parent="HUD/MainHudControl/LevelHudControl/TimerControl" unique_id=896367100]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 12.0
+mouse_filter = 2
+texture = ExtResource("2_uq7vi")
+stretch_mode = 2
+
+[node name="TimerIcon" type="TextureRect" parent="HUD/MainHudControl/LevelHudControl/TimerControl" unique_id=997208968]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 14.0
+offset_bottom = 10.0
+mouse_filter = 2
+texture = ExtResource("3_647bi")
+stretch_mode = 2
+
+[node name="Timer" parent="HUD/MainHudControl/LevelHudControl/TimerControl" unique_id=1616500247 instance=ExtResource("1_0002j")]
+custom_minimum_size = Vector2(24, 9)
+layout_mode = 0
+offset_left = 16.0
+offset_top = 2.0
+offset_bottom = 11.0
+text = "555"
+
+[node name="RightBracket" type="TextureRect" parent="HUD/MainHudControl/LevelHudControl/TimerControl" unique_id=393662679]
+layout_mode = 0
+offset_left = 42.0
+offset_right = 46.0
+offset_bottom = 12.0
+mouse_filter = 2
+texture = ExtResource("2_uq7vi")
+stretch_mode = 2
+flip_h = true
+
+[node name="PauseScreen" type="CanvasLayer" parent="." unique_id=1998740680 node_paths=PackedStringArray("_dimOverlay", "_menuContainer", "_resumeButton", "_checkpointButton", "_restartButton", "_optionsButton", "_exitButton", "_closeGameButton", "_cursorIcon", "_cursorAnim", "_pauseSfx")]
+process_mode = 3
+layer = 5
+script = ExtResource("5_5gonp")
+_optionsMenuPrefab = ExtResource("8_3y74c")
+_mainMenuPath = "uid://cuqxevd2frvsd"
+_dimOverlay = NodePath("DimOverlay")
+_menuContainer = NodePath("VBoxContainer")
+_resumeButton = NodePath("VBoxContainer/ResumeButton")
+_checkpointButton = NodePath("VBoxContainer/CheckpointButton")
+_restartButton = NodePath("VBoxContainer/RestartButton")
+_optionsButton = NodePath("VBoxContainer/OptionsButton")
+_exitButton = NodePath("VBoxContainer/ExitButton")
+_closeGameButton = NodePath("VBoxContainer/CloseGameButton")
+_cursorIcon = NodePath("CursorIcon")
+_cursorAnim = NodePath("CursorIcon/CursorAnim")
+_cursorOffset = Vector2(-16, 0)
+_pauseSfx = NodePath("PauseSfx")
+
+[node name="DimOverlay" type="ColorRect" parent="PauseScreen" unique_id=1918418545]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="PauseWindow" type="ColorRect" parent="PauseScreen" unique_id=2073447499]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseScreen" unique_id=347158316]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TitleLabel" parent="PauseScreen/VBoxContainer" unique_id=676902995 instance=ExtResource("1_0002j")]
+layout_mode = 2
+text = "PAUSED"
+
+[node name="Spacer" type="Control" parent="PauseScreen/VBoxContainer" unique_id=159744924]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="PauseScreen/VBoxContainer" unique_id=1982071593]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_p43sq")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5gonp")
+text = "RESUME GAME"
+flat = true
+alignment = 0
+
+[node name="CheckpointButton" type="Button" parent="PauseScreen/VBoxContainer" unique_id=1942336120]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_p43sq")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5gonp")
+text = "RESTART CHECKPOINT"
+flat = true
+alignment = 0
+
+[node name="RestartButton" type="Button" parent="PauseScreen/VBoxContainer" unique_id=2057103065]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_p43sq")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5gonp")
+text = "RESTART LEVEL"
+flat = true
+alignment = 0
+
+[node name="OptionsButton" type="Button" parent="PauseScreen/VBoxContainer" unique_id=965068689]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_p43sq")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5gonp")
+text = "OPTIONS"
+flat = true
+alignment = 0
+
+[node name="ExitButton" type="Button" parent="PauseScreen/VBoxContainer" unique_id=1491870358]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_p43sq")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5gonp")
+text = "EXIT LEVEL"
+flat = true
+alignment = 0
+
+[node name="CloseGameButton" type="Button" parent="PauseScreen/VBoxContainer" unique_id=498655878]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("5_p43sq")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5gonp")
+text = "CLOSE GAME"
+flat = true
+alignment = 0
+
+[node name="CursorIcon" type="TextureRect" parent="PauseScreen" unique_id=707852538]
+texture_filter = 1
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_je30t")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CursorAnim" type="AnimationPlayer" parent="PauseScreen/CursorIcon" unique_id=253649639]
+libraries/ = SubResource("AnimationLibrary_lssxe")
+autoplay = &"Blink"
+
+[node name="PauseSfx" type="AudioStreamPlayer" parent="PauseScreen" unique_id=2035834968]
+stream = ExtResource("8_je30t")
+bus = &"Sound"
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=815634781]
+layer = 40
+
+[node name="BlackScreen" type="ColorRect" parent="TransitionLayer" unique_id=105359582]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

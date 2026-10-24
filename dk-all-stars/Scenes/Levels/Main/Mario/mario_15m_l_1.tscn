@@ -1,0 +1,305 @@
+[gd_scene format=4 uid="uid://c414mdiviixk7"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_hc4bj"]
+[ext_resource type="PackedScene" uid="uid://bmpd3slaq02q4" path="res://Scenes/Characters/Players/mario.tscn" id="2_pc8or"]
+[ext_resource type="AudioStream" uid="uid://da1s8ndonieae" path="res://Assets/Audio/BGM/NES_DK_25M.ogg" id="3_xtxc3"]
+[ext_resource type="Shader" uid="uid://cw6xn50q0rv6f" path="res://Scripts/Shaders/sprite_recolor.gdshader" id="4_xtxc3"]
+[ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="5_61gdg"]
+[ext_resource type="Script" uid="uid://b1idm8wj1dbcj" path="res://Scripts/Gizmos/OilWellPump.cs" id="5_bypsb"]
+[ext_resource type="Texture2D" uid="uid://duufofljm2vig" path="res://Assets/Art/Gizmos/OilWellPumpSamsonPost.png" id="5_rbydl"]
+[ext_resource type="PackedScene" uid="uid://d0byxw17jlmhu" path="res://Scenes/Gizmos/Hazards/oil_splatter.tscn" id="6_8avi2"]
+[ext_resource type="Texture2D" uid="uid://cojrgbh2iwliw" path="res://Assets/Art/Gizmos/OilWellPumpHead.png" id="6_30fcy"]
+[ext_resource type="AudioStream" uid="uid://cyl15sra84667" path="res://Assets/Audio/SFX/DK_Stomp.ogg" id="7_30fcy"]
+[ext_resource type="PackedScene" uid="uid://dceew3t6ho7hy" path="res://Scenes/PickUps/Collectibles/Pauline/umbrella.tscn" id="7_o4dbw"]
+[ext_resource type="PackedScene" uid="uid://bxf1ogjt674xh" path="res://Scenes/PickUps/Collectibles/Pauline/purse.tscn" id="8_rbydl"]
+[ext_resource type="PackedScene" uid="uid://bbapt6q6oka7b" path="res://Scenes/PickUps/Collectibles/Pauline/hat.tscn" id="9_30fcy"]
+[ext_resource type="PackedScene" uid="uid://ci655u6aqeen5" path="res://Scenes/Characters/Enemies/Commons/fireball.tscn" id="12_35g1l"]
+[ext_resource type="PackedScene" uid="uid://dkaomh2simm78" path="res://Scenes/Characters/NPCs/pauline.tscn" id="13_5xnmy"]
+[ext_resource type="Script" uid="uid://b0fc5ifpwcuej" path="res://Scripts/Levels/Main/Mario/15M/OilSplatterScreen.cs" id="16_a8vkq"]
+[ext_resource type="PackedScene" uid="uid://khhlmfkj66oj" path="res://Scenes/Gizmos/Hazards/oil_screen_splatter.tscn" id="17_orn50"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_61gdg"]
+shader = ExtResource("4_xtxc3")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="Shader" id="Shader_si6j5"]
+code = "shader_type canvas_item;
+
+// The exact colors currently on your sprite sheet
+uniform vec4 color_1_original : source_color;
+uniform vec4 color_1_replace : source_color;
+
+uniform vec4 color_2_original : source_color;
+uniform vec4 color_2_replace : source_color;
+
+// A tiny tolerance handles slight blending/compression artifacts
+uniform float tolerance : hint_range(0.0, 1.0) = 0.01;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+
+    // Swap Color 1
+    if (distance(current_color.rgb, color_1_original.rgb) < tolerance && current_color.a > 0.0) {
+        COLOR = vec4(color_1_replace.rgb, current_color.a);
+    }
+    // Swap Color 2
+    else if (distance(current_color.rgb, color_2_original.rgb) < tolerance && current_color.a > 0.0) {
+        COLOR = vec4(color_2_replace.rgb, current_color.a);
+    }
+    // Keep everything else the same
+    else {
+        COLOR = current_color;
+    }
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8vkq"]
+shader = SubResource("Shader_si6j5")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_original = Color(1, 0.7294118, 0.92156863, 1)
+shader_parameter/color_2_replace = Color(0.627451, 0.627451, 0.627451, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35g1l"]
+size = Vector2(144, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbydl"]
+size = Vector2(16, 104)
+
+[sub_resource type="Animation" id="Animation_30fcy"]
+resource_name = "Pump"
+length = 5.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.7, 5.2),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector2(0, -116), Vector2(0, -28), Vector2(0, -116)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ImpactSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"SpawnSplatters"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_35g1l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HeadBody:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -116)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ImpactSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5xnmy"]
+_data = {
+&"Pump": SubResource("Animation_30fcy"),
+&"RESET": SubResource("Animation_35g1l")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xnmy"]
+size = Vector2(24, 8)
+
+[node name="Mario_15M_L1" unique_id=182671849 instance=ExtResource("1_hc4bj")]
+_playerScene = ExtResource("2_pc8or")
+_levelMusicTrack = ExtResource("3_xtxc3")
+_nextScene = "uid://cfr2i7iho4hla"
+UseTimer = false
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+material = SubResource("ShaderMaterial_61gdg")
+tile_map_data = PackedByteArray("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")
+
+[node name="LevelTileMap2" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="1" unique_id=699004260]
+tile_map_data = PackedByteArray("AAAYAPr/AAAAAAAAAAA=")
+
+[node name="LevelTileMap3" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="2" unique_id=1302995735]
+tile_map_data = PackedByteArray("AAAZAPb/AAAAAAAAAAA=")
+
+[node name="LevelTileMap4" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="3" unique_id=1022846052]
+tile_map_data = PackedByteArray("AAAYAPb/AAAAAAAAAAA=")
+
+[node name="LevelTileMap5" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="4" unique_id=1845843692]
+material = SubResource("ShaderMaterial_a8vkq")
+tile_map_data = PackedByteArray("AAAZAPr/AAAAAAAAAAAaAPr/AAAAAAAAAAAYAPL/AAAAAAAAAAAZAPL/AAAAAAAAAAAaAPL/AAAAAAAAAwAaAPP/AAAAAA8AAAAaAPT/AAAIAAgAAAAaAPX/AAAAAA8AAAAaAPb/AAAQAAsAAQAbAPL/AAAAAAAAAAA=")
+
+[node name="EnemyWall" type="StaticBody2D" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="8" unique_id=289915353]
+position = Vector2(184, -112)
+collision_layer = 32
+collision_mask = 0
+
+[node name="WallBoundary" type="CollisionShape2D" parent="Environment/EnemyWall" index="0" unique_id=88493879]
+position = Vector2(0, 16)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_35g1l")
+
+[node name="OilWellPump" type="Node2D" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="0" unique_id=949034427 node_paths=PackedStringArray("EmissionPoint", "SplatterContainer")]
+z_index = -1
+position = Vector2(184, 0)
+script = ExtResource("5_bypsb")
+OilSplatterScene = ExtResource("6_8avi2")
+EmissionPoint = NodePath("OilEmissionPoint")
+SplatterGravity = 225.0
+SplatterContainer = NodePath("OilSplatters")
+
+[node name="SamsonPost" type="Sprite2D" parent="Entities/Gizmos/OilWellPump" index="0" unique_id=1154182616]
+texture = ExtResource("5_rbydl")
+centered = false
+offset = Vector2(-128, -256)
+
+[node name="HeadBody" type="AnimatableBody2D" parent="Entities/Gizmos/OilWellPump" index="1" unique_id=1387754444]
+position = Vector2(0, -116)
+collision_mask = 0
+
+[node name="Head" type="Sprite2D" parent="Entities/Gizmos/OilWellPump/HeadBody" index="0" unique_id=450161265]
+position = Vector2(0, 116)
+texture = ExtResource("6_30fcy")
+centered = false
+offset = Vector2(-128, -256)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Gizmos/OilWellPump/HeadBody" index="1" unique_id=2035912298]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_rbydl")
+
+[node name="ImpactSound" type="AudioStreamPlayer" parent="Entities/Gizmos/OilWellPump" index="2" unique_id=1279835691]
+stream = ExtResource("7_30fcy")
+bus = &"Sound"
+
+[node name="OilEmissionPoint" type="Marker2D" parent="Entities/Gizmos/OilWellPump" index="3" unique_id=1827792236]
+
+[node name="OilSplatters" type="Node2D" parent="Entities/Gizmos/OilWellPump" index="4" unique_id=1778209033]
+z_index = 2
+
+[node name="OilWellPumpAnim" type="AnimationPlayer" parent="Entities/Gizmos/OilWellPump" index="5" unique_id=1049230139]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_5xnmy")
+autoplay = &"Pump"
+
+[node name="CheckpointFlag" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="0" unique_id=342376629 instance=ExtResource("5_61gdg")]
+position = Vector2(168, -32)
+CheckpointId = "Checkpoint1"
+
+[node name="CheckpointFlag2" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="1" unique_id=1142428447 instance=ExtResource("5_61gdg")]
+position = Vector2(352, -8)
+CheckpointId = "Checkpoint2"
+
+[node name="Umbrella" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("7_o4dbw")]
+position = Vector2(96, -128)
+
+[node name="CollisionShape2D" parent="Entities/PickUps/Collectibles/Umbrella" index="1" unique_id=1731533093]
+position = Vector2(0, -12)
+
+[node name="Purse" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=564256945 instance=ExtResource("8_rbydl")]
+position = Vector2(152, -136)
+
+[node name="Hat" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=1392302541 instance=ExtResource("9_30fcy")]
+position = Vector2(296, -168)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517]
+position = Vector2(96, -168)
+StartingState = 0
+EscapeDirection = 1
+
+[node name="Fireball" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="0" unique_id=995840756 instance=ExtResource("12_35g1l")]
+position = Vector2(36, -64)
+
+[node name="Fireball2" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="1" unique_id=70235509 instance=ExtResource("12_35g1l")]
+position = Vector2(96, -56)
+
+[node name="Fireball3" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="2" unique_id=228595661 instance=ExtResource("12_35g1l")]
+position = Vector2(200, -116)
+
+[node name="Fireball4" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="3" unique_id=1553615885 instance=ExtResource("12_35g1l")]
+position = Vector2(316, -136)
+
+[node name="Fireball5" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="4" unique_id=1155715647 instance=ExtResource("12_35g1l")]
+position = Vector2(372, -136)
+
+[node name="Pauline" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("13_5xnmy")]
+position = Vector2(128, -184)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Pauline" index="1" unique_id=300254388]
+position = Vector2(32, -4)
+
+[node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
+position = Vector2(152, -196)
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=248777857]
+position = Vector2(24, -8)
+
+[node name="GoalDetect" parent="GoalArea" parent_id_path=PackedInt32Array(1127886652) index="0" unique_id=431830692]
+position = Vector2(156, -192)
+shape = SubResource("RectangleShape2D_5xnmy")
+
+[node name="OilSplatterScreen" type="CanvasLayer" parent="." index="6" unique_id=857414740]
+layer = 3
+script = ExtResource("16_a8vkq")
+ScreenSplatterScene = ExtResource("17_orn50")
+
+[node name="Debug" parent="." index="7" unique_id=297461879]
+layer = 4
+
+[node name="HUD" parent="." index="8" unique_id=251705292]
+layer = 5
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "15M"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "1"
+
+[node name="PauseScreen" parent="." index="9" unique_id=1998740680]
+layer = 6
+
+[editable path="Entities/PickUps/Collectibles/Umbrella"]
+[editable path="Entities/Characters/Captive/Pauline"]

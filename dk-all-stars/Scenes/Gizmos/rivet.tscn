@@ -1,0 +1,164 @@
+[gd_scene format=3 uid="uid://m54mijhp3n5g"]
+
+[ext_resource type="Texture2D" uid="uid://y1sl1bow4bs4" path="res://Assets/Art/Gizmos/Rivet.png" id="1_j2xws"]
+[ext_resource type="Script" uid="uid://clswugkppg555" path="res://Scripts/Gizmos/Rivet.cs" id="1_quyua"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="2_opb1r"]
+[ext_resource type="AudioStream" uid="uid://bmv7jox7528rw" path="res://Assets/Audio/SFX/NES_DK_Score.ogg" id="3_qwc84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2xws"]
+size = Vector2(8, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwc84"]
+size = Vector2(1, 20)
+
+[sub_resource type="Animation" id="Animation_qwc84"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tally:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tally:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Removed:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_quyua"]
+resource_name = "Removed"
+length = 1.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Tally:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-12, -16), Vector2(-12, -32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Tally:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.9, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Removed:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t0gyw"]
+_data = {
+&"RESET": SubResource("Animation_qwc84"),
+&"Removed": SubResource("Animation_quyua")
+}
+
+[node name="Rivet" type="StaticBody2D" unique_id=1649966432 node_paths=PackedStringArray("_animPlayer", "_triggerArea", "_rivetCollision", "Tally")]
+collision_mask = 0
+script = ExtResource("1_quyua")
+_animPlayer = NodePath("RivetAnim")
+_triggerArea = NodePath("TriggerArea")
+_rivetCollision = NodePath("RivetCollision")
+Tally = NodePath("Tally")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=458417151]
+texture = ExtResource("1_j2xws")
+centered = false
+offset = Vector2(-4, -8)
+
+[node name="RivetCollision" type="CollisionShape2D" parent="." unique_id=1071401638]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_j2xws")
+one_way_collision = true
+
+[node name="TriggerArea" type="Area2D" parent="." unique_id=1508645460]
+collision_layer = 0
+collision_mask = 2
+
+[node name="TriggerDetect" type="CollisionShape2D" parent="TriggerArea" unique_id=2022539918]
+position = Vector2(0, -18)
+shape = SubResource("RectangleShape2D_qwc84")
+debug_color = Color(0.6559095, 0.51722133, 0, 0.41960785)
+
+[node name="Tally" parent="." unique_id=1692661727 instance=ExtResource("2_opb1r")]
+modulate = Color(1, 1, 1, 0)
+offset_left = -12.0
+offset_top = -16.0
+offset_right = 12.0
+offset_bottom = -7.0
+text = "8/8"
+
+[node name="Removed" type="AudioStreamPlayer" parent="." unique_id=566437021]
+stream = ExtResource("3_qwc84")
+bus = &"Sound"
+
+[node name="RivetAnim" type="AnimationPlayer" parent="." unique_id=1505658502]
+libraries/ = SubResource("AnimationLibrary_t0gyw")

@@ -1,0 +1,283 @@
+[gd_scene format=3 uid="uid://bltsfhqp36yr6"]
+
+[ext_resource type="AudioStream" uid="uid://dqf60m2hxnqjk" path="res://Assets/Audio/SFX/NES_DK_Walk.ogg" id="1_vl4j2"]
+[ext_resource type="Texture2D" uid="uid://bce5d664on5p6" path="res://Assets/Art/GUI/HUD/centered_vert_arrow.png" id="1_xqdbx"]
+[ext_resource type="Script" uid="uid://dwveju3sttu7w" path="res://Scripts/Characters/Players/BasePlayer.cs" id="1_y5phi"]
+[ext_resource type="AudioStream" uid="uid://c3eo2dj4im2iq" path="res://Assets/Audio/SFX/NES_DK_Jump.ogg" id="2_xqdbx"]
+[ext_resource type="AudioStream" uid="uid://ufpwbyem6t6f" path="res://Assets/Audio/SFX/NES_DK_Fall.ogg" id="3_y5phi"]
+[ext_resource type="AudioStream" uid="uid://btbtjrqdx24yr" path="res://Assets/Audio/SFX/NES_DK_Hit.ogg" id="4_16ujq"]
+[ext_resource type="Script" uid="uid://evhhacgbhkio" path="res://Scripts/StatesAndMachines/Base/StateMachine.cs" id="7_qf4q7"]
+[ext_resource type="Script" uid="uid://buhsd8i4fmj58" path="res://Scripts/StatesAndMachines/Player/PlayerIdle.cs" id="8_dxvey"]
+[ext_resource type="Script" uid="uid://yftnlqjogupg" path="res://Scripts/StatesAndMachines/Player/PlayerGroundMove.cs" id="9_j360w"]
+[ext_resource type="Script" uid="uid://wkoa7sqm3atk" path="res://Scripts/StatesAndMachines/Player/PlayerJump.cs" id="10_1unr4"]
+[ext_resource type="Script" uid="uid://dahfw270oxoox" path="res://Scripts/StatesAndMachines/Player/PlayerFall.cs" id="11_kjr81"]
+[ext_resource type="Script" uid="uid://s6pwy3qgh7fl" path="res://Scripts/StatesAndMachines/Player/PlayerClimb.cs" id="12_dxvey"]
+[ext_resource type="Script" uid="uid://mthjhjyutuvl" path="res://Scripts/StatesAndMachines/Player/PlayerDead.cs" id="13_j360w"]
+[ext_resource type="Script" uid="uid://defnihd352b5d" path="res://Scripts/StatesAndMachines/Player/PlayerMainComplete.cs" id="14_1unr4"]
+
+[sub_resource type="Animation" id="Animation_y5phi"]
+resource_name = "Blink"
+length = 1.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999964, 0.19999999, 0.2999999, 0.40000004, 0.49999994, 0.59999996, 0.7, 0.8, 0.90000004, 0.99999994, 1.0999999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_16ujq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_moips"]
+_data = {
+&"Blink": SubResource("Animation_y5phi"),
+&"RESET": SubResource("Animation_16ujq")
+}
+
+[sub_resource type="Animation" id="Animation_qfns7"]
+resource_name = "Climb"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_33xwr"]
+resource_name = "ClimbEnd"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_362e2"]
+resource_name = "ClimbLedge"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_atiqw"]
+resource_name = "Dead"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_knu6f"]
+resource_name = "Fall"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_j360w"]
+resource_name = "FallHammer"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_h1g42"]
+resource_name = "GroundMove"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_1unr4"]
+resource_name = "GroundMoveHammer"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_gn5lj"]
+resource_name = "Idle"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_tjky7"]
+resource_name = "Jump"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_keqwb"]
+resource_name = "JumpHammer"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_rbu1c"]
+resource_name = "Land"
+step = 0.1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_keqwb"]
+_data = {
+&"Climb": SubResource("Animation_qfns7"),
+&"ClimbEnd": SubResource("Animation_33xwr"),
+&"ClimbLedge": SubResource("Animation_362e2"),
+&"Dead": SubResource("Animation_atiqw"),
+&"Fall": SubResource("Animation_knu6f"),
+&"FallHammer": SubResource("Animation_j360w"),
+&"GroundMove": SubResource("Animation_h1g42"),
+&"GroundMoveHammer": SubResource("Animation_1unr4"),
+&"Idle": SubResource("Animation_gn5lj"),
+&"Jump": SubResource("Animation_tjky7"),
+&"JumpHammer": SubResource("Animation_keqwb"),
+&"Land": SubResource("Animation_rbu1c")
+}
+
+[sub_resource type="Animation" id="Animation_vjqn6"]
+resource_name = "Hammer"
+
+[sub_resource type="Animation" id="Animation_tgnj3"]
+resource_name = "NoHammer"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5knd1"]
+_data = {
+&"Hammer": SubResource("Animation_vjqn6"),
+&"NoHammer": SubResource("Animation_tgnj3")
+}
+
+[node name="BasePlayer" type="CharacterBody2D" unique_id=1429255314 node_paths=PackedStringArray("_playerSprite", "PlayerLandSprite", "_locatorAnim", "LadderDetector", "LedgeDetector", "ChestLedgeDetector", "StepDetector", "_sfxGroundMove", "_sfxJump", "_sfxFall", "_sfxHit", "PlayerAnim", "PlayerStateMachine", "PlayerSpriteHammerArms1", "PlayerSpriteHammerArms2", "PlayerSpriteHammerArms3", "PlayerHammerAnim")]
+collision_layer = 2
+collision_mask = 65
+platform_on_leave = 2
+script = ExtResource("1_y5phi")
+WalkSpeed = 40.0
+ClimbSpeed = 12.0
+MaxStepHeight = 4.1
+JumpHeight = 12.0
+JumpTimeToPeak = 0.3
+JumpTimeToDescent = 0.25
+_playerSprite = NodePath("Sprites/PlayerSprite")
+PlayerLandSprite = NodePath("Sprites/PlayerLandSprite")
+_locatorAnim = NodePath("Sprites/LocatorGroup/LocatorAnim")
+LadderDetector = NodePath("RayCasts/LadderDetector")
+LedgeDetector = NodePath("RayCasts/LedgeDetector")
+ChestLedgeDetector = NodePath("RayCasts/ChestLedgeDetector")
+StepDetector = NodePath("RayCasts/StepDetector")
+_sfxGroundMove = NodePath("Sfx/GroundMove")
+_sfxJump = NodePath("Sfx/Jump")
+_sfxFall = NodePath("Sfx/Fall")
+_sfxHit = NodePath("Sfx/Hit")
+PlayerAnim = NodePath("PlayerAnim")
+PlayerStateMachine = NodePath("StateMachine")
+PlayerSpriteHammerArms1 = NodePath("Sprites/PlayerSpriteHammerArms1")
+PlayerSpriteHammerArms2 = NodePath("Sprites/PlayerSpriteHammerArms2")
+PlayerSpriteHammerArms3 = NodePath("Sprites/PlayerSpriteHammerArms3")
+PlayerHammerAnim = NodePath("PlayerHammerAnim")
+
+[node name="Sprites" type="Node2D" parent="." unique_id=2052811953]
+
+[node name="PlayerSprite" type="Sprite2D" parent="Sprites" unique_id=2107394339]
+
+[node name="PlayerLandSprite" type="Sprite2D" parent="Sprites" unique_id=1087699053]
+
+[node name="PlayerSpriteHammerArms1" type="Sprite2D" parent="Sprites" unique_id=1727577731]
+
+[node name="PlayerSpriteHammerArms2" type="Sprite2D" parent="Sprites" unique_id=884878614]
+
+[node name="PlayerSpriteHammerArms3" type="Sprite2D" parent="Sprites" unique_id=1558254016]
+
+[node name="LocatorGroup" type="Node2D" parent="Sprites" unique_id=596091036]
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+
+[node name="Locator1" type="Sprite2D" parent="Sprites/LocatorGroup" unique_id=655465539]
+position = Vector2(0, -40)
+rotation = 3.1415927
+scale = Vector2(2, 2)
+texture = ExtResource("1_xqdbx")
+
+[node name="Locator2" type="Sprite2D" parent="Sprites/LocatorGroup" unique_id=176444289]
+position = Vector2(0, -64)
+rotation = 3.1415927
+scale = Vector2(2, 2)
+texture = ExtResource("1_xqdbx")
+
+[node name="Locator3" type="Sprite2D" parent="Sprites/LocatorGroup" unique_id=1715994693]
+position = Vector2(0, -88)
+rotation = 3.1415927
+scale = Vector2(2, 2)
+texture = ExtResource("1_xqdbx")
+
+[node name="LocatorAnim" type="AnimationPlayer" parent="Sprites/LocatorGroup" unique_id=1111819764]
+libraries/ = SubResource("AnimationLibrary_moips")
+
+[node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=582422480]
+
+[node name="RayCasts" type="Node2D" parent="." unique_id=1975216407]
+
+[node name="LadderDetector" type="RayCast2D" parent="RayCasts" unique_id=988825050]
+position = Vector2(0, -0.1)
+target_position = Vector2(0, -0.9)
+collision_mask = 8
+hit_from_inside = true
+
+[node name="ChestLedgeDetector" type="RayCast2D" parent="RayCasts" unique_id=1343954934]
+position = Vector2(1, -3)
+target_position = Vector2(-0.4, 0)
+collision_mask = 8
+hit_from_inside = true
+
+[node name="LedgeDetector" type="RayCast2D" parent="RayCasts" unique_id=1130259541]
+position = Vector2(0, 0.1)
+target_position = Vector2(0, 0.9)
+collision_mask = 8
+hit_from_inside = true
+
+[node name="StepDetector" type="RayCast2D" parent="RayCasts" unique_id=222678]
+target_position = Vector2(4, 0)
+
+[node name="HammerGrip" type="Marker2D" parent="." unique_id=978486289]
+
+[node name="PlayerHurtBox" type="Area2D" parent="." unique_id=1484438202]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="HurtDetect" type="CollisionShape2D" parent="PlayerHurtBox" unique_id=184102868]
+debug_color = Color(0, 0.646252, 0.24875996, 0.41960785)
+
+[node name="Sfx" type="Node" parent="." unique_id=857534009]
+
+[node name="GroundMove" type="AudioStreamPlayer" parent="Sfx" unique_id=1690191507]
+stream = ExtResource("1_vl4j2")
+bus = &"Sound"
+
+[node name="Jump" type="AudioStreamPlayer" parent="Sfx" unique_id=426746114]
+stream = ExtResource("2_xqdbx")
+bus = &"Sound"
+
+[node name="Fall" type="AudioStreamPlayer" parent="Sfx" unique_id=521819108]
+stream = ExtResource("3_y5phi")
+bus = &"Sound"
+
+[node name="Hit" type="AudioStreamPlayer" parent="Sfx" unique_id=1495738643]
+stream = ExtResource("4_16ujq")
+bus = &"Sound"
+
+[node name="StateMachine" type="Node" parent="." unique_id=341977957 node_paths=PackedStringArray("_player")]
+script = ExtResource("7_qf4q7")
+_initialStatePath = NodePath("Idle")
+_player = NodePath("..")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=2109845437]
+script = ExtResource("8_dxvey")
+
+[node name="GroundMove" type="Node" parent="StateMachine" unique_id=292358508]
+script = ExtResource("9_j360w")
+
+[node name="Jump" type="Node" parent="StateMachine" unique_id=449309368]
+script = ExtResource("10_1unr4")
+
+[node name="Fall" type="Node" parent="StateMachine" unique_id=1961879024]
+script = ExtResource("11_kjr81")
+
+[node name="Climb" type="Node" parent="StateMachine" unique_id=299912776]
+script = ExtResource("12_dxvey")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=462251215]
+script = ExtResource("13_j360w")
+
+[node name="MainComplete" type="Node" parent="StateMachine" unique_id=270765098]
+script = ExtResource("14_1unr4")
+
+[node name="PlayerAnim" type="AnimationPlayer" parent="." unique_id=362903165]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_keqwb")
+
+[node name="PlayerHammerAnim" type="AnimationPlayer" parent="." unique_id=668335802]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_5knd1")

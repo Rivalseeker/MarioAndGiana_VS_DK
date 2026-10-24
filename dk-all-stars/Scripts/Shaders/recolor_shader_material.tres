@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b6awpa5selqcu"]
+
+[sub_resource type="Shader" id="Shader_si6j5"]
+code = "shader_type canvas_item;
+
+// The exact colors currently on your sprite sheet
+uniform vec4 color_1_original : source_color;
+uniform vec4 color_1_replace : source_color;
+
+uniform vec4 color_2_original : source_color;
+uniform vec4 color_2_replace : source_color;
+
+// A tiny tolerance handles slight blending/compression artifacts
+uniform float tolerance : hint_range(0.0, 1.0) = 0.01;
+
+void fragment() {
+    vec4 current_color = texture(TEXTURE, UV);
+
+    // Swap Color 1
+    if (distance(current_color.rgb, color_1_original.rgb) < tolerance && current_color.a > 0.0) {
+        COLOR = vec4(color_1_replace.rgb, current_color.a);
+    }
+    // Swap Color 2
+    else if (distance(current_color.rgb, color_2_original.rgb) < tolerance && current_color.a > 0.0) {
+        COLOR = vec4(color_2_replace.rgb, current_color.a);
+    }
+    // Keep everything else the same
+    else {
+        COLOR = current_color;
+    }
+}"
+
+[resource]
+shader = SubResource("Shader_si6j5")
+shader_parameter/color_1_original = Color(1, 0.38039216, 0.69803923, 1)
+shader_parameter/color_1_replace = Color(0.23529412, 0.23529412, 0.23529412, 1)
+shader_parameter/color_2_original = Color(1, 0.7294118, 0.92156863, 1)
+shader_parameter/color_2_replace = Color(0.627451, 0.627451, 0.627451, 1)
+shader_parameter/tolerance = 0.01

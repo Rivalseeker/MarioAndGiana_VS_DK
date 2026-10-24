@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://d0byxw17jlmhu"]
+
+[ext_resource type="Script" uid="uid://bjnlrywbg0g7p" path="res://Scripts/Gizmos/Hazards/OilSplatter.cs" id="1_74klb"]
+[ext_resource type="Material" uid="uid://b6awpa5selqcu" path="res://Scripts/Shaders/recolor_shader_material.tres" id="1_cflga"]
+[ext_resource type="Texture2D" uid="uid://cj00pf77uffiu" path="res://Assets/Art/PickUps/Collectibles/Maria/BubbleGum.png" id="2_74klb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cflga"]
+size = Vector2(4, 4)
+
+[node name="OilSplatter" type="Area2D" unique_id=1755149434]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+script = ExtResource("1_74klb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1437829555]
+material = ExtResource("1_cflga")
+texture = ExtResource("2_74klb")
+centered = false
+offset = Vector2(-16, -32)
+
+[node name="OilDetect" type="CollisionShape2D" parent="." unique_id=2036521647]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_cflga")
+debug_color = Color(0.66128683, 0.51440406, 0, 0.41960785)

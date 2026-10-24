@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cubhvmx3mqwh1"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_rxtjf"]
+
+[node name="15M_L3_Intro" unique_id=804122041 instance=ExtResource("1_rxtjf")]
+_levelPath = "uid://duli68e56mkio"
+
+[node name="LevelTitleAndDesc" parent="." index="2" unique_id=1692661727]
+text = "15M - L3: \"The Oil Rush!\""

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://qg101n5na2f"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_gpyub"]
+
+[node name="15M_L2_Intro" unique_id=804122041 instance=ExtResource("1_gpyub")]
+_levelPath = "uid://d1p1px24en4rs"
+
+[node name="LevelTitleAndDesc" parent="." index="2" unique_id=1692661727]
+text = "15M - L2: \"Wacky Work Tools!\""

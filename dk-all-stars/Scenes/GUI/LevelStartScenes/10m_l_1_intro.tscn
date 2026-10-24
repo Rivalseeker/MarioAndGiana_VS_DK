@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://kvxxplrejmxv"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_x4dda"]
+
+[node name="10M_L1_Intro" unique_id=804122041 instance=ExtResource("1_x4dda")]
+_levelPath = "uid://cck0u42xvsyyt"
+
+[node name="LevelTitleAndDesc" parent="." index="2" unique_id=1692661727]
+text = "10M - L1: \"Site of Destruction\""

@@ -1,0 +1,683 @@
+[gd_scene format=4 uid="uid://chex5hacbu0bh"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_ruy7r"]
+[ext_resource type="PackedScene" uid="uid://blrdhej0dx6y0" path="res://Scenes/Characters/Players/giana.tscn" id="2_x66c0"]
+[ext_resource type="AudioStream" uid="uid://bc4xl02ugb2au" path="res://Assets/Audio/BGM/NES_DK_50M.ogg" id="3_1mdx3"]
+[ext_resource type="PackedScene" uid="uid://bciwe378viuqe" path="res://Scenes/Characters/NPCs/maria.tscn" id="4_1mdx3"]
+[ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="4_lytbb"]
+[ext_resource type="PackedScene" uid="uid://gfba7psq6n75" path="res://Scenes/Gizmos/steamroller.tscn" id="5_5mj74"]
+[ext_resource type="TileSet" uid="uid://bi7rohw4n748g" path="res://Assets/Art/Tilemaps/dk_nes_tile_set.tres" id="5_n4u6k"]
+[ext_resource type="Texture2D" uid="uid://cvgifm01ody3p" path="res://Assets/Art/Hazards/BallChain.png" id="6_87yhm"]
+[ext_resource type="PackedScene" uid="uid://bg5qug4lxohej" path="res://Scenes/PickUps/Collectibles/Maria/soda.tscn" id="8_60k63"]
+[ext_resource type="PackedScene" uid="uid://bmwh3ldx8t2m8" path="res://Scenes/Gizmos/conveyor_belt.tscn" id="8_gh7wo"]
+[ext_resource type="Script" uid="uid://gjs5i3x2k1fa" path="res://Scripts/Levels/Main/Giana/10G/ConveyorBeltGroup.cs" id="8_qrqul"]
+[ext_resource type="PackedScene" uid="uid://cfcd8o7ijm6bl" path="res://Scenes/PickUps/Collectibles/Maria/diamond.tscn" id="9_gh7wo"]
+[ext_resource type="PackedScene" uid="uid://bf501c4qgvan0" path="res://Scenes/PickUps/Collectibles/Maria/gum.tscn" id="11_w7wuw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_87yhm"]
+size = Vector2(8, 4)
+
+[sub_resource type="Animation" id="Animation_debbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steamroller1Remote:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steamroller2Remote:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(216, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_q46pl"]
+resource_name = "SteamrollerMoveRL"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steamroller1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"ApplyVelocityAndVisuals"
+}, {
+"args": [true],
+"method": &"ApplyVelocityAndVisuals"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steamroller1Remote:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(40, 32), Vector2(24, 32)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Steamroller2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"ApplyVelocityAndVisuals"
+}, {
+"args": [false],
+"method": &"ApplyVelocityAndVisuals"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Steamroller2Remote:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(216, 32), Vector2(232, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qatgi"]
+_data = {
+&"RESET": SubResource("Animation_debbh"),
+&"SteamrollerMoveRL": SubResource("Animation_q46pl")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_n4u6k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 20, -8, 0, 0, 0, 0, 20, -48)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mj74"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_5mj74"]
+resource_name = "GirderPlatformsMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform1Group/GirderPlatform1Path/PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.2, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_87yhm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform1Group/GirderPlatform1Path/PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epy13"]
+_data = {
+&"GirderPlatformsMove": SubResource("Animation_5mj74"),
+&"RESET": SubResource("Animation_87yhm")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_87yhm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 220, -80, 0, 0, 0, 0, 220, -48)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epy13"]
+size = Vector2(24, 8)
+
+[sub_resource type="Animation" id="Animation_60k63"]
+resource_name = "PlatformMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform2Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gh7wo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform2Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7wuw"]
+_data = {
+&"PlatformMove": SubResource("Animation_60k63"),
+&"RESET": SubResource("Animation_gh7wo")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_60k63"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 308, -128, 0, 0, 0, 0, 284, -168)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60k63"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_w7wuw"]
+resource_name = "PlatformMove"
+length = 8.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform3Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 6.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.39999998]
+}
+
+[sub_resource type="Animation" id="Animation_qrqul"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform3Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_umhcj"]
+_data = {
+&"PlatformMove": SubResource("Animation_w7wuw"),
+&"RESET": SubResource("Animation_qrqul")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_gh7wo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 236, -176, 0, 0, 0, 0, 220, -136)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gh7wo"]
+size = Vector2(24, 8)
+
+[sub_resource type="Animation" id="Animation_umhcj"]
+resource_name = "PlatformMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform4Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_p0t13"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform4Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_884oy"]
+_data = {
+&"PlatformMove": SubResource("Animation_umhcj"),
+&"RESET": SubResource("Animation_p0t13")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_w7wuw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 136, -152, 0, 0, 0, 0, 136, -144, 0, 0, 0, 0, 160, -144, 0, 0, 0, 0, 160, -184, 0, 0, 0, 0, 136, -184, 0, 0, 0, 0, 136, -152)
+}
+point_count = 6
+
+[sub_resource type="Animation" id="Animation_884oy"]
+resource_name = "ConveyorBeltMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ConveyorPath/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_s6sm6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ConveyorPath/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_debbh"]
+_data = {
+&"ConveyorBeltMove": SubResource("Animation_884oy"),
+&"RESET": SubResource("Animation_s6sm6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrqul"]
+size = Vector2(16, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umhcj"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7wuw"]
+size = Vector2(8, 8)
+
+[node name="Giana_10G_L1" unique_id=182671849 instance=ExtResource("1_ruy7r")]
+_playerScene = ExtResource("2_x66c0")
+_playerFacesLeft = true
+_levelMusicTrack = ExtResource("3_1mdx3")
+UseTimer = false
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+tile_map_data = PackedByteArray("AAAUAP7/AAAEAAAAAAAVAP7/AAAEAAAAAAAWAP7/AAAEAAAAAAAXAP7/AAAEAAAAAAAYAP7/AAAEAAAAAAAZAP7/AAAEAAAAAAAZAP//AAAQAA8AAAAXAP//AAAQAA8AAAAAAOz/AAAEAAAAAAABAOz/AAAEAAAAAAACAOz/AAAEAAAAAAADAOz/AAAEAAAAAAAEAOz/AAAEAAAAAAAFAOz/AAAEAAAAAAAGAOz/AAAEAAAAAAAHAOz/AAAEAAAAAAAIAOz/AAAEAAAAAAAJAOz/AAAEAAAAAAAKAOz/AAAEAAAAAAALAOz/AAAEAAAAAAAGAOX/AAAQAA8AAQAGAOb/AAAQAA8AAQAGAOf/AAAQAA8AAQAGAOj/AAAQAA8AAQAGAOn/AAAQAA8AAQAGAOr/AAAEAAAAAQAGAOv/AAAQAA8AAAAHAOr/AAAEAAAAAQAIAOX/AAAQAA8AAQAIAOb/AAAQAA8AAQAIAOf/AAAQAA8AAQAIAOj/AAAQAA8AAQAIAOn/AAAQAA8AAQAIAOr/AAAEAAAAAQAIAOv/AAAQAA8AAAAJAOn/AAAEAAAAAAAKAOn/AAAEAAAAAAALAOn/AAAEAAAABAALAOr/AAAAAA8AAQALAOv/AAAAAA8AAQACAPb/AAAEAAAAAAABAPb/AAAEAAAAAAAAAPb/AAAEAAAAAAABAPT/AAAEAAAAAAACAPT/AAAEAAAAAAADAPT/AAAEAAAAAAAEAPT/AAAEAAAAAAAFAPT/AAAEAAAAAAAGAPT/AAAEAAAAAAAFAPL/AAAEAAAAAAAGAPL/AAAEAAAAAAAHAPL/AAAEAAAAAAAHAPj/AAAEAAAAAAAIAPj/AAAEAAAAAAAJAPj/AAAEAAAAAAAKAPj/AAAEAAAAAAALAPj/AAAEAAAAAAAMAPj/AAAEAAAAAAAOAPb/AAAEAAAAAAAPAPb/AAAEAAAAAAARAPT/AAAEAAAAAAASAPT/AAAEAAAAAAATAPL/AAAEAAAAAAAUAPL/AAAEAAAAAAAvAPn/AAAEAAAAAAArAO//AAAEAAAAAAAsAO//AAAEAAAAAAAtAO//AAAEAAAAAgAuAO//AAAEAAAAAAAtAPD/AAAAAA8AAAAtAPH/AAAAAA8AAAAtAPL/AAAAAA8AAAAtAPP/AAAAAA8AAAAtAPT/AAAAAA8AAAAtAPX/AAAAAA8AAAAtAPb/AAAAAA8AAAAtAPf/AAAAAA8AAAAtAPj/AAAAAA8AAAAtAPn/AAAAAA8AAAAtAPr/AAAAAA8AAAAtAPv/AAAAAA8AAAAtAPz/AAAAAA8AAAAtAP3/AAAAAA8AAAAtAP7/AAAAAA8AAAAtAP//AAAEAAAAAAAuAP//AAAEAAAAAAAvAP//AAAEAAAAAAAVAOf/AAAEAAAAAAAUAOf/AAAEAAAAAAAJAPL/AAAAAAcAAGAJAPH/AAAAAAcAAGAJAPD/AAAAAAcAAGAJAO//AAAAAAcAAGAJAO7/AAAAAAcAAGAJAO3/AAAAAAcAAGAHAPP/AAAAAAcAADALAO3/AAAAAAcAAFALAO7/AAAAAAcAAFALAO//AAAAAAcAAFALAPD/AAAAAAcAAFALAPH/AAAAAAcAAFALAPL/AAAAAAcAAFA=")
+
+[node name="SpikeWall" type="Polygon2D" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="8" unique_id=1688156829]
+polygon = PackedVector2Array(80, -104, 88, -104, 88, -152, 80, -152)
+
+[node name="CheckpointFlag1" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="0" unique_id=342376629 instance=ExtResource("4_lytbb")]
+position = Vector2(80, -64)
+CheckpointId = "Checkpoint1"
+
+[node name="FlagDetect" parent="Entities/Gizmos/Checkpoints/CheckpointFlag1" index="1" unique_id=448701158]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_87yhm")
+
+[node name="CheckpointFlag2" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="1" unique_id=896496180 instance=ExtResource("4_lytbb")]
+position = Vector2(352, -136)
+CheckpointId = "Checkpoint2"
+
+[node name="Steamrollers" type="Node2D" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="1" unique_id=2129844550]
+
+[node name="Steamroller1Remote" type="RemoteTransform2D" parent="Entities/Gizmos/Steamrollers" index="0" unique_id=1603907582]
+position = Vector2(40, 32)
+remote_path = NodePath("../Steamroller1")
+update_rotation = false
+update_scale = false
+
+[node name="Steamroller1" parent="Entities/Gizmos/Steamrollers" index="1" unique_id=1792062339 instance=ExtResource("5_5mj74")]
+position = Vector2(40, 32)
+
+[node name="Steamroller2Remote" type="RemoteTransform2D" parent="Entities/Gizmos/Steamrollers" index="2" unique_id=1511496071]
+position = Vector2(216, 32)
+remote_path = NodePath("../Steamroller2")
+update_rotation = false
+update_scale = false
+
+[node name="Steamroller2" parent="Entities/Gizmos/Steamrollers" index="3" unique_id=910663437 instance=ExtResource("5_5mj74")]
+position = Vector2(216, 32)
+
+[node name="SteamrollerAnim" type="AnimationPlayer" parent="Entities/Gizmos/Steamrollers" index="4" unique_id=1723449048]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_qatgi")
+autoplay = &"SteamrollerMoveRL"
+
+[node name="MovingGirders" type="Node2D" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="2" unique_id=494672274]
+
+[node name="GirderPlatform1Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="0" unique_id=960952620]
+
+[node name="GirderPlatform1Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group" index="0" unique_id=225808599]
+curve = SubResource("Curve2D_n4u6k")
+
+[node name="PathFollow" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1Path" index="0" unique_id=1731616215]
+position = Vector2(20, -16)
+rotation = -1.5707964
+progress = 8.0
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1Path/PathFollow" index="0" unique_id=953116523]
+remote_path = NodePath("../../../GirderPlatform1")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform1" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group" index="1" unique_id=408297557]
+position = Vector2(20, -16)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1" index="0" unique_id=692607942]
+z_index = -1
+position = Vector2(4, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("6_87yhm")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1" index="1" unique_id=365377764]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwADAP//AAAEAAAAAwA=")
+tile_set = ExtResource("5_n4u6k")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1" index="2" unique_id=1635001981]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_5mj74")
+one_way_collision = true
+
+[node name="Platform1Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group" index="2" unique_id=305535054]
+root_node = NodePath("../..")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_epy13")
+autoplay = &"GirderPlatformsMove"
+
+[node name="GirderPlatform2Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="1" unique_id=288657785]
+
+[node name="GirderPlatform2Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group" index="0" unique_id=346209934]
+curve = SubResource("Curve2D_87yhm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2Path" index="0" unique_id=1736126942]
+position = Vector2(220, -48)
+rotation = 1.5707964
+progress = 32.0
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2Path/PathFollow2D" index="0" unique_id=944168714]
+remote_path = NodePath("../../../GirderPlatform2")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform2" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group" index="1" unique_id=1909082779]
+position = Vector2(220, -48)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2" index="0" unique_id=277472421]
+z_index = -1
+position = Vector2(0, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("6_87yhm")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2" index="1" unique_id=1859097167]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwA=")
+tile_set = ExtResource("5_n4u6k")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2" index="2" unique_id=1307368108]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_epy13")
+one_way_collision = true
+
+[node name="Platform2Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group" index="2" unique_id=1715744987]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_w7wuw")
+autoplay = &"PlatformMove"
+
+[node name="GirderPlatform3Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="2" unique_id=835218024]
+
+[node name="GirderPlatform3Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="0" unique_id=815619447]
+position = Vector2(8, -8)
+curve = SubResource("Curve2D_60k63")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3Path" index="0" unique_id=1852008504]
+position = Vector2(308, -128)
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3Path/PathFollow2D" index="0" unique_id=692191386]
+remote_path = NodePath("../../../GirderPlatform3")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform3" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="1" unique_id=401638166]
+position = Vector2(306.4, -152)
+scale = Vector2(0.99999994, 0.99999994)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3" index="0" unique_id=1040942192]
+z_index = -1
+position = Vector2(-4, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("6_87yhm")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3" index="1" unique_id=2126640328]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwD/////AAAEAAAAAwA=")
+tile_set = ExtResource("5_n4u6k")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3" index="2" unique_id=485971196]
+position = Vector2(-4, -4)
+shape = SubResource("RectangleShape2D_60k63")
+one_way_collision = true
+
+[node name="Platform3Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="2" unique_id=626315821]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_umhcj")
+autoplay = &"PlatformMove"
+
+[node name="GirderPlatform4Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="3" unique_id=1968731904]
+
+[node name="GirderPlatform4Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="0" unique_id=1317304982]
+curve = SubResource("Curve2D_gh7wo")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4Path" index="0" unique_id=145148698]
+position = Vector2(236, -176)
+rotation = 1.5707964
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4Path/PathFollow2D" index="0" unique_id=931120067]
+remote_path = NodePath("../../../GirderPlatform4")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform4" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="1" unique_id=712977204]
+position = Vector2(236, -176)
+scale = Vector2(0.99999994, 0.99999994)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4" index="0" unique_id=382540801]
+z_index = -1
+position = Vector2(4.7683716e-07, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("6_87yhm")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4" index="1" unique_id=450910506]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwA=")
+tile_set = ExtResource("5_n4u6k")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4" index="2" unique_id=1865049483]
+position = Vector2(0, -4)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_gh7wo")
+one_way_collision = true
+
+[node name="Platform4Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="2" unique_id=1195168606]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_884oy")
+autoplay = &"PlatformMove"
+
+[node name="ConveyorBeltGroup" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="4" unique_id=1472675295 node_paths=PackedStringArray("MoveAnim")]
+script = ExtResource("8_qrqul")
+MoveAnim = NodePath("ConveyorMoveAnim")
+
+[node name="ConveyorPath" type="Path2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="0" unique_id=395021964]
+curve = SubResource("Curve2D_w7wuw")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorPath" index="0" unique_id=974408466]
+position = Vector2(136, -152)
+rotation = 1.5707964
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorPath/PathFollow2D" index="0" unique_id=330374907]
+remote_path = NodePath("../../../ConveyorBelt")
+update_rotation = false
+update_scale = false
+
+[node name="ConveyorBelt" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="1" unique_id=1279322400 instance=ExtResource("8_gh7wo")]
+position = Vector2(136, -152)
+Speed = 24.0
+Alternates = true
+AlternateInterval = 4.0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorBelt" index="5" unique_id=1790961206]
+z_index = -1
+position = Vector2(20, 3.8146973e-06)
+scale = Vector2(1, 13)
+texture = ExtResource("6_87yhm")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="ConveyorMoveAnim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="2" unique_id=2125611261]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_debbh")
+autoplay = &"ConveyorBeltMove"
+
+[node name="Soda" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("8_60k63")]
+position = Vector2(56, -112)
+
+[node name="Diamond" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=1051439714 instance=ExtResource("9_gh7wo")]
+position = Vector2(376, -56)
+
+[node name="Gum" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=2117368261 instance=ExtResource("11_w7wuw")]
+position = Vector2(168, -200)
+
+[node name="CollisionShape2D" parent="Entities/PickUps/Collectibles/Gum" index="1" unique_id=1731533093]
+position = Vector2(0, -12)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517]
+position = Vector2(24, -160)
+StartingState = 0
+EscapeDirection = 1
+
+[node name="Maria" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("4_1mdx3")]
+position = Vector2(56, -176)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Maria" index="1" unique_id=300254388]
+position = Vector2(32, 0)
+
+[node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
+position = Vector2(80, -192)
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=248777857]
+position = Vector2(192, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCamera/PitArea" parent_id_path=PackedInt32Array(1863843188) index="1" unique_id=1780243598]
+position = Vector2(84, -144)
+shape = SubResource("RectangleShape2D_qrqul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelCamera/PitArea" parent_id_path=PackedInt32Array(1863843188) index="2" unique_id=1333087256]
+position = Vector2(60, -112)
+shape = SubResource("RectangleShape2D_umhcj")
+
+[node name="GoalArea" parent="." index="5" unique_id=1127886652]
+position = Vector2(88, -184)
+
+[node name="GoalDetect" parent="GoalArea" index="0" unique_id=431830692]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_w7wuw")
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "10G"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "1"
+
+[editable path="Entities/Gizmos/Checkpoints/CheckpointFlag1"]
+[editable path="Entities/PickUps/Collectibles/Gum"]
+[editable path="Entities/Characters/Captive/Maria"]

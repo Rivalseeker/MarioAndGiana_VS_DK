@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cfcd8o7ijm6bl"]
+
+[ext_resource type="PackedScene" uid="uid://cf53ol163qggf" path="res://Scenes/PickUps/Collectibles/base_collectible.tscn" id="1_y7nqs"]
+[ext_resource type="Texture2D" uid="uid://c0mf256sxujq3" path="res://Assets/Art/PickUps/Collectibles/Maria/BlueDiamond.png" id="2_n8uwt"]
+
+[node name="Diamond" unique_id=1836820992 instance=ExtResource("1_y7nqs")]
+
+[node name="Sprite2D" parent="." index="0" unique_id=348359129]
+texture = ExtResource("2_n8uwt")
+
+[node name="CollisionShape2D" parent="." index="1" unique_id=1731533093]
+position = Vector2(0, -8)

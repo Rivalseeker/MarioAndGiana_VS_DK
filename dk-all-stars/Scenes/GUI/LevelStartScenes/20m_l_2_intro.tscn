@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d37ahm41cdff8"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_cnw38"]
+
+[node name="20M_L2_Intro" unique_id=804122041 instance=ExtResource("1_cnw38")]
+_levelPath = "uid://fpk87uwpic11"
+
+[node name="LevelTitleAndDesc" parent="." index="2" unique_id=1692661727]
+text = "20M - L2: \"Zig-Zag Mayhem\""

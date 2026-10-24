@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://kq4nw27gj4t4"]
+
+[ext_resource type="PackedScene" uid="uid://cmokpnxnsodbn" path="res://Scenes/GUI/LevelStartScenes/base_level_start_scene.tscn" id="1_3kfdj"]
+
+[node name="5M_L2_Intro" unique_id=804122041 instance=ExtResource("1_3kfdj")]
+_levelPath = "uid://6omvg236fmbl"
+
+[node name="LevelTitleAndDesc" parent="." index="2" unique_id=1692661727]
+text = "5M - L2: \"Barrels of Fun\""

@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dnqodjg6snpf1"]
+
+[ext_resource type="Script" uid="uid://b8rg1c8cnf6dp" path="res://Scripts/GUI/MenuItems/RetroSlider.cs" id="1_8t2ny"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="2_0quqc"]
+[ext_resource type="FontFile" uid="uid://bdcy0d6dekdpf" path="res://Assets/Art/Fonts/Super Mario Bros. NES.ttf" id="3_q8uf0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1rftu"]
+
+[node name="RetroSlider" type="HBoxContainer" unique_id=401346171 node_paths=PackedStringArray("_titleLabel", "_valueLabel", "_leftArrow", "_rightArrow")]
+offset_right = 145.0
+offset_bottom = 17.0
+focus_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("1_8t2ny")
+_titleLabel = NodePath("TitleLabel")
+_valueLabel = NodePath("ValueLabel")
+_leftArrow = NodePath("LeftArrow")
+_rightArrow = NodePath("RightArrow")
+
+[node name="TitleLabel" parent="." unique_id=1692661727 instance=ExtResource("2_0quqc")]
+layout_mode = 2
+horizontal_alignment = 0
+
+[node name="Spacer" type="Control" parent="." unique_id=755166645]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftArrow" type="Button" parent="." unique_id=759981317]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_q8uf0")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1rftu")
+text = "<"
+flat = true
+alignment = 0
+
+[node name="ValueLabel" parent="." unique_id=473579157 instance=ExtResource("2_0quqc")]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+text = "100"
+
+[node name="RightArrow" type="Button" parent="." unique_id=467371121]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_q8uf0")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1rftu")
+text = ">"
+flat = true
+alignment = 0

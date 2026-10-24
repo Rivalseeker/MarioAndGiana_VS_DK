@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ddlbib1ednbpa"
+path="res://.godot/imported/NES_DK_Radar BGM.ogg-7b635e63641723c6099569de662d12be.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/BGM/NES_DK_Radar BGM.ogg"
+dest_files=["res://.godot/imported/NES_DK_Radar BGM.ogg-7b635e63641723c6099569de662d12be.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

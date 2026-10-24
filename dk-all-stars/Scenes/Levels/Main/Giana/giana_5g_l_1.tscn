@@ -1,0 +1,487 @@
+[gd_scene format=4 uid="uid://c1n7wuc113od6"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_a54v3"]
+[ext_resource type="PackedScene" uid="uid://blrdhej0dx6y0" path="res://Scenes/Characters/Players/giana.tscn" id="2_ke1rq"]
+[ext_resource type="AudioStream" uid="uid://da1s8ndonieae" path="res://Assets/Audio/BGM/NES_DK_25M.ogg" id="2_mkun8"]
+[ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="4_a71fq"]
+[ext_resource type="Texture2D" uid="uid://cu6etwwk686wm" path="res://Assets/Art/Hazards/Barrels.png" id="4_jm056"]
+[ext_resource type="Shader" uid="uid://cw6xn50q0rv6f" path="res://Scripts/Shaders/sprite_recolor.gdshader" id="4_y5b5m"]
+[ext_resource type="PackedScene" uid="uid://ci655u6aqeen5" path="res://Scenes/Characters/Enemies/Commons/fireball.tscn" id="5_s1k10"]
+[ext_resource type="PackedScene" uid="uid://cfcd8o7ijm6bl" path="res://Scenes/PickUps/Collectibles/Maria/diamond.tscn" id="6_k7grh"]
+[ext_resource type="PackedScene" uid="uid://bg5qug4lxohej" path="res://Scenes/PickUps/Collectibles/Maria/soda.tscn" id="7_0l4yy"]
+[ext_resource type="PackedScene" uid="uid://bf501c4qgvan0" path="res://Scenes/PickUps/Collectibles/Maria/gum.tscn" id="8_y5b5m"]
+[ext_resource type="PackedScene" uid="uid://dmwp15ybt31xe" path="res://Scenes/PickUps/Weapons/hammer.tscn" id="9_0l4yy"]
+[ext_resource type="PackedScene" uid="uid://bciwe378viuqe" path="res://Scenes/Characters/NPCs/maria.tscn" id="12_yd0sl"]
+[ext_resource type="Script" uid="uid://d058ogitaijpd" path="res://Scripts/Levels/Main/HintGroup.cs" id="13_bt7ot"]
+[ext_resource type="Script" uid="uid://c36jsggvmfw3c" path="res://Scripts/Levels/Main/Mario/5M/L1/LevelHint.cs" id="14_0n5a8"]
+[ext_resource type="TileSet" uid="uid://bi7rohw4n748g" path="res://Assets/Art/Tilemaps/dk_nes_tile_set.tres" id="14_fefef"]
+[ext_resource type="Texture2D" uid="uid://cpfdy0r7lt3we" path="res://Assets/Art/Characters/Players/Giana-C64.png" id="14_sl56f"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="15_sl56f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yd0sl"]
+shader = ExtResource("4_y5b5m")
+shader_parameter/color_1_original = Color(1, 1, 1, 1)
+shader_parameter/color_1_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd0sl"]
+size = Vector2(8, 8)
+
+[sub_resource type="Curve2D" id="Curve2D_0n5a8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 72, 24, 0, 0, 0, 0, 72, 8)
+}
+point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0n5a8"]
+shader = ExtResource("4_y5b5m")
+shader_parameter/color_1_original = Color(0.85882354, 0.25490198, 0.38039216, 1)
+shader_parameter/color_1_replace = Color(0.8586215, 0.25524214, 0.38109186, 0.5)
+shader_parameter/color_2_original = Color(0, 0, 0, 1)
+shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/tolerance = 0.01
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khx5a"]
+size = Vector2(48, 24)
+
+[sub_resource type="Animation" id="Animation_khx5a"]
+resource_name = "Hint"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintPath2D/HintPathFollow2D/GianaHint:frame")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 24, 24, 25, 24, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintPath2D/HintPathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.70000005, 0.9, 1.2, 2),
+"transitions": PackedFloat32Array(1, 0.5, 2, 0.5, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.6, 0.5, 1.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jump:self_modulate")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.38039216, 0.827451, 0.8901961, 1), Color(1, 1, 1, 1), Color(0.38039216, 0.827451, 0.8901961, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jump:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["JUMP", "JUMP
+x2"]
+}
+
+[sub_resource type="Animation" id="Animation_3lbyc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintPath2D/HintPathFollow2D/GianaHint:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintPath2D/HintPathFollow2D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Jump:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.38039216, 0.827451, 0.8901961, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Jump:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["JUMP"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ymo1"]
+_data = {
+&"Hint": SubResource("Animation_khx5a"),
+&"RESET": SubResource("Animation_3lbyc")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_khx5a"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 72, 16, 0, 0, 0, 0, 60, 16, 0, 0, 0, 0, 60, 40)
+}
+point_count = 3
+
+[sub_resource type="Animation" id="Animation_0n5a8"]
+resource_name = "Hint"
+length = 2.3
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintPath2D/HintPathFollow2D/GianaHint:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.79999995, 0.9, 1, 1.0999999, 1.2, 1.3, 1.3999999, 1.5, 1.5999999, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 0, 2, 24, 24, 25, 24, 25, 24, 25, 24, 25, 24, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintPath2D/HintPathFollow2D/GianaHint:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HintPath2D/HintPathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.19999999, 0.5, 0.79999995, 1.2, 1.6000001, 2.3),
+"transitions": PackedFloat32Array(1, 1, 2, 0.5, 2, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.35, 0.8, 0.45714283, 1.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Safe:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["NOT
+SAFE", "SAFE"]
+}
+
+[sub_resource type="Animation" id="Animation_3ymo1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HintPath2D/HintPathFollow2D/GianaHint:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HintPath2D/HintPathFollow2D/GianaHint:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HintPath2D/HintPathFollow2D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Safe:text")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["NOT
+SAFE"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_udybx"]
+_data = {
+&"Hint": SubResource("Animation_0n5a8"),
+&"RESET": SubResource("Animation_3ymo1")
+}
+
+[node name="Giana_5G_L1" unique_id=182671849 instance=ExtResource("1_a54v3")]
+_playerScene = ExtResource("2_ke1rq")
+_levelMusicTrack = ExtResource("2_mkun8")
+UseTimer = false
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+material = SubResource("ShaderMaterial_yd0sl")
+tile_map_data = PackedByteArray("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")
+
+[node name="BarrelStack" type="Node2D" parent="Entities" parent_id_path=PackedInt32Array(1185242110) index="0" unique_id=1808247739]
+position = Vector2(128, -208)
+
+[node name="Barrel1" type="Sprite2D" parent="Entities/BarrelStack" index="0" unique_id=1943485255]
+position = Vector2(0, 32)
+rotation = 1.5707964
+texture = ExtResource("4_jm056")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="Barrel2" type="Sprite2D" parent="Entities/BarrelStack" index="1" unique_id=1702058185]
+position = Vector2(12, 32)
+rotation = 1.5707964
+texture = ExtResource("4_jm056")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="Barrel3" type="Sprite2D" parent="Entities/BarrelStack" index="2" unique_id=109634770]
+position = Vector2(0, 16)
+rotation = 1.5707964
+texture = ExtResource("4_jm056")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="Barrel4" type="Sprite2D" parent="Entities/BarrelStack" index="3" unique_id=1921255014]
+position = Vector2(12, 16)
+rotation = 1.5707964
+texture = ExtResource("4_jm056")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 4
+vframes = 7
+frame = 8
+
+[node name="CheckpointFlag1" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="0" unique_id=30343195 instance=ExtResource("4_a71fq")]
+position = Vector2(296, -24)
+CheckpointId = "Checkpoint1"
+
+[node name="CheckpointFlag2" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="1" unique_id=430976788 instance=ExtResource("4_a71fq")]
+position = Vector2(72, -80)
+CheckpointId = "Checkpoint2"
+
+[node name="CheckpointFlag3" parent="Entities/Gizmos/Checkpoints" parent_id_path=PackedInt32Array(1145740845) index="2" unique_id=967683661 instance=ExtResource("4_a71fq")]
+position = Vector2(204, -120)
+CheckpointId = "Checkpoint3"
+
+[node name="Diamond" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("6_k7grh")]
+position = Vector2(136, -40)
+
+[node name="Soda" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=1009103455 instance=ExtResource("7_0l4yy")]
+position = Vector2(360, -8)
+
+[node name="Gum" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=945111300 instance=ExtResource("8_y5b5m")]
+position = Vector2(296, -104)
+
+[node name="Hammer" parent="Entities/PickUps/Hammers" parent_id_path=PackedInt32Array(655353986) index="0" unique_id=968284547 instance=ExtResource("9_0l4yy")]
+position = Vector2(200, -80)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517]
+position = Vector2(176, -168)
+StartingState = 0
+EscapeDirection = 1
+
+[node name="Fireball" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="0" unique_id=995840756 instance=ExtResource("5_s1k10")]
+position = Vector2(140, -88)
+
+[node name="Maria" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("12_yd0sl")]
+position = Vector2(208, -184)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Maria" index="1" unique_id=300254388]
+position = Vector2(32, 0)
+
+[node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
+position = Vector2(240, -200)
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=248777857]
+position = Vector2(16, -8)
+
+[node name="GoalDetect" parent="GoalArea" parent_id_path=PackedInt32Array(1127886652) index="0" unique_id=431830692]
+position = Vector2(260, -200)
+shape = SubResource("RectangleShape2D_yd0sl")
+
+[node name="HintGroup" type="Node2D" parent="." index="6" unique_id=1052855646]
+script = ExtResource("13_bt7ot")
+
+[node name="Hint1" type="Node2D" parent="HintGroup" index="0" unique_id=102132708 node_paths=PackedStringArray("_hintArea", "_animPlayer")]
+position = Vector2(152, -32)
+script = ExtResource("14_0n5a8")
+_hintArea = NodePath("HintArea")
+_animPlayer = NodePath("Hint1Anim")
+
+[node name="HintPath2D" type="Path2D" parent="HintGroup/Hint1" index="0" unique_id=1999048116]
+curve = SubResource("Curve2D_0n5a8")
+
+[node name="HintPathFollow2D" type="PathFollow2D" parent="HintGroup/Hint1/HintPath2D" index="0" unique_id=736822323]
+position = Vector2(72, 24)
+rotates = false
+
+[node name="GianaHint" type="Sprite2D" parent="HintGroup/Hint1/HintPath2D/HintPathFollow2D" index="0" unique_id=145536379]
+self_modulate = Color(1, 1, 1, 0.5)
+texture = ExtResource("14_sl56f")
+centered = false
+offset = Vector2(-16, -32)
+hframes = 6
+vframes = 27
+
+[node name="Girder" type="TileMapLayer" parent="HintGroup/Hint1" index="1" unique_id=822020541]
+material = SubResource("ShaderMaterial_0n5a8")
+tile_map_data = PackedByteArray("AAAIAAMAAAAAAAAABAAJAAMAAAAAAAAABAA=")
+tile_set = ExtResource("14_fefef")
+
+[node name="Jump" parent="HintGroup/Hint1" index="2" unique_id=1692661727 instance=ExtResource("15_sl56f")]
+self_modulate = Color(0.38039216, 0.827451, 0.8901961, 1)
+offset_left = 84.0
+offset_top = -4.0
+offset_right = 116.0
+offset_bottom = 5.0
+text = "JUMP"
+
+[node name="HintArea" type="Area2D" parent="HintGroup/Hint1" index="3" unique_id=152240074]
+position = Vector2(28, 20)
+collision_layer = 0
+collision_mask = 2
+
+[node name="HintDetect" type="CollisionShape2D" parent="HintGroup/Hint1/HintArea" index="0" unique_id=2043730505]
+shape = SubResource("RectangleShape2D_khx5a")
+debug_color = Color(0, 0.62352943, 0.54509807, 0.41960785)
+
+[node name="Hint1Anim" type="AnimationPlayer" parent="HintGroup/Hint1" index="4" unique_id=699943418]
+libraries/ = SubResource("AnimationLibrary_3ymo1")
+
+[node name="Hint2" type="Node2D" parent="HintGroup" index="1" unique_id=1763998250 node_paths=PackedStringArray("_hintArea", "_animPlayer")]
+position = Vector2(104, -152)
+script = ExtResource("14_0n5a8")
+_hintArea = NodePath("HintArea")
+_animPlayer = NodePath("Hint2Anim")
+
+[node name="HintPath2D" type="Path2D" parent="HintGroup/Hint2" index="0" unique_id=1036042632]
+curve = SubResource("Curve2D_khx5a")
+
+[node name="HintPathFollow2D" type="PathFollow2D" parent="HintGroup/Hint2/HintPath2D" index="0" unique_id=675815417]
+position = Vector2(72, 16)
+rotation = 3.1415927
+rotates = false
+
+[node name="GianaHint" type="Sprite2D" parent="HintGroup/Hint2/HintPath2D/HintPathFollow2D" index="0" unique_id=1921886668]
+self_modulate = Color(1, 1, 1, 0.5)
+rotation = 3.1415925
+texture = ExtResource("14_sl56f")
+centered = false
+offset = Vector2(-16, -32)
+flip_h = true
+hframes = 6
+vframes = 27
+
+[node name="Platforms" type="TileMapLayer" parent="HintGroup/Hint2" index="1" unique_id=125644850]
+modulate = Color(1, 1, 1, 0.5)
+tile_map_data = PackedByteArray("AAAIAAIAAAAAAAQAAgAJAAIAAAAAAAQAAgAJAAMAAAAAAAQAAgAIAAMAAAAAAAQAAgAIAAQAAAAAAAQAAgAJAAQAAAAAAAQAAgAGAAUAAAAAAAAABAAHAAUAAAAAAAAABAA=")
+tile_set = ExtResource("14_fefef")
+
+[node name="Safe" parent="HintGroup/Hint2" index="2" unique_id=820451978 instance=ExtResource("15_sl56f")]
+offset_left = 20.0
+offset_top = 4.0
+offset_right = 52.0
+offset_bottom = 25.0
+text = "NOT
+SAFE"
+
+[node name="HintArea" type="Area2D" parent="HintGroup/Hint2" index="3" unique_id=1641352548]
+position = Vector2(28, 20)
+collision_layer = 0
+collision_mask = 2
+
+[node name="HintDetect" type="CollisionShape2D" parent="HintGroup/Hint2/HintArea" index="0" unique_id=1602640849]
+position = Vector2(-20, -12)
+shape = SubResource("RectangleShape2D_khx5a")
+debug_color = Color(0, 0.62352943, 0.54509807, 0.41960785)
+
+[node name="Hint2Anim" type="AnimationPlayer" parent="HintGroup/Hint2" index="4" unique_id=779211763]
+libraries/ = SubResource("AnimationLibrary_udybx")
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "5G"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "1"
+
+[connection signal="hideHints" from="." to="HintGroup" method="OnPlayerDied"]
+
+[editable path="Entities/Characters/Captive/Maria"]

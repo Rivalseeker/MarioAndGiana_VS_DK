@@ -1,0 +1,359 @@
+[gd_scene format=3 uid="uid://cosd58fqpvniu"]
+
+[ext_resource type="Script" uid="uid://dp1c220ks0fwl" path="res://Scripts/GUI/OptionsMenu/OptionsMenu.cs" id="1_86bku"]
+[ext_resource type="FontFile" uid="uid://bdcy0d6dekdpf" path="res://Assets/Art/Fonts/Super Mario Bros. NES.ttf" id="1_k6sep"]
+[ext_resource type="Texture2D" uid="uid://dnpffxu8gqbdk" path="res://Assets/Art/Tilemaps/monochrome_tilemap_transparent.png" id="2_jqout"]
+[ext_resource type="PackedScene" uid="uid://dnqodjg6snpf1" path="res://Scenes/GUI/MenuItems/retro_slider.tscn" id="3_5nw3u"]
+[ext_resource type="PackedScene" uid="uid://5hkng1s1ptkb" path="res://Scenes/GUI/MenuItems/retro_selector.tscn" id="4_km8a7"]
+[ext_resource type="PackedScene" uid="uid://e8qb2xhlj28f" path="res://Scenes/GUI/Labels/nes_label.tscn" id="5_hb8gb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_86bku"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nw3u"]
+atlas = ExtResource("2_jqout")
+region = Rect2(17, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_viuc2"]
+resource_name = "Blink"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2vrav"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hb8gb"]
+_data = {
+&"Blink": SubResource("Animation_viuc2"),
+&"RESET": SubResource("Animation_2vrav")
+}
+
+[node name="OptionsMenu" type="Control" unique_id=568557062 node_paths=PackedStringArray("_optionsList", "_audioList", "_videoList", "_keyboardButton", "_controllerButton", "_audioButton", "_videoButton", "_backButton", "_masterVolSlider", "_musicVolSlider", "_sfxVolSlider", "_speakerSelector", "_audioBackButton", "_windowSizeSelector", "_fullscreenSelector", "_vsyncSelector", "_videoBackButton", "_confirmPrompt", "_promptYesButton", "_promptNoButton", "_promptCancelButton", "_cursorIcon", "_cursorAnim", "_promptCursor", "_promptCursorAnim")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_86bku")
+_optionsList = NodePath("OptionsList")
+_audioList = NodePath("AudioList")
+_videoList = NodePath("VideoList")
+_keyboardButton = NodePath("OptionsList/KeyboardButton")
+_controllerButton = NodePath("OptionsList/ControllerButton")
+_audioButton = NodePath("OptionsList/AudioButton")
+_videoButton = NodePath("OptionsList/VideoButton")
+_backButton = NodePath("OptionsList/BackButton")
+_masterVolSlider = NodePath("AudioList/MasterVolSlider")
+_musicVolSlider = NodePath("AudioList/MusicVolSlider")
+_sfxVolSlider = NodePath("AudioList/SfxVolSlider")
+_speakerSelector = NodePath("AudioList/SpeakerSelector")
+_audioBackButton = NodePath("AudioList/AudioBackButton")
+_windowSizeSelector = NodePath("VideoList/WindowSizeSelector")
+_fullscreenSelector = NodePath("VideoList/FullscreenSelector")
+_vsyncSelector = NodePath("VideoList/VSyncSelector")
+_videoBackButton = NodePath("VideoList/VideoBackButton")
+_confirmPrompt = NodePath("ConfirmPrompt")
+_promptYesButton = NodePath("ConfirmPrompt/VBoxContainer/HBoxContainer/YesButton")
+_promptNoButton = NodePath("ConfirmPrompt/VBoxContainer/HBoxContainer/NoButton")
+_promptCancelButton = NodePath("ConfirmPrompt/VBoxContainer/HBoxContainer/CancelButton")
+_cursorIcon = NodePath("CursorIcon")
+_cursorAnim = NodePath("CursorIcon/CursorAnim")
+_cursorOffset = Vector2(-16, 0)
+_promptCursor = NodePath("ConfirmPrompt/PromptCursor")
+_promptCursorAnim = NodePath("ConfirmPrompt/PromptCursor/PromptCursorAnim")
+_promptCursorOffset = Vector2(-12, 0)
+
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1396990151]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="OptionsList" type="VBoxContainer" parent="." unique_id=1053040443]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_top = -42.5
+offset_right = 80.0
+offset_bottom = 42.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="KeyboardButton" type="Button" parent="OptionsList" unique_id=1642331733]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "KEYBOARD SETTINGS"
+flat = true
+alignment = 0
+
+[node name="ControllerButton" type="Button" parent="OptionsList" unique_id=1350664788]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "CONTROLLER SETTINGS"
+flat = true
+alignment = 0
+
+[node name="AudioButton" type="Button" parent="OptionsList" unique_id=1947421845]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "AUDIO SETTINGS"
+flat = true
+alignment = 0
+
+[node name="VideoButton" type="Button" parent="OptionsList" unique_id=799137257]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "VIDEO SETTINGS"
+flat = true
+alignment = 0
+
+[node name="BackButton" type="Button" parent="OptionsList" unique_id=1176355999]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "EXIT OPTIONS"
+flat = true
+alignment = 0
+
+[node name="AudioList" type="VBoxContainer" parent="." unique_id=934568164]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.5
+offset_top = -50.5
+offset_right = 72.5
+offset_bottom = 50.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MasterVolSlider" parent="AudioList" unique_id=401346171 instance=ExtResource("3_5nw3u")]
+layout_mode = 2
+TitleText = "MASTER VOL"
+
+[node name="MusicVolSlider" parent="AudioList" unique_id=1650598885 instance=ExtResource("3_5nw3u")]
+layout_mode = 2
+BusName = "Music"
+TitleText = "MUSIC VOL"
+
+[node name="SfxVolSlider" parent="AudioList" unique_id=110438538 instance=ExtResource("3_5nw3u")]
+layout_mode = 2
+BusName = "Sound"
+TitleText = "SOUND VOL"
+
+[node name="SpeakerSelector" parent="AudioList" unique_id=1877681826 instance=ExtResource("4_km8a7")]
+layout_mode = 2
+
+[node name="AudioBackButton" type="Button" parent="AudioList" unique_id=2052335952]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "EXIT AUDIO"
+flat = true
+alignment = 0
+
+[node name="VideoList" type="VBoxContainer" parent="." unique_id=212416362]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.5
+offset_top = -40.0
+offset_right = 65.5
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindowSizeSelector" parent="VideoList" unique_id=494997801 instance=ExtResource("4_km8a7")]
+layout_mode = 2
+TitleText = "WINDOW SIZE"
+
+[node name="FullscreenSelector" parent="VideoList" unique_id=952508584 instance=ExtResource("4_km8a7")]
+layout_mode = 2
+TitleText = "FULLSCREEN"
+Options = PackedStringArray("OFF", "ON")
+
+[node name="VSyncSelector" parent="VideoList" unique_id=488475605 instance=ExtResource("4_km8a7")]
+layout_mode = 2
+TitleText = "V-SYNC"
+Options = PackedStringArray("OFF", "ON")
+
+[node name="VideoBackButton" type="Button" parent="VideoList" unique_id=84407369]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "EXIT VIDEO"
+flat = true
+alignment = 0
+
+[node name="CursorIcon" type="TextureRect" parent="." unique_id=355962075]
+texture_filter = 1
+layout_mode = 0
+texture = SubResource("AtlasTexture_5nw3u")
+stretch_mode = 5
+
+[node name="CursorAnim" type="AnimationPlayer" parent="CursorIcon" unique_id=720152586]
+libraries/ = SubResource("AnimationLibrary_hb8gb")
+autoplay = &"Blink"
+
+[node name="ConfirmPrompt" type="ColorRect" parent="." unique_id=32113575]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.78431374)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConfirmPrompt" unique_id=79023767]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="ConfirmPrompt/VBoxContainer" unique_id=1692661727 instance=ExtResource("5_hb8gb")]
+layout_mode = 2
+text = "SAVE CHANGES?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ConfirmPrompt/VBoxContainer" unique_id=1287464299]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="YesButton" type="Button" parent="ConfirmPrompt/VBoxContainer/HBoxContainer" unique_id=1418909506]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "YES"
+flat = true
+alignment = 0
+
+[node name="NoButton" type="Button" parent="ConfirmPrompt/VBoxContainer/HBoxContainer" unique_id=1835932428]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "NO"
+flat = true
+alignment = 0
+
+[node name="CancelButton" type="Button" parent="ConfirmPrompt/VBoxContainer/HBoxContainer" unique_id=1039182588]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_k6sep")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_86bku")
+text = "CANCEL"
+flat = true
+alignment = 0
+
+[node name="PromptCursor" type="TextureRect" parent="ConfirmPrompt" unique_id=676094267]
+texture_filter = 1
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_5nw3u")
+stretch_mode = 5
+
+[node name="PromptCursorAnim" type="AnimationPlayer" parent="ConfirmPrompt/PromptCursor" unique_id=337565958]
+libraries/ = SubResource("AnimationLibrary_hb8gb")
+autoplay = &"Blink"
