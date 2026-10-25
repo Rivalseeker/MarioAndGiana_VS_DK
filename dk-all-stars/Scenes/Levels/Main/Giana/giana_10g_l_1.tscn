@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bc4xl02ugb2au" path="res://Assets/Audio/BGM/NES_DK_50M.ogg" id="3_1mdx3"]
 [ext_resource type="PackedScene" uid="uid://bciwe378viuqe" path="res://Scenes/Characters/NPCs/maria.tscn" id="4_1mdx3"]
 [ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="4_lytbb"]
+[ext_resource type="Script" uid="uid://7sfq84r6uqqr" path="res://Scripts/Levels/Main/Giana/10G/MovingGirderStarter.cs" id="4_umhcj"]
 [ext_resource type="PackedScene" uid="uid://gfba7psq6n75" path="res://Scenes/Gizmos/steamroller.tscn" id="5_5mj74"]
 [ext_resource type="TileSet" uid="uid://bi7rohw4n748g" path="res://Assets/Art/Tilemaps/dk_nes_tile_set.tres" id="5_n4u6k"]
 [ext_resource type="Texture2D" uid="uid://cvgifm01ody3p" path="res://Assets/Art/Hazards/BallChain.png" id="6_87yhm"]
@@ -223,7 +224,7 @@ size = Vector2(32, 8)
 resource_name = "PlatformMove"
 length = 8.0
 loop_mode = 1
-step = 0.05
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -365,6 +366,9 @@ _playerScene = ExtResource("2_x66c0")
 _playerFacesLeft = true
 _levelMusicTrack = ExtResource("3_1mdx3")
 UseTimer = false
+
+[node name="MovingGirderStarter" type="Node" parent="." index="0" unique_id=484723319]
+script = ExtResource("4_umhcj")
 
 [node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
 tile_map_data = PackedByteArray("AAAUAP7/AAAEAAAAAAAVAP7/AAAEAAAAAAAWAP7/AAAEAAAAAAAXAP7/AAAEAAAAAAAYAP7/AAAEAAAAAAAZAP7/AAAEAAAAAAAZAP//AAAQAA8AAAAXAP//AAAQAA8AAAAAAOz/AAAEAAAAAAABAOz/AAAEAAAAAAACAOz/AAAEAAAAAAADAOz/AAAEAAAAAAAEAOz/AAAEAAAAAAAFAOz/AAAEAAAAAAAGAOz/AAAEAAAAAAAHAOz/AAAEAAAAAAAIAOz/AAAEAAAAAAAJAOz/AAAEAAAAAAAKAOz/AAAEAAAAAAALAOz/AAAEAAAAAAAGAOX/AAAQAA8AAQAGAOb/AAAQAA8AAQAGAOf/AAAQAA8AAQAGAOj/AAAQAA8AAQAGAOn/AAAQAA8AAQAGAOr/AAAEAAAAAQAGAOv/AAAQAA8AAAAHAOr/AAAEAAAAAQAIAOX/AAAQAA8AAQAIAOb/AAAQAA8AAQAIAOf/AAAQAA8AAQAIAOj/AAAQAA8AAQAIAOn/AAAQAA8AAQAIAOr/AAAEAAAAAQAIAOv/AAAQAA8AAAAJAOn/AAAEAAAAAAAKAOn/AAAEAAAAAAALAOn/AAAEAAAABAALAOr/AAAAAA8AAQALAOv/AAAAAA8AAQACAPb/AAAEAAAAAAABAPb/AAAEAAAAAAAAAPb/AAAEAAAAAAABAPT/AAAEAAAAAAACAPT/AAAEAAAAAAADAPT/AAAEAAAAAAAEAPT/AAAEAAAAAAAFAPT/AAAEAAAAAAAGAPT/AAAEAAAAAAAFAPL/AAAEAAAAAAAGAPL/AAAEAAAAAAAHAPL/AAAEAAAAAAAHAPj/AAAEAAAAAAAIAPj/AAAEAAAAAAAJAPj/AAAEAAAAAAAKAPj/AAAEAAAAAAALAPj/AAAEAAAAAAAMAPj/AAAEAAAAAAAOAPb/AAAEAAAAAAAPAPb/AAAEAAAAAAARAPT/AAAEAAAAAAASAPT/AAAEAAAAAAATAPL/AAAEAAAAAAAUAPL/AAAEAAAAAAAvAPn/AAAEAAAAAAArAO//AAAEAAAAAAAsAO//AAAEAAAAAAAtAO//AAAEAAAAAgAuAO//AAAEAAAAAAAtAPD/AAAAAA8AAAAtAPH/AAAAAA8AAAAtAPL/AAAAAA8AAAAtAPP/AAAAAA8AAAAtAPT/AAAAAA8AAAAtAPX/AAAAAA8AAAAtAPb/AAAAAA8AAAAtAPf/AAAAAA8AAAAtAPj/AAAAAA8AAAAtAPn/AAAAAA8AAAAtAPr/AAAAAA8AAAAtAPv/AAAAAA8AAAAtAPz/AAAAAA8AAAAtAP3/AAAAAA8AAAAtAP7/AAAAAA8AAAAtAP//AAAEAAAAAAAuAP//AAAEAAAAAAAvAP//AAAEAAAAAAAVAOf/AAAEAAAAAAAUAOf/AAAEAAAAAAAJAPL/AAAAAAcAAGAJAPH/AAAAAAcAAGAJAPD/AAAAAAcAAGAJAO//AAAAAAcAAGAJAO7/AAAAAAcAAGAJAO3/AAAAAAcAAGAHAPP/AAAAAAcAADALAO3/AAAAAAcAAFALAO7/AAAAAAcAAFALAO//AAAAAAcAAFALAPD/AAAAAAcAAFALAPH/AAAAAAcAAFALAPL/AAAAAAcAAFA=")
@@ -520,7 +524,7 @@ update_rotation = false
 update_scale = false
 
 [node name="GirderPlatform3" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="1" unique_id=401638166]
-position = Vector2(306.4, -152)
+position = Vector2(316, -136)
 scale = Vector2(0.99999994, 0.99999994)
 collision_mask = 0
 
@@ -545,7 +549,6 @@ one_way_collision = true
 [node name="Platform3Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="2" unique_id=626315821]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_umhcj")
-autoplay = &"PlatformMove"
 
 [node name="GirderPlatform4Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="3" unique_id=1968731904]
 
@@ -591,7 +594,6 @@ one_way_collision = true
 [node name="Platform4Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="2" unique_id=1195168606]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_884oy")
-autoplay = &"PlatformMove"
 
 [node name="ConveyorBeltGroup" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="4" unique_id=1472675295 node_paths=PackedStringArray("MoveAnim")]
 script = ExtResource("8_qrqul")
@@ -626,7 +628,6 @@ offset = Vector2(-8, -16)
 [node name="ConveyorMoveAnim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="2" unique_id=2125611261]
 callback_mode_process = 0
 libraries/ = SubResource("AnimationLibrary_debbh")
-autoplay = &"ConveyorBeltMove"
 
 [node name="Soda" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("8_60k63")]
 position = Vector2(56, -112)
@@ -654,7 +655,7 @@ position = Vector2(32, 0)
 [node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
 position = Vector2(80, -192)
 
-[node name="PlayerSpawn" parent="." index="3" unique_id=248777857]
+[node name="PlayerSpawn" parent="." index="4" unique_id=248777857]
 position = Vector2(192, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCamera/PitArea" parent_id_path=PackedInt32Array(1863843188) index="1" unique_id=1780243598]
@@ -665,7 +666,7 @@ shape = SubResource("RectangleShape2D_qrqul")
 position = Vector2(60, -112)
 shape = SubResource("RectangleShape2D_umhcj")
 
-[node name="GoalArea" parent="." index="5" unique_id=1127886652]
+[node name="GoalArea" parent="." index="6" unique_id=1127886652]
 position = Vector2(88, -184)
 
 [node name="GoalDetect" parent="GoalArea" index="0" unique_id=431830692]
