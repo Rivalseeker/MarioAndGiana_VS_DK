@@ -250,7 +250,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_umhcj"]
@@ -298,7 +298,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_884oy"]
@@ -330,6 +330,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0, 1.0]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ConveyorBelt")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Alternate"
+}, {
+"args": [],
+"method": &"Alternate"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_s6sm6"]
 length = 0.001
@@ -343,7 +360,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_debbh"]
@@ -361,17 +378,462 @@ size = Vector2(4, 4)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7wuw"]
 size = Vector2(8, 8)
 
+[sub_resource type="Animation" id="Animation_qatgi"]
+resource_name = "HurryUp"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["HURRY UP!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.9, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+
+[sub_resource type="Animation" id="Animation_0dyhn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_y25pt"]
+resource_name = "StageClear"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.65, 3.3, 3.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["CLEARED!", "CLEARED.", "CLEARED..", "CLEARED...?"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PromptLabel:anchors_preset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_21fy2"]
+resource_name = "Start"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.75000006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../../MovingGirderStarter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartPlatforms"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7lhnq"]
+resource_name = "TooBad"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["TOO BAD!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.7490196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y2l65"]
+_data = {
+&"HurryUp": SubResource("Animation_qatgi"),
+&"RESET": SubResource("Animation_0dyhn"),
+&"StageClear": SubResource("Animation_y25pt"),
+&"Start": SubResource("Animation_21fy2"),
+&"TooBad": SubResource("Animation_7lhnq")
+}
+
 [node name="Giana_10G_L1" unique_id=182671849 instance=ExtResource("1_ruy7r")]
 _playerScene = ExtResource("2_x66c0")
 _playerFacesLeft = true
 _levelMusicTrack = ExtResource("3_1mdx3")
 UseTimer = false
 
-[node name="MovingGirderStarter" type="Node" parent="." index="0" unique_id=484723319]
+[node name="MovingGirderStarter" type="Node" parent="." index="0" unique_id=484723319 node_paths=PackedStringArray("_platform3Anim", "_platform4Anim", "_conveyorMoveAnim")]
 script = ExtResource("4_umhcj")
+_platform3Anim = NodePath("../Entities/Gizmos/MovingGirders/GirderPlatform3Group/Platform3Anim")
+_platform4Anim = NodePath("../Entities/Gizmos/MovingGirders/GirderPlatform4Group/Platform4Anim")
+_conveyorMoveAnim = NodePath("../Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorMoveAnim")
 
 [node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
-tile_map_data = PackedByteArray("AAAUAP7/AAAEAAAAAAAVAP7/AAAEAAAAAAAWAP7/AAAEAAAAAAAXAP7/AAAEAAAAAAAYAP7/AAAEAAAAAAAZAP7/AAAEAAAAAAAZAP//AAAQAA8AAAAXAP//AAAQAA8AAAAAAOz/AAAEAAAAAAABAOz/AAAEAAAAAAACAOz/AAAEAAAAAAADAOz/AAAEAAAAAAAEAOz/AAAEAAAAAAAFAOz/AAAEAAAAAAAGAOz/AAAEAAAAAAAHAOz/AAAEAAAAAAAIAOz/AAAEAAAAAAAJAOz/AAAEAAAAAAAKAOz/AAAEAAAAAAALAOz/AAAEAAAAAAAGAOX/AAAQAA8AAQAGAOb/AAAQAA8AAQAGAOf/AAAQAA8AAQAGAOj/AAAQAA8AAQAGAOn/AAAQAA8AAQAGAOr/AAAEAAAAAQAGAOv/AAAQAA8AAAAHAOr/AAAEAAAAAQAIAOX/AAAQAA8AAQAIAOb/AAAQAA8AAQAIAOf/AAAQAA8AAQAIAOj/AAAQAA8AAQAIAOn/AAAQAA8AAQAIAOr/AAAEAAAAAQAIAOv/AAAQAA8AAAAJAOn/AAAEAAAAAAAKAOn/AAAEAAAAAAALAOn/AAAEAAAABAALAOr/AAAAAA8AAQALAOv/AAAAAA8AAQACAPb/AAAEAAAAAAABAPb/AAAEAAAAAAAAAPb/AAAEAAAAAAABAPT/AAAEAAAAAAACAPT/AAAEAAAAAAADAPT/AAAEAAAAAAAEAPT/AAAEAAAAAAAFAPT/AAAEAAAAAAAGAPT/AAAEAAAAAAAFAPL/AAAEAAAAAAAGAPL/AAAEAAAAAAAHAPL/AAAEAAAAAAAHAPj/AAAEAAAAAAAIAPj/AAAEAAAAAAAJAPj/AAAEAAAAAAAKAPj/AAAEAAAAAAALAPj/AAAEAAAAAAAMAPj/AAAEAAAAAAAOAPb/AAAEAAAAAAAPAPb/AAAEAAAAAAARAPT/AAAEAAAAAAASAPT/AAAEAAAAAAATAPL/AAAEAAAAAAAUAPL/AAAEAAAAAAAvAPn/AAAEAAAAAAArAO//AAAEAAAAAAAsAO//AAAEAAAAAAAtAO//AAAEAAAAAgAuAO//AAAEAAAAAAAtAPD/AAAAAA8AAAAtAPH/AAAAAA8AAAAtAPL/AAAAAA8AAAAtAPP/AAAAAA8AAAAtAPT/AAAAAA8AAAAtAPX/AAAAAA8AAAAtAPb/AAAAAA8AAAAtAPf/AAAAAA8AAAAtAPj/AAAAAA8AAAAtAPn/AAAAAA8AAAAtAPr/AAAAAA8AAAAtAPv/AAAAAA8AAAAtAPz/AAAAAA8AAAAtAP3/AAAAAA8AAAAtAP7/AAAAAA8AAAAtAP//AAAEAAAAAAAuAP//AAAEAAAAAAAvAP//AAAEAAAAAAAVAOf/AAAEAAAAAAAUAOf/AAAEAAAAAAAJAPL/AAAAAAcAAGAJAPH/AAAAAAcAAGAJAPD/AAAAAAcAAGAJAO//AAAAAAcAAGAJAO7/AAAAAAcAAGAJAO3/AAAAAAcAAGAHAPP/AAAAAAcAADALAO3/AAAAAAcAAFALAO7/AAAAAAcAAFALAO//AAAAAAcAAFALAPD/AAAAAAcAAFALAPH/AAAAAAcAAFALAPL/AAAAAAcAAFA=")
+tile_map_data = PackedByteArray("AAAUAP7/AAAEAAAAAAAVAP7/AAAEAAAAAAAWAP7/AAAEAAAAAAAXAP7/AAAEAAAAAAAYAP7/AAAEAAAAAAAZAP7/AAAEAAAAAAAZAP//AAAQAA8AAAAXAP//AAAQAA8AAAAAAOz/AAAEAAAAAAABAOz/AAAEAAAAAAACAOz/AAAEAAAAAAADAOz/AAAEAAAAAAAEAOz/AAAEAAAAAAAFAOz/AAAEAAAAAAAGAOz/AAAEAAAAAAAHAOz/AAAEAAAAAAAIAOz/AAAEAAAAAAAJAOz/AAAEAAAAAAAKAOz/AAAEAAAAAAALAOz/AAAEAAAAAAAGAOX/AAAQAA8AAQAGAOb/AAAQAA8AAQAGAOf/AAAQAA8AAQAGAOj/AAAQAA8AAQAGAOn/AAAQAA8AAQAGAOr/AAAEAAAAAQAGAOv/AAAQAA8AAAAHAOr/AAAEAAAAAQAIAOX/AAAQAA8AAQAIAOb/AAAQAA8AAQAIAOf/AAAQAA8AAQAIAOj/AAAQAA8AAQAIAOn/AAAQAA8AAQAIAOr/AAAEAAAAAQAIAOv/AAAQAA8AAAAJAOn/AAAEAAAAAAAKAOn/AAAEAAAAAAALAOn/AAAEAAAABAALAOr/AAAAAA8AAQALAOv/AAAAAA8AAQACAPb/AAAEAAAAAAABAPb/AAAEAAAAAAAAAPb/AAAEAAAAAAABAPT/AAAEAAAAAAACAPT/AAAEAAAAAAADAPT/AAAEAAAAAAAEAPT/AAAEAAAAAAAFAPT/AAAEAAAAAAAGAPT/AAAEAAAAAAAFAPL/AAAEAAAAAAAGAPL/AAAEAAAAAAAHAPL/AAAEAAAAAAAHAPj/AAAEAAAAAAAIAPj/AAAEAAAAAAAJAPj/AAAEAAAAAAAKAPj/AAAEAAAAAAALAPj/AAAEAAAAAAAMAPj/AAAEAAAAAAAOAPb/AAAEAAAAAAAPAPb/AAAEAAAAAAARAPT/AAAEAAAAAAASAPT/AAAEAAAAAAATAPL/AAAEAAAAAAAUAPL/AAAEAAAAAAAvAPn/AAAEAAAAAAArAO//AAAEAAAAAAAsAO//AAAEAAAAAAAtAPP/AAAAAA8AAAAtAPT/AAAAAA8AAAAtAPX/AAAAAA8AAAAtAPb/AAAAAA8AAAAtAPf/AAAAAA8AAAAtAPj/AAAAAA8AAAAtAPn/AAAAAA8AAAAtAPr/AAAAAA8AAAAtAPv/AAAAAA8AAAAtAPz/AAAAAA8AAAAtAP3/AAAAAA8AAAAtAP7/AAAAAA8AAAAtAP//AAAEAAAAAAAuAP//AAAEAAAAAAAvAP//AAAEAAAAAAAVAOf/AAAEAAAAAAAUAOf/AAAEAAAAAAAJAPL/AAAAAAcAAGAJAPH/AAAAAAcAAGAJAPD/AAAAAAcAAGAJAO//AAAAAAcAAGAJAO7/AAAAAAcAAGAJAO3/AAAAAAcAAGAHAPP/AAAAAAcAADALAO3/AAAAAAcAAFALAO7/AAAAAAcAAFALAO//AAAAAAcAAFALAPD/AAAAAAcAAFALAPH/AAAAAAcAAFALAPL/AAAAAAcAAFAtAPL/AAAAAA8AAAAtAPD/AAAAAA8AAAAtAPH/AAAAAA8AAAAuAO//AAAEAAAAAAAtAO//AAAEAAAAAgA=")
 
 [node name="SpikeWall" type="Polygon2D" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="8" unique_id=1688156829]
 polygon = PackedVector2Array(80, -104, 88, -104, 88, -152, 80, -152)
@@ -513,7 +975,8 @@ position = Vector2(8, -8)
 curve = SubResource("Curve2D_60k63")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3Path" index="0" unique_id=1852008504]
-position = Vector2(308, -128)
+position = Vector2(298.4, -144)
+progress = 18.659046
 rotates = false
 cubic_interp = false
 loop = false
@@ -524,7 +987,7 @@ update_rotation = false
 update_scale = false
 
 [node name="GirderPlatform3" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="1" unique_id=401638166]
-position = Vector2(316, -136)
+position = Vector2(306.4, -152)
 scale = Vector2(0.99999994, 0.99999994)
 collision_mask = 0
 
@@ -556,8 +1019,9 @@ libraries/ = SubResource("AnimationLibrary_umhcj")
 curve = SubResource("Curve2D_gh7wo")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4Path" index="0" unique_id=145148698]
-position = Vector2(236, -176)
+position = Vector2(229.6, -160)
 rotation = 1.5707964
+progress = 17.232527
 rotates = false
 cubic_interp = false
 loop = false
@@ -568,7 +1032,7 @@ update_rotation = false
 update_scale = false
 
 [node name="GirderPlatform4" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="1" unique_id=712977204]
-position = Vector2(236, -176)
+position = Vector2(229.6, -160)
 scale = Vector2(0.99999994, 0.99999994)
 collision_mask = 0
 
@@ -603,8 +1067,9 @@ MoveAnim = NodePath("ConveyorMoveAnim")
 curve = SubResource("Curve2D_w7wuw")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorPath" index="0" unique_id=974408466]
-position = Vector2(136, -152)
-rotation = 1.5707964
+position = Vector2(160, -163.19789)
+rotation = -1.5707964
+progress = 51.2
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorPath/PathFollow2D" index="0" unique_id=330374907]
 remote_path = NodePath("../../../ConveyorBelt")
@@ -614,7 +1079,7 @@ update_scale = false
 [node name="ConveyorBelt" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="1" unique_id=1279322400 instance=ExtResource("8_gh7wo")]
 position = Vector2(136, -152)
 Speed = 24.0
-Alternates = true
+IsMovingRight = false
 AlternateInterval = 4.0
 
 [node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorBelt" index="5" unique_id=1790961206]
@@ -631,6 +1096,9 @@ libraries/ = SubResource("AnimationLibrary_debbh")
 
 [node name="Soda" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("8_60k63")]
 position = Vector2(56, -112)
+
+[node name="CollisionShape2D" parent="Entities/PickUps/Collectibles/Soda" index="1" unique_id=1731533093]
+position = Vector2(0, -12)
 
 [node name="Diamond" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=1051439714 instance=ExtResource("9_gh7wo")]
 position = Vector2(376, -56)
@@ -673,6 +1141,9 @@ position = Vector2(88, -184)
 position = Vector2(4, -4)
 shape = SubResource("RectangleShape2D_w7wuw")
 
+[node name="PromptAnim" parent="HUD/MainHudControl/LevelPrompt" parent_id_path=PackedInt32Array(67024084) index="1" unique_id=1226467105]
+libraries/ = SubResource("AnimationLibrary_y2l65")
+
 [node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
 text = "10G"
 
@@ -680,5 +1151,6 @@ text = "10G"
 text = "1"
 
 [editable path="Entities/Gizmos/Checkpoints/CheckpointFlag1"]
+[editable path="Entities/PickUps/Collectibles/Soda"]
 [editable path="Entities/PickUps/Collectibles/Gum"]
 [editable path="Entities/Characters/Captive/Maria"]

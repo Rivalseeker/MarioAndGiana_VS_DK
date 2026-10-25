@@ -151,4 +151,11 @@ public partial class ConveyorBelt : StaticBody2D
         Speed = 0f;
         ApplyVelocityAndVisuals();
     }
+
+    private void Alternate()
+    {
+        // _directionTimer = 0;
+        IsMovingRight = !IsMovingRight;
+        ApplyVelocityAndVisuals();
+    }
 }
