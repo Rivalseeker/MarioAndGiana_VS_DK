@@ -3,6 +3,11 @@ using System;
 
 public partial class Giana15gL1 : BaseDkLevel
 {
+    // [Export] private TileMapLayer levelEnvironment;
+
+
+
+
     public override void _PhysicsProcess(double delta)
     {
         if (_activePlayer == null) return;

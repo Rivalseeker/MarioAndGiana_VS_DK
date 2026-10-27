@@ -1323,7 +1323,7 @@ _data = {
 _playerScene = ExtResource("2_26wyn")
 _playerFacesLeft = true
 _levelMusicTrack = ExtResource("3_s1qgh")
-StartTime = 70.0
+StartTime = 80.0
 
 [node name="MovingGirderStarter" type="Node" parent="." index="0" unique_id=1688066523 node_paths=PackedStringArray("_platform3Anim", "_platform4Anim", "_conveyorMoveAnim")]
 script = ExtResource("4_21ycs")

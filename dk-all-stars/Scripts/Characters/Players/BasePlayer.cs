@@ -206,6 +206,16 @@ public partial class BasePlayer : CharacterBody2D
         Velocity = velocity;
         MoveAndSlide();
 
+        // THE LADDER FIX: Override moving platform influence while climbing
+        if (IsClimbing)
+        {
+            // Kill any residual horizontal momentum carried over from the conveyor belt
+            Velocity = new Vector2(0, Velocity.Y); 
+            
+            // Force the player to stay perfectly centered on the ladder tile
+            GlobalPosition = new Vector2(CurrentLadderX, GlobalPosition.Y);
+        }
+
         // THE FIX: Check if the player was pinched by moving objects!
         CheckForCrush();
 

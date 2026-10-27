@@ -6,20 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://blrdhej0dx6y0" path="res://Scenes/Characters/Players/giana.tscn" id="3_vl06t"]
 [ext_resource type="Texture2D" uid="uid://bogxo0fdxugxk" path="res://Assets/Art/Tilemaps/mud_tile_group.png" id="4_ryf1f"]
 
-[sub_resource type="Animation" id="Animation_ryf1f"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_vl06t"]
-resource_name = "Sink"
-length = 60.0
-step = 0.1
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7e6ts"]
-_data = {
-&"RESET": SubResource("Animation_ryf1f"),
-&"Sink": SubResource("Animation_vl06t")
-}
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryf1f"]
 atlas = ExtResource("4_ryf1f")
 region = Rect2(1, 1, 8, 8)
@@ -94,8 +80,9 @@ _levelMusicTrack = ExtResource("3_ryf1f")
 UseTimer = false
 
 [node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
-tile_map_data = PackedByteArray("AAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAHAPz/AAAAAAAAAAAIAPz/AAAAAAAAAAAJAPz/AAAAAAAAAAAKAPz/AAAAAAAAAAALAPz/AAAAAAAAAAAOAPz/AAAAAAAAAAAPAPz/AAAAAAAAAAARAPz/AAAAAAAAAAASAPz/AAAAAAAAAAATAPz/AAAAAAAAAAAQAPz/AAAAAAAAAAAYAPz/AAAAAAAAAAAZAPz/AAAAAAAAAAAaAPz/AAAAAAAAAAAbAPz/AAAAAAAAAAAcAPz/AAAAAAAAAAAdAPz/AAAAAAAAAAAeAPz/AAAAAAAAAAAfAPz/AAAAAAAAAAAgAPz/AAAAAAAAAAAhAPz/AAAAAAAAAAAiAPz/AAAAAAAAAAAjAPz/AAAAAAAAAAAkAPz/AAAAAAAAAAAlAPz/AAAAAAAAAAAmAPz/AAAAAAAAAAAnAPz/AAAAAAAAAAAoAPz/AAAAAAAAAAApAPz/AAAAAAAAAAAqAPz/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAACAPz/AAAAAAAAAAADAPz/AAAAAAAAAAAEAPz/AAAAAAAAAAAFAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAHAPz/AAAAAAAAAAAIAPz/AAAAAAAAAAAJAPz/AAAAAAAAAAAKAPz/AAAAAAAAAAALAPz/AAAAAAAAAAAOAPz/AAAAAAAAAAAPAPz/AAAAAAAAAAARAPz/AAAAAAAAAAASAPz/AAAAAAAAAAATAPz/AAAAAAAAAAAQAPz/AAAAAAAAAAAYAPz/AAAAAAAAAAAZAPz/AAAAAAAAAAAaAPz/AAAAAAAAAAAbAPz/AAAAAAAAAAAcAPz/AAAAAAAAAAAdAPz/AAAAAAAAAAAeAPz/AAAAAAAAAAAfAPz/AAAAAAAAAAAgAPz/AAAAAAAAAAAhAPz/AAAAAAAAAAAiAPz/AAAAAAAAAAAjAPz/AAAAAAAAAAAkAPz/AAAAAAAAAAAlAPz/AAAAAAAAAAAmAPz/AAAAAAAAAAAnAPz/AAAAAAAAAAAoAPz/AAAAAAAAAAApAPz/AAAAAAAAAAAqAPz/AAAAAAAAAAAmAPv/AAAAAA8AAAAmAPr/AAAAAA8AAAAmAPn/AAAAAA8AAAAmAPj/AAAAAA8AAAAmAPf/AAAAAAAAAwAlAPf/AAAAAAAAAgAnAPf/AAAAAAAAAgA=")
 use_kinematic_bodies = true
+collision_visibility_mode = 1
 
 [node name="LevelTileMap2" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="1" unique_id=699004260]
 use_kinematic_bodies = true
@@ -118,13 +105,7 @@ use_kinematic_bodies = true
 [node name="LevelTileMap8" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="7" unique_id=789452681]
 use_kinematic_bodies = true
 
-[node name="StageAnim" type="AnimationPlayer" parent="." index="2" unique_id=1029044087]
-root_node = NodePath("../Environment")
-callback_mode_process = 0
-libraries/ = SubResource("AnimationLibrary_7e6ts")
-autoplay = &"Sink"
-
-[node name="Mud" type="AnimatedSprite2D" parent="." index="3" unique_id=206515814]
+[node name="Mud" type="AnimatedSprite2D" parent="." index="2" unique_id=206515814]
 z_index = 5
 position = Vector2(-8, 0)
 sprite_frames = SubResource("SpriteFrames_1caxu")
@@ -578,7 +559,7 @@ offset = Vector2(0, -8)
 color = Color(0.4745098, 0.25490198, 0, 1)
 polygon = PackedVector2Array(0, 0, 0, 8, 400, 8, 400, 0)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="4" unique_id=1553435238]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3" unique_id=1553435238]
 position = Vector2(-24, -88)
 collision_mask = 0
 
@@ -590,7 +571,7 @@ shape = SubResource("RectangleShape2D_ryf1f")
 position = Vector2(-12, -88)
 StartingState = 0
 
-[node name="PlayerSpawn" parent="." index="6" unique_id=248777857]
+[node name="PlayerSpawn" parent="." index="5" unique_id=248777857]
 position = Vector2(40, -32)
 
 [node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
@@ -599,6 +580,6 @@ text = "15G"
 [node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
 text = "1"
 
-[node name="PauseScreen" parent="." index="11" unique_id=1998740680]
+[node name="PauseScreen" parent="." index="10" unique_id=1998740680]
 _optionsMenuPrefab = null
 _mainMenuPath = ""
