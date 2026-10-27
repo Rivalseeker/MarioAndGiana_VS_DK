@@ -24,6 +24,8 @@ shader_parameter/color_1_original = Color(1, 1, 1, 1)
 shader_parameter/color_1_replace = Color(0.38039216, 0.827451, 0.8901961, 1)
 shader_parameter/color_2_original = Color(0, 0, 0, 1)
 shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/color_3_original = Color(0, 0, 0, 1)
+shader_parameter/color_3_replace = Color(0, 0, 0, 1)
 shader_parameter/tolerance = 0.01
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yd0sl"]
@@ -41,6 +43,8 @@ shader_parameter/color_1_original = Color(0.85882354, 0.25490198, 0.38039216, 1)
 shader_parameter/color_1_replace = Color(0.8586215, 0.25524214, 0.38109186, 0.5)
 shader_parameter/color_2_original = Color(0, 0, 0, 1)
 shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/color_3_original = Color(0, 0, 0, 1)
+shader_parameter/color_3_replace = Color(0, 0, 0, 1)
 shader_parameter/tolerance = 0.01
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khx5a"]

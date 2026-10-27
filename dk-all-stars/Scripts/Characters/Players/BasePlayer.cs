@@ -65,6 +65,7 @@ public partial class BasePlayer : CharacterBody2D
     public float CurrentLadderX { get; set; } = 0f;
     public float CurrentLadderTopY { get; set; } = 0f;
     public float CurrentLadderBottomY { get; set; } = 0f;
+    public float CurrentLadderVelocityY { get; set; } = 0f;
     public bool CurrentLadderHasLedge { get; set; } = false;
 
     // ==========================================
@@ -209,11 +210,11 @@ public partial class BasePlayer : CharacterBody2D
         // THE LADDER FIX: Override moving platform influence while climbing
         if (IsClimbing)
         {
-            // Kill any residual horizontal momentum carried over from the conveyor belt
-            Velocity = new Vector2(0, Velocity.Y); 
-            
-            // Force the player to stay perfectly centered on the ladder tile
-            GlobalPosition = new Vector2(CurrentLadderX, GlobalPosition.Y);
+            Velocity = new Vector2(0, Velocity.Y);
+            GlobalPosition = new Vector2(
+                CurrentLadderX, 
+                GlobalPosition.Y + (CurrentLadderVelocityY * (float)delta)
+            );
         }
 
         // THE FIX: Check if the player was pinched by moving objects!

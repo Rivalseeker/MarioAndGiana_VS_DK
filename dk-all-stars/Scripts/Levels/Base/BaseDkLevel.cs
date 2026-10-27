@@ -777,13 +777,16 @@ public partial class BaseDkLevel : Node2D
     }
 
     // ==========================================
-    // LADDER DETECTION LOGIC (Remains exactly the same)
+    // LADDER DETECTION LOGIC
     // ==========================================
     public void CheckLadderStatus()
     {
         bool foundCenterLadder = false;
         bool foundFeetLadder = false;
-        
+
+        // Default to 0 each physics frame before checking layers
+        _activePlayer.CurrentLadderVelocityY = 0f;
+                
         Vector2 centerPos = _activePlayer.GlobalPosition;
         Vector2 feetPos = _activePlayer.LadderDetector.GlobalPosition + _activePlayer.LadderDetector.TargetPosition;
 
@@ -797,6 +800,11 @@ public partial class BaseDkLevel : Node2D
                 foundCenterLadder = true;
                 _activePlayer.CurrentLadderX = layer.ToGlobal(layer.MapToLocal(centerCell)).X;
                 CalculateLadderBounds(layer, centerCell);
+
+                if (layer is LevelTileMap1 scrollingLayer && scrollingLayer.IsScrolling)
+                {
+                    _activePlayer.CurrentLadderVelocityY = scrollingLayer.ScrollSpeed;
+                }
             }
 
             Vector2I feetCell = layer.LocalToMap(layer.ToLocal(feetPos));
@@ -810,6 +818,11 @@ public partial class BaseDkLevel : Node2D
                 {
                     _activePlayer.CurrentLadderX = layer.ToGlobal(layer.MapToLocal(feetCell)).X;
                     CalculateLadderBounds(layer, feetCell);
+
+                    if (layer is LevelTileMap1 scrollingLayer && scrollingLayer.IsScrolling)
+                    {
+                        _activePlayer.CurrentLadderVelocityY = scrollingLayer.ScrollSpeed;
+                    }
                 }
             }
         }
