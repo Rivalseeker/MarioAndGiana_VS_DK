@@ -3,10 +3,16 @@ using System;
 
 public partial class MamaBird : Area2D
 {
-    [Export] public Sprite2D birdSprite;
-    [Export] public AnimationPlayer birdAnim;
+    [Export] private Sprite2D birdSprite;
+    [Export] private AnimationPlayer birdAnim;
+    [Export] private Marker2D eggSpawner;
     // [Export] public AudioStreamPlayer flySound;
     // [Export] public AudioStreamPlayer swoopSound;
+
+    [Export] private Node2D eggGroup;
+
+    private Egg newEgg = null;
+    [Export] private PackedScene eggScene;
 
 
 
@@ -61,5 +67,17 @@ public partial class MamaBird : Area2D
             break;
         }
         
+    }
+
+
+    private void DropEgg()
+    {
+        newEgg = eggScene.Instantiate<Egg>();
+
+        if (eggGroup != null)
+        {
+            eggGroup.AddChild(newEgg);
+            newEgg.GlobalPosition = eggSpawner.GlobalPosition;
+        }
     }
 }

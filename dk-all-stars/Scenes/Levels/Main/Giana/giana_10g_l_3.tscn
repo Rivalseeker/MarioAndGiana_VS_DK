@@ -1,0 +1,1718 @@
+[gd_scene format=4 uid="uid://bxhq673r3v6dj"]
+
+[ext_resource type="PackedScene" uid="uid://du3de7yx78m7j" path="res://Scenes/Levels/Base/base_dk_level.tscn" id="1_msu4b"]
+[ext_resource type="PackedScene" uid="uid://blrdhej0dx6y0" path="res://Scenes/Characters/Players/giana.tscn" id="2_26wyn"]
+[ext_resource type="AudioStream" uid="uid://bc4xl02ugb2au" path="res://Assets/Audio/BGM/NES_DK_50M.ogg" id="3_s1qgh"]
+[ext_resource type="Script" uid="uid://7sfq84r6uqqr" path="res://Scripts/Levels/Main/Giana/10G/MovingGirderStarter.cs" id="4_21ycs"]
+[ext_resource type="PackedScene" uid="uid://gfba7psq6n75" path="res://Scenes/Gizmos/steamroller.tscn" id="6_gv4kx"]
+[ext_resource type="Texture2D" uid="uid://cvgifm01ody3p" path="res://Assets/Art/Hazards/BallChain.png" id="7_dvluc"]
+[ext_resource type="TileSet" uid="uid://bi7rohw4n748g" path="res://Assets/Art/Tilemaps/dk_nes_tile_set.tres" id="8_dpj0f"]
+[ext_resource type="Script" uid="uid://gjs5i3x2k1fa" path="res://Scripts/Levels/Main/Giana/10G/ConveyorBeltGroup.cs" id="9_sxe4l"]
+[ext_resource type="PackedScene" uid="uid://bmwh3ldx8t2m8" path="res://Scenes/Gizmos/conveyor_belt.tscn" id="10_4efd5"]
+[ext_resource type="PackedScene" uid="uid://bg5qug4lxohej" path="res://Scenes/PickUps/Collectibles/Maria/soda.tscn" id="11_v55gw"]
+[ext_resource type="PackedScene" uid="uid://cfcd8o7ijm6bl" path="res://Scenes/PickUps/Collectibles/Maria/diamond.tscn" id="12_6w5nh"]
+[ext_resource type="PackedScene" uid="uid://bf501c4qgvan0" path="res://Scenes/PickUps/Collectibles/Maria/gum.tscn" id="13_3yp0s"]
+[ext_resource type="PackedScene" uid="uid://do7ufmrj2f3y3" path="res://Scenes/Characters/Enemies/Commons/mama_bird.tscn" id="14_lh0au"]
+[ext_resource type="Script" uid="uid://c8fi1j426c85x" path="res://Scripts/Levels/Main/Giana/10G/BirdStarter.cs" id="15_m4iko"]
+[ext_resource type="AudioStream" uid="uid://bdi5ws1eta3mw" path="res://Assets/Audio/SFX/NES_DK_Jr_Flap.ogg" id="16_kkfey"]
+[ext_resource type="PackedScene" uid="uid://bciwe378viuqe" path="res://Scenes/Characters/NPCs/maria.tscn" id="17_x6ydy"]
+
+[sub_resource type="Animation" id="Animation_debbh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steamroller1Remote:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(40, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steamroller2Remote:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(216, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_q46pl"]
+resource_name = "SteamrollerMoveRL"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Steamroller1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [false],
+"method": &"ApplyVelocityAndVisuals"
+}, {
+"args": [true],
+"method": &"ApplyVelocityAndVisuals"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Steamroller1Remote:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(40, 32), Vector2(24, 32)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Steamroller2")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [true],
+"method": &"ApplyVelocityAndVisuals"
+}, {
+"args": [false],
+"method": &"ApplyVelocityAndVisuals"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Steamroller2Remote:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(216, 32), Vector2(232, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qatgi"]
+_data = {
+&"RESET": SubResource("Animation_debbh"),
+&"SteamrollerMoveRL": SubResource("Animation_q46pl")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_n4u6k"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 20, -8, 0, 0, 0, 0, 20, -48)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mj74"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_5mj74"]
+resource_name = "GirderPlatformsMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform1Group/GirderPlatform1Path/PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 4.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.2, 0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_87yhm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform1Group/GirderPlatform1Path/PathFollow:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_epy13"]
+_data = {
+&"GirderPlatformsMove": SubResource("Animation_5mj74"),
+&"RESET": SubResource("Animation_87yhm")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_87yhm"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 220, -80, 0, 0, 0, 0, 220, -48)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epy13"]
+size = Vector2(24, 8)
+
+[sub_resource type="Animation" id="Animation_60k63"]
+resource_name = "PlatformMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform2Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gh7wo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform2Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w7wuw"]
+_data = {
+&"PlatformMove": SubResource("Animation_60k63"),
+&"RESET": SubResource("Animation_gh7wo")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_60k63"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 308, -128, 0, 0, 0, 0, 284, -168)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60k63"]
+size = Vector2(32, 8)
+
+[sub_resource type="Animation" id="Animation_w7wuw"]
+resource_name = "PlatformMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform3Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_qrqul"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform3Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_umhcj"]
+_data = {
+&"PlatformMove": SubResource("Animation_w7wuw"),
+&"RESET": SubResource("Animation_qrqul")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_gh7wo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 236, -176, 0, 0, 0, 0, 220, -136)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gh7wo"]
+size = Vector2(24, 8)
+
+[sub_resource type="Animation" id="Animation_umhcj"]
+resource_name = "PlatformMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform4Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_p0t13"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform4Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_884oy"]
+_data = {
+&"PlatformMove": SubResource("Animation_umhcj"),
+&"RESET": SubResource("Animation_p0t13")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_w7wuw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 136, -152, 0, 0, 0, 0, 136, -144, 0, 0, 0, 0, 160, -144, 0, 0, 0, 0, 160, -184, 0, 0, 0, 0, 136, -184, 0, 0, 0, 0, 136, -152)
+}
+point_count = 6
+
+[sub_resource type="Animation" id="Animation_884oy"]
+resource_name = "ConveyorBeltMove"
+length = 8.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ConveyorPath/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ConveyorBelt")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4999999, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"Alternate"
+}, {
+"args": [],
+"method": &"Alternate"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_s6sm6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ConveyorPath/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_debbh"]
+_data = {
+&"ConveyorBeltMove": SubResource("Animation_884oy"),
+&"RESET": SubResource("Animation_s6sm6")
+}
+
+[sub_resource type="Curve2D" id="Curve2D_xv81q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -40, -200, 0, 0, 0, 0, 116, -200, 0, 0, 0, 0, 116, -128, 0, 0, 0, 0, 228, -128, 0, 0, 0, 0, 228, -200, 0, 0, 0, 0, 304, -200, 0, 0, 0, 0, 304, -128, 0, 0, 0, 0, 336, -128, 0, 0, 0, 0, 336, -200, 0, 0, 0, 0, 392, -200)
+}
+point_count = 10
+
+[sub_resource type="Animation" id="Animation_2hvv8"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirdPath2D1/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BirdPath2D1/PathFollow2D/MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BirdPath2D1/PathFollow2D/MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cm2oc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirdPath2D1/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hvv8"]
+_data = {
+&"BirdPath": SubResource("Animation_2hvv8"),
+&"RESET": SubResource("Animation_cm2oc")
+}
+
+[sub_resource type="Animation" id="Animation_xv81q"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.139999, 14.699999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2qlfv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xv81q"]
+_data = {
+&"BirdPath": SubResource("Animation_xv81q"),
+&"RESET": SubResource("Animation_2qlfv")
+}
+
+[sub_resource type="Animation" id="Animation_i8ogf"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.139999, 14.699999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_iw1tv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdulp"]
+_data = {
+&"BirdPath": SubResource("Animation_i8ogf"),
+&"RESET": SubResource("Animation_iw1tv")
+}
+
+[sub_resource type="Animation" id="Animation_jdulp"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.139999, 14.699999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ig07b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kx1d6"]
+_data = {
+&"BirdPath": SubResource("Animation_jdulp"),
+&"RESET": SubResource("Animation_ig07b")
+}
+
+[sub_resource type="Animation" id="Animation_kx1d6"]
+resource_name = "BirdStarters"
+length = 12.2
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D2/PathFollow2D/BirdPathAnim2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D3/PathFollow2D/BirdPathAnim3")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D4/PathFollow2D/BirdPathAnim4")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(12.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Entities/Characters/Enemies/Commons/BirdStartAnim")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(12.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Delete"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D1/PathFollow2D/BirdPathAnim")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bp42k"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bp42k"]
+_data = {
+&"BirdStarters": SubResource("Animation_kx1d6"),
+&"RESET": SubResource("Animation_bp42k")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrqul"]
+size = Vector2(16, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_umhcj"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7wuw"]
+size = Vector2(8, 8)
+
+[sub_resource type="Animation" id="Animation_msu4b"]
+resource_name = "HurryUp"
+length = 2.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["HURRY UP!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.9, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0), Color(1, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.70000005, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(96, 40)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(248, 88)]
+}
+
+[sub_resource type="Animation" id="Animation_26wyn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_s1qgh"]
+resource_name = "StageClear"
+length = 6.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.65, 3.3, 3.96),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["CLEARED!", "CLEARED.", "CLEARED..", "CLEARED...?"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("PromptLabel:anchors_preset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_21ycs"]
+resource_name = "Start"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["START"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.75000006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_victo"]
+resource_name = "TooBad"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PromptLabel:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["TOO BAD!!"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.7490196)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PromptLabel:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(120, 88)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(144, 40)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("PromptLabel:anchors_preset")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gv4kx"]
+_data = {
+&"HurryUp": SubResource("Animation_msu4b"),
+&"RESET": SubResource("Animation_26wyn"),
+&"StageClear": SubResource("Animation_s1qgh"),
+&"Start": SubResource("Animation_21ycs"),
+&"TooBad": SubResource("Animation_victo")
+}
+
+[node name="Giana_10G_L2" unique_id=182671849 instance=ExtResource("1_msu4b")]
+_playerScene = ExtResource("2_26wyn")
+_playerFacesLeft = true
+_levelMusicTrack = ExtResource("3_s1qgh")
+StartTime = 70.0
+
+[node name="MovingGirderStarter" type="Node" parent="." index="0" unique_id=1688066523 node_paths=PackedStringArray("_platform3Anim", "_platform4Anim", "_conveyorMoveAnim")]
+script = ExtResource("4_21ycs")
+_platform3Anim = NodePath("../Entities/Gizmos/MovingGirders/GirderPlatform3Group/Platform3Anim")
+_platform4Anim = NodePath("../Entities/Gizmos/MovingGirders/GirderPlatform4Group/Platform4Anim")
+_conveyorMoveAnim = NodePath("../Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorMoveAnim")
+
+[node name="LevelTileMap1" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="0" unique_id=994874330]
+tile_map_data = PackedByteArray("AAAUAP7/AAAEAAAAAAAVAP7/AAAEAAAAAAAWAP7/AAAEAAAAAAAXAP7/AAAEAAAAAAAYAP7/AAAEAAAAAAAZAP7/AAAEAAAAAAAZAP//AAAQAA8AAAAXAP//AAAQAA8AAAAAAOz/AAAEAAAAAAABAOz/AAAEAAAAAAACAOz/AAAEAAAAAAADAOz/AAAEAAAAAAAEAOz/AAAEAAAAAAAFAOz/AAAEAAAAAAAGAOz/AAAEAAAAAAAHAOz/AAAEAAAAAAAIAOz/AAAEAAAAAAAJAOz/AAAEAAAAAAAKAOz/AAAEAAAAAAALAOz/AAAEAAAAAAAGAOX/AAAQAA8AAQAGAOb/AAAQAA8AAQAGAOf/AAAQAA8AAQAGAOj/AAAQAA8AAQAGAOn/AAAQAA8AAQAGAOr/AAAEAAAAAQAGAOv/AAAQAA8AAAAHAOr/AAAEAAAAAQAIAOX/AAAQAA8AAQAIAOb/AAAQAA8AAQAIAOf/AAAQAA8AAQAIAOj/AAAQAA8AAQAIAOn/AAAQAA8AAQAIAOr/AAAEAAAAAQAIAOv/AAAQAA8AAAAJAOn/AAAEAAAAAAAKAOn/AAAEAAAAAAALAOn/AAAEAAAABAALAOr/AAAAAA8AAQALAOv/AAAAAA8AAQACAPb/AAAEAAAAAAABAPb/AAAEAAAAAAAAAPb/AAAEAAAAAAABAPT/AAAEAAAAAAACAPT/AAAEAAAAAAADAPT/AAAEAAAAAAAEAPT/AAAEAAAAAAAFAPT/AAAEAAAAAAAGAPT/AAAEAAAAAAAFAPL/AAAEAAAAAAAGAPL/AAAEAAAAAAAHAPL/AAAEAAAAAAAHAPj/AAAEAAAAAAAIAPj/AAAEAAAAAAAJAPj/AAAEAAAAAAAKAPj/AAAEAAAAAAALAPj/AAAEAAAAAAAMAPj/AAAEAAAAAAAOAPb/AAAEAAAAAAAPAPb/AAAEAAAAAAARAPT/AAAEAAAAAAASAPT/AAAEAAAAAAATAPL/AAAEAAAAAAAUAPL/AAAEAAAAAAAvAPn/AAAEAAAAAAArAO//AAAEAAAAAAAsAO//AAAEAAAAAAAtAO//AAAEAAAAAgAuAO//AAAEAAAAAAAtAPD/AAAAAA8AAAAtAPH/AAAAAA8AAAAtAPL/AAAAAA8AAAAtAPP/AAAAAA8AAAAtAPT/AAAAAA8AAAAtAPX/AAAAAA8AAAAtAPb/AAAAAA8AAAAtAPf/AAAAAA8AAAAtAPj/AAAAAA8AAAAtAPn/AAAAAA8AAAAtAPr/AAAAAA8AAAAtAPv/AAAAAA8AAAAtAPz/AAAAAA8AAAAtAP3/AAAAAA8AAAAtAP7/AAAAAA8AAAAtAP//AAAEAAAAAAAuAP//AAAEAAAAAAAvAP//AAAEAAAAAAAVAOf/AAAEAAAAAAAUAOf/AAAEAAAAAAAJAPL/AAAAAAcAAGAJAPH/AAAAAAcAAGAJAPD/AAAAAAcAAGAJAO//AAAAAAcAAGAJAO7/AAAAAAcAAGAJAO3/AAAAAAcAAGAHAPP/AAAAAAcAADALAO3/AAAAAAcAAFALAO7/AAAAAAcAAFALAO//AAAAAAcAAFALAPD/AAAAAAcAAFALAPH/AAAAAAcAAFALAPL/AAAAAAcAAFA=")
+
+[node name="SpikeWall" type="Polygon2D" parent="Environment" parent_id_path=PackedInt32Array(1656048164) index="8" unique_id=1821847976]
+polygon = PackedVector2Array(80, -104, 88, -104, 88, -152, 80, -152)
+
+[node name="Steamrollers" type="Node2D" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="1" unique_id=2129844550]
+
+[node name="Steamroller1Remote" type="RemoteTransform2D" parent="Entities/Gizmos/Steamrollers" index="0" unique_id=1603907582]
+position = Vector2(40, 32)
+remote_path = NodePath("../Steamroller1")
+update_rotation = false
+update_scale = false
+
+[node name="Steamroller1" parent="Entities/Gizmos/Steamrollers" index="1" unique_id=1792062339 instance=ExtResource("6_gv4kx")]
+position = Vector2(40, 32)
+
+[node name="Steamroller2Remote" type="RemoteTransform2D" parent="Entities/Gizmos/Steamrollers" index="2" unique_id=1511496071]
+position = Vector2(216, 32)
+remote_path = NodePath("../Steamroller2")
+update_rotation = false
+update_scale = false
+
+[node name="Steamroller2" parent="Entities/Gizmos/Steamrollers" index="3" unique_id=910663437 instance=ExtResource("6_gv4kx")]
+position = Vector2(216, 32)
+
+[node name="SteamrollerAnim" type="AnimationPlayer" parent="Entities/Gizmos/Steamrollers" index="4" unique_id=1723449048]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_qatgi")
+autoplay = &"SteamrollerMoveRL"
+
+[node name="MovingGirders" type="Node2D" parent="Entities/Gizmos" parent_id_path=PackedInt32Array(1465137261) index="2" unique_id=494672274]
+
+[node name="GirderPlatform1Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="0" unique_id=960952620]
+
+[node name="GirderPlatform1Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group" index="0" unique_id=225808599]
+curve = SubResource("Curve2D_n4u6k")
+
+[node name="PathFollow" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1Path" index="0" unique_id=1731616215]
+position = Vector2(20, -16)
+rotation = -1.5707964
+progress = 8.0
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1Path/PathFollow" index="0" unique_id=953116523]
+remote_path = NodePath("../../../GirderPlatform1")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform1" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group" index="1" unique_id=408297557]
+position = Vector2(20, -16)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1" index="0" unique_id=692607942]
+z_index = -1
+position = Vector2(4, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("7_dvluc")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1" index="1" unique_id=365377764]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwADAP//AAAEAAAAAwA=")
+tile_set = ExtResource("8_dpj0f")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group/GirderPlatform1" index="2" unique_id=1635001981]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_5mj74")
+one_way_collision = true
+
+[node name="Platform1Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Group" index="2" unique_id=305535054]
+root_node = NodePath("../..")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_epy13")
+autoplay = &"GirderPlatformsMove"
+
+[node name="GirderPlatform2Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="1" unique_id=288657785]
+
+[node name="GirderPlatform2Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group" index="0" unique_id=346209934]
+curve = SubResource("Curve2D_87yhm")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2Path" index="0" unique_id=1736126942]
+position = Vector2(220, -48)
+rotation = 1.5707964
+progress = 32.0
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2Path/PathFollow2D" index="0" unique_id=944168714]
+remote_path = NodePath("../../../GirderPlatform2")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform2" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group" index="1" unique_id=1909082779]
+position = Vector2(220, -48)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2" index="0" unique_id=277472421]
+z_index = -1
+position = Vector2(0, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("7_dvluc")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2" index="1" unique_id=1859097167]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwA=")
+tile_set = ExtResource("8_dpj0f")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group/GirderPlatform2" index="2" unique_id=1307368108]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_epy13")
+one_way_collision = true
+
+[node name="Platform2Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform2Group" index="2" unique_id=1715744987]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_w7wuw")
+autoplay = &"PlatformMove"
+
+[node name="GirderPlatform3Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="2" unique_id=835218024]
+
+[node name="GirderPlatform3Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="0" unique_id=815619447]
+position = Vector2(8, -8)
+curve = SubResource("Curve2D_60k63")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3Path" index="0" unique_id=1852008504]
+position = Vector2(298.4, -144)
+progress = 18.659046
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3Path/PathFollow2D" index="0" unique_id=692191386]
+remote_path = NodePath("../../../GirderPlatform3")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform3" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="1" unique_id=401638166]
+position = Vector2(306.4, -152)
+scale = Vector2(0.99999994, 0.99999994)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3" index="0" unique_id=1040942192]
+z_index = -1
+position = Vector2(-4, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("7_dvluc")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3" index="1" unique_id=2126640328]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwD/////AAAEAAAAAwA=")
+tile_set = ExtResource("8_dpj0f")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group/GirderPlatform3" index="2" unique_id=485971196]
+position = Vector2(-4, -4)
+shape = SubResource("RectangleShape2D_60k63")
+one_way_collision = true
+
+[node name="Platform3Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform3Group" index="2" unique_id=626315821]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_umhcj")
+autoplay = &"PlatformMove"
+
+[node name="GirderPlatform4Group" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="3" unique_id=1968731904]
+
+[node name="GirderPlatform4Path" type="Path2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="0" unique_id=1317304982]
+curve = SubResource("Curve2D_gh7wo")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4Path" index="0" unique_id=145148698]
+position = Vector2(229.6, -160)
+rotation = 1.5707964
+progress = 17.232527
+rotates = false
+cubic_interp = false
+loop = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4Path/PathFollow2D" index="0" unique_id=931120067]
+remote_path = NodePath("../../../GirderPlatform4")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform4" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="1" unique_id=712977204]
+position = Vector2(229.6, -160)
+scale = Vector2(0.99999994, 0.99999994)
+collision_mask = 0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4" index="0" unique_id=382540801]
+z_index = -1
+position = Vector2(4.7683716e-07, -7.947399)
+scale = Vector2(1, 13)
+texture = ExtResource("7_dvluc")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4" index="1" unique_id=450910506]
+position = Vector2(-12, 0)
+tile_map_data = PackedByteArray("AAAAAP//AAAEAAAAAwABAP//AAAEAAAAAwACAP//AAAEAAAAAwA=")
+tile_set = ExtResource("8_dpj0f")
+
+[node name="Collision" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group/GirderPlatform4" index="2" unique_id=1865049483]
+position = Vector2(0, -4)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_gh7wo")
+one_way_collision = true
+
+[node name="Platform4Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform4Group" index="2" unique_id=1195168606]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_884oy")
+autoplay = &"PlatformMove"
+
+[node name="ConveyorBeltGroup" type="Node2D" parent="Entities/Gizmos/MovingGirders" index="4" unique_id=1472675295 node_paths=PackedStringArray("MoveAnim")]
+script = ExtResource("9_sxe4l")
+MoveAnim = NodePath("ConveyorMoveAnim")
+
+[node name="ConveyorPath" type="Path2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="0" unique_id=395021964]
+curve = SubResource("Curve2D_w7wuw")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorPath" index="0" unique_id=974408466]
+position = Vector2(160, -163.19789)
+rotation = -1.5707964
+progress = 51.2
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorPath/PathFollow2D" index="0" unique_id=330374907]
+remote_path = NodePath("../../../ConveyorBelt")
+update_rotation = false
+update_scale = false
+
+[node name="ConveyorBelt" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="1" unique_id=1279322400 instance=ExtResource("10_4efd5")]
+position = Vector2(160, -163.19789)
+Speed = 24.0
+AlternateInterval = 4.0
+
+[node name="Chain" type="Sprite2D" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup/ConveyorBelt" index="5" unique_id=1790961206]
+z_index = -1
+position = Vector2(20, 3.8146973e-06)
+scale = Vector2(1, 13)
+texture = ExtResource("7_dvluc")
+centered = false
+offset = Vector2(-8, -16)
+
+[node name="ConveyorMoveAnim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="2" unique_id=2125611261]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_debbh")
+autoplay = &"ConveyorBeltMove"
+
+[node name="Soda" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("11_v55gw")]
+position = Vector2(56, -112)
+
+[node name="CollisionShape2D" parent="Entities/PickUps/Collectibles/Soda" index="1" unique_id=1731533093]
+position = Vector2(0, -12)
+
+[node name="Diamond" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="1" unique_id=1051439714 instance=ExtResource("12_6w5nh")]
+position = Vector2(376, -56)
+
+[node name="Gum" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="2" unique_id=2117368261 instance=ExtResource("13_3yp0s")]
+position = Vector2(168, -200)
+
+[node name="CollisionShape2D" parent="Entities/PickUps/Collectibles/Gum" index="1" unique_id=1731533093]
+position = Vector2(0, -12)
+
+[node name="DonkeyKong" parent="Entities/Characters/Enemies/Bosses" parent_id_path=PackedInt32Array(740166802) index="0" unique_id=1080315517]
+position = Vector2(24, -160)
+StartingState = 0
+EscapeDirection = 1
+
+[node name="BirdPath2D1" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="0" unique_id=1127315411]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D1" index="0" unique_id=23795111]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D1/PathFollow2D" index="0" unique_id=1237332657 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_lh0au")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D1/PathFollow2D" index="1" unique_id=1922356852]
+root_node = NodePath("../../..")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_2hvv8")
+
+[node name="BirdPath2D2" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="1" unique_id=2030184589]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D2" index="0" unique_id=1956100402]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D2/PathFollow2D" index="0" unique_id=1970118249 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_lh0au")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim2" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D2/PathFollow2D" index="1" unique_id=1003880298]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_xv81q")
+
+[node name="BirdPath2D3" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="2" unique_id=1066960580]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D3" index="0" unique_id=1168937901]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D3/PathFollow2D" index="0" unique_id=368277156 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_lh0au")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim3" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D3/PathFollow2D" index="1" unique_id=1367159588]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_jdulp")
+
+[node name="BirdPath2D4" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="3" unique_id=1193770915]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D4" index="0" unique_id=2143082299]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D4/PathFollow2D" index="0" unique_id=1990241227 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_lh0au")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim4" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D4/PathFollow2D" index="1" unique_id=1503288430]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_kx1d6")
+
+[node name="BirdStartAnim" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="4" unique_id=756062434]
+root_node = NodePath("../../../../..")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_bp42k")
+autoplay = &"BirdStarters"
+script = ExtResource("15_m4iko")
+
+[node name="Eggs" type="Node2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="5" unique_id=641912518]
+
+[node name="BirdFlaps" type="AudioStreamPlayer" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="6" unique_id=524067581]
+stream = ExtResource("16_kkfey")
+bus = &"Sound"
+
+[node name="Maria" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("17_x6ydy")]
+position = Vector2(56, -176)
+
+[node name="HelpSprite" parent="Entities/Characters/Captive/Maria" index="1" unique_id=300254388]
+position = Vector2(32, 0)
+
+[node name="Heart" parent="Entities/Characters" parent_id_path=PackedInt32Array(1831603815) index="3" unique_id=901163973]
+position = Vector2(80, -192)
+
+[node name="PlayerSpawn" parent="." index="4" unique_id=248777857]
+position = Vector2(192, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelCamera/PitArea" parent_id_path=PackedInt32Array(1863843188) index="1" unique_id=1780243598]
+position = Vector2(84, -144)
+shape = SubResource("RectangleShape2D_qrqul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LevelCamera/PitArea" parent_id_path=PackedInt32Array(1863843188) index="2" unique_id=1333087256]
+position = Vector2(60, -112)
+shape = SubResource("RectangleShape2D_umhcj")
+
+[node name="GoalArea" parent="." index="6" unique_id=1127886652]
+position = Vector2(88, -184)
+
+[node name="GoalDetect" parent="GoalArea" index="0" unique_id=431830692]
+position = Vector2(4, -4)
+shape = SubResource("RectangleShape2D_w7wuw")
+
+[node name="PromptAnim" parent="HUD/MainHudControl/LevelPrompt" parent_id_path=PackedInt32Array(67024084) index="1" unique_id=1226467105]
+libraries/ = SubResource("AnimationLibrary_gv4kx")
+
+[node name="StageName" parent="HUD/MainHudControl/LevelHudControl/StageControl" parent_id_path=PackedInt32Array(431331789) index="2" unique_id=2101962694]
+text = "10G"
+
+[node name="LoopNumber" parent="HUD/MainHudControl/LevelHudControl/LoopControl" parent_id_path=PackedInt32Array(2134337103) index="2" unique_id=757781299]
+text = "2"
+
+[editable path="Entities/PickUps/Collectibles/Soda"]
+[editable path="Entities/PickUps/Collectibles/Gum"]
+[editable path="Entities/Characters/Captive/Maria"]

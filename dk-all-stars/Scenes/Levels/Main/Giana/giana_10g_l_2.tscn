@@ -14,6 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://cfcd8o7ijm6bl" path="res://Scenes/PickUps/Collectibles/Maria/diamond.tscn" id="11_kx1d6"]
 [ext_resource type="PackedScene" uid="uid://bf501c4qgvan0" path="res://Scenes/PickUps/Collectibles/Maria/gum.tscn" id="12_bp42k"]
 [ext_resource type="PackedScene" uid="uid://bciwe378viuqe" path="res://Scenes/Characters/NPCs/maria.tscn" id="13_b0x0w"]
+[ext_resource type="PackedScene" uid="uid://do7ufmrj2f3y3" path="res://Scenes/Characters/Enemies/Commons/mama_bird.tscn" id="14_2hvv8"]
+[ext_resource type="Script" uid="uid://c8fi1j426c85x" path="res://Scripts/Levels/Main/Giana/10G/BirdStarter.cs" id="15_xv81q"]
+[ext_resource type="AudioStream" uid="uid://bdi5ws1eta3mw" path="res://Assets/Audio/SFX/NES_DK_Jr_Flap.ogg" id="16_cm2oc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87yhm"]
 size = Vector2(8, 4)
@@ -369,6 +372,520 @@ _data = {
 &"RESET": SubResource("Animation_s6sm6")
 }
 
+[sub_resource type="Curve2D" id="Curve2D_xv81q"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -40, -200, 0, 0, 0, 0, 116, -200, 0, 0, 0, 0, 116, -128, 0, 0, 0, 0, 228, -128, 0, 0, 0, 0, 228, -200, 0, 0, 0, 0, 304, -200, 0, 0, 0, 0, 304, -128, 0, 0, 0, 0, 336, -128, 0, 0, 0, 0, 336, -200, 0, 0, 0, 0, 392, -200)
+}
+point_count = 10
+
+[sub_resource type="Animation" id="Animation_2hvv8"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirdPath2D1/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BirdPath2D1/PathFollow2D/MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BirdPath2D1/PathFollow2D/MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_cm2oc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BirdPath2D1/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hvv8"]
+_data = {
+&"BirdPath": SubResource("Animation_2hvv8"),
+&"RESET": SubResource("Animation_cm2oc")
+}
+
+[sub_resource type="Animation" id="Animation_xv81q"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.139999, 14.699999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2qlfv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xv81q"]
+_data = {
+&"BirdPath": SubResource("Animation_xv81q"),
+&"RESET": SubResource("Animation_2qlfv")
+}
+
+[sub_resource type="Animation" id="Animation_i8ogf"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.139999, 14.699999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_iw1tv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jdulp"]
+_data = {
+&"BirdPath": SubResource("Animation_i8ogf"),
+&"RESET": SubResource("Animation_iw1tv")
+}
+
+[sub_resource type="Animation" id="Animation_jdulp"]
+resource_name = "BirdPath"
+length = 16.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MamaBird")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5, 5.06, 7.55, 9.14, 10.84, 12.45, 13.14, 14.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [1],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}, {
+"args": [2],
+"method": &"StateHandler"
+}, {
+"args": [0],
+"method": &"StateHandler"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MamaBird")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.06, 7.55, 9.14, 12.45, 13.139999, 14.699999),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}, {
+"args": [],
+"method": &"DropEgg"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ig07b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kx1d6"]
+_data = {
+&"BirdPath": SubResource("Animation_jdulp"),
+&"RESET": SubResource("Animation_ig07b")
+}
+
+[sub_resource type="Animation" id="Animation_kx1d6"]
+resource_name = "BirdStarters"
+length = 12.2
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D2/PathFollow2D/BirdPathAnim2")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(4.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D3/PathFollow2D/BirdPathAnim3")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(8.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D4/PathFollow2D/BirdPathAnim4")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(12.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Entities/Characters/Enemies/Commons/BirdStartAnim")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(12.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Delete"
+}]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Entities/Characters/Enemies/Commons/BirdPath2D1/PathFollow2D/BirdPathAnim")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"BirdPath", -1, 1.0, false],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_bp42k"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bp42k"]
+_data = {
+&"BirdStarters": SubResource("Animation_kx1d6"),
+&"RESET": SubResource("Animation_bp42k")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qrqul"]
 size = Vector2(16, 40)
 
@@ -637,7 +1154,7 @@ update_rotation = false
 update_scale = false
 
 [node name="ConveyorBelt" parent="Entities/Gizmos/MovingGirders/ConveyorBeltGroup" index="1" unique_id=1279322400 instance=ExtResource("9_jdulp")]
-position = Vector2(136, -152)
+position = Vector2(160, -163.19789)
 Speed = 24.0
 AlternateInterval = 4.0
 
@@ -673,6 +1190,80 @@ position = Vector2(0, -12)
 position = Vector2(24, -160)
 StartingState = 0
 EscapeDirection = 1
+
+[node name="BirdPath2D1" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="0" unique_id=1127315411]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D1" index="0" unique_id=23795111]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D1/PathFollow2D" index="0" unique_id=1237332657 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_2hvv8")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D1/PathFollow2D" index="1" unique_id=1922356852]
+root_node = NodePath("../../..")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_2hvv8")
+
+[node name="BirdPath2D2" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="1" unique_id=2030184589]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D2" index="0" unique_id=1956100402]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D2/PathFollow2D" index="0" unique_id=1970118249 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_2hvv8")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim2" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D2/PathFollow2D" index="1" unique_id=1003880298]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_xv81q")
+
+[node name="BirdPath2D3" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="2" unique_id=1066960580]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D3" index="0" unique_id=1168937901]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D3/PathFollow2D" index="0" unique_id=368277156 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_2hvv8")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim3" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D3/PathFollow2D" index="1" unique_id=1367159588]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_jdulp")
+
+[node name="BirdPath2D4" type="Path2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="3" unique_id=1193770915]
+curve = SubResource("Curve2D_xv81q")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Entities/Characters/Enemies/Commons/BirdPath2D4" index="0" unique_id=2143082299]
+position = Vector2(-40, -200)
+rotates = false
+loop = false
+
+[node name="MamaBird" parent="Entities/Characters/Enemies/Commons/BirdPath2D4/PathFollow2D" index="0" unique_id=1990241227 node_paths=PackedStringArray("eggGroup") instance=ExtResource("14_2hvv8")]
+eggGroup = NodePath("../../../Eggs")
+
+[node name="BirdPathAnim4" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons/BirdPath2D4/PathFollow2D" index="1" unique_id=1503288430]
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_kx1d6")
+
+[node name="BirdStartAnim" type="AnimationPlayer" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="4" unique_id=756062434]
+root_node = NodePath("../../../../..")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_bp42k")
+autoplay = &"BirdStarters"
+script = ExtResource("15_xv81q")
+
+[node name="Eggs" type="Node2D" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="5" unique_id=641912518]
+
+[node name="BirdFlaps" type="AudioStreamPlayer" parent="Entities/Characters/Enemies/Commons" parent_id_path=PackedInt32Array(1100678762) index="6" unique_id=524067581]
+stream = ExtResource("16_cm2oc")
+bus = &"Sound"
 
 [node name="Maria" parent="Entities/Characters/Captive" parent_id_path=PackedInt32Array(1853909349) index="0" unique_id=1482072916 instance=ExtResource("13_b0x0w")]
 position = Vector2(56, -176)

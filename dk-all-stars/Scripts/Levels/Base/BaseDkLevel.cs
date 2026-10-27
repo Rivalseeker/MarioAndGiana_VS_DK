@@ -251,7 +251,7 @@ public partial class BaseDkLevel : Node2D
 
     public void OnPitAreaAreaEntered(Node2D area)
     {
-        if (area.Name == "Egg")
+        if (area is Egg)
         {
             area.QueueFree();
         }

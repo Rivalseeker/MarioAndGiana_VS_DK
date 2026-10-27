@@ -3,7 +3,8 @@ using System;
 
 public partial class Egg : Area2D
 {
-    private float fallSpeed = 30f;
+    [Export] private float fallSpeed = 40f;
+    // [Export] private AudioStreamPlayer dropSound;
 
 
 
@@ -14,6 +15,7 @@ public partial class Egg : Area2D
         if (this != null)
         {
             this.AreaEntered += OnPlayerHurtAreaEntered;
+            // dropSound.Play();
         }
     }
 
@@ -22,7 +24,9 @@ public partial class Egg : Area2D
     {
         var velocity = Vector2.Zero;
 
-        velocity.Y = -fallSpeed;
+        velocity.Y = fallSpeed;
+
+        Position += velocity * (float)delta;
     }
 
 

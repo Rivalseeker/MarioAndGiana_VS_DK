@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://gd6pp22aieqq" path="res://Scripts/Characters/Enemies/Commons/MamaBird.cs" id="1_2prjq"]
 [ext_resource type="Texture2D" uid="uid://6ntx5enmf8jt" path="res://Assets/Art/Characters/Enemies/Commons/MamaBird.png" id="1_tpe03"]
+[ext_resource type="PackedScene" uid="uid://upt1gjlqiqg1" path="res://Scenes/Gizmos/Hazards/egg.tscn" id="2_5qe4u"]
+[ext_resource type="AudioStream" uid="uid://dshfutu3ejjrl" path="res://Assets/Audio/SFX/NES_DK_Jr_Drop.ogg" id="4_58mvq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tpe03"]
 size = Vector2(6, 4)
@@ -92,6 +94,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Swoop:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_tpe03"]
 resource_name = "SwoopDown"
@@ -121,6 +135,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 4)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Swoop:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cmd35"]
 _data = {
@@ -130,13 +156,15 @@ _data = {
 &"SwoopDown": SubResource("Animation_tpe03")
 }
 
-[node name="MamaBird" type="Area2D" unique_id=1237332657 node_paths=PackedStringArray("birdSprite", "birdAnim")]
+[node name="MamaBird" type="Area2D" unique_id=1237332657 node_paths=PackedStringArray("birdSprite", "birdAnim", "eggSpawner")]
 collision_layer = 0
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_2prjq")
 birdSprite = NodePath("Sprite2D")
 birdAnim = NodePath("BirdAnim")
+eggSpawner = NodePath("EggSpawner")
+eggScene = ExtResource("2_5qe4u")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=258220009]
 texture = ExtResource("1_tpe03")
@@ -151,9 +179,9 @@ debug_color = Color(1, 0, 0.17558163, 0.42000002)
 
 [node name="EggSpawner" type="Marker2D" parent="." unique_id=502337449]
 
-[node name="Fly" type="AudioStreamPlayer" parent="." unique_id=737932132]
-
 [node name="Swoop" type="AudioStreamPlayer" parent="." unique_id=22318236]
+stream = ExtResource("4_58mvq")
+bus = &"Sound"
 
 [node name="BirdAnim" type="AnimationPlayer" parent="." unique_id=416027164]
 libraries/ = SubResource("AnimationLibrary_cmd35")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cwqh3kwq6fe5o" path="res://Assets/Art/Hazards/Egg.png" id="1_5alfg"]
 [ext_resource type="Script" uid="uid://bf4oxs7d3sugv" path="res://Scripts/Gizmos/Hazards/Egg.cs" id="1_wbhv0"]
+[ext_resource type="AudioStream" uid="uid://dshfutu3ejjrl" path="res://Assets/Audio/SFX/NES_DK_Jr_Drop.ogg" id="3_wt7y2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wbhv0"]
 size = Vector2(4, 4)
@@ -45,11 +46,11 @@ _data = {
 &"Rotate": SubResource("Animation_wbhv0")
 }
 
-[node name="Egg" type="Area2D" unique_id=773524806]
-collision_layer = 0
+[node name="Egg" type="Area2D" unique_id=773524806 node_paths=PackedStringArray("dropSound")]
+collision_layer = 4
 collision_mask = 2
-monitorable = false
 script = ExtResource("1_wbhv0")
+dropSound = NodePath("DropSound")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1385290548]
 texture = ExtResource("1_5alfg")
@@ -61,3 +62,7 @@ debug_color = Color(0.9999998, 0.01096599, 0.05704254, 0.41960785)
 [node name="EggAnim" type="AnimationPlayer" parent="." unique_id=810265947]
 libraries/ = SubResource("AnimationLibrary_wt7y2")
 autoplay = &"Rotate"
+
+[node name="DropSound" type="AudioStreamPlayer" parent="." unique_id=801634733]
+stream = ExtResource("3_wt7y2")
+bus = &"Sound"
