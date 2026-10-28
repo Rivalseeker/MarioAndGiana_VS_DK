@@ -130,6 +130,10 @@ public partial class BasePlayer : CharacterBody2D
         // Tells MoveAndSlide to automatically keep Mario on the floor 
         // if he walks down a ledge that is 4 pixels or smaller!
         FloorSnapLength = MaxStepHeight;
+
+        // THE MOVING PLATFORM FIX:
+        // Prevents moving platforms from adding their velocity to Mario's jump arc
+        PlatformOnLeave = PlatformOnLeaveEnum.DoNothing;
     }
 
 
@@ -233,6 +237,9 @@ public partial class BasePlayer : CharacterBody2D
         // THE FIX: Instead of checking IsOnWall(), we check if the toe RayCast hit the one-way ledge!
         if (!IsOnFloor() || StepDetector == null || !StepDetector.IsColliding()) return;
 
+        // Ignore moving platforms so StepDetector never lifts the player off an AnimatableBody2D
+        if (StepDetector.GetCollider() is AnimatableBody2D) return;
+
         float moveDir = Input.GetAxis("Left", "Right");
         if (moveDir == 0) return;
 
@@ -256,6 +263,9 @@ public partial class BasePlayer : CharacterBody2D
                     float stepLift = MaxStepHeight - collision.GetTravel().Y;
                     GlobalPosition += new Vector2(0, -stepLift);
                     Velocity = new Vector2(moveDir * WalkSpeed, Velocity.Y);
+                    
+                    // Re-snap to the floor immediately after modifying GlobalPosition
+                    ApplyFloorSnap();
                 }
             }
         }
