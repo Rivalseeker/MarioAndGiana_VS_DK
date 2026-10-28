@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bg5qug4lxohej" path="res://Scenes/PickUps/Collectibles/Maria/soda.tscn" id="7_r61y1"]
 [ext_resource type="PackedScene" uid="uid://cb7mstybyl7be" path="res://Scenes/Gizmos/checkpoint_flag.tscn" id="8_3l17p"]
 [ext_resource type="TileSet" uid="uid://bi7rohw4n748g" path="res://Assets/Art/Tilemaps/dk_nes_tile_set.tres" id="9_3l17p"]
+[ext_resource type="Script" uid="uid://cd6ie4wt66k4y" path="res://Scripts/Levels/Main/Giana/15G/GirderPlatform1.cs" id="9_nkkik"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nkkik"]
 shader = ExtResource("5_typju")
@@ -96,6 +97,47 @@ point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1caxu"]
 size = Vector2(24, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3l17p"]
+size = Vector2(24, 8)
+
+[sub_resource type="Animation" id="Animation_1caxu"]
+resource_name = "GirderMove"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform1Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_r15my"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GirderPlatform1Path/PathFollow2D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_df8aq"]
+_data = {
+&"GirderMove": SubResource("Animation_1caxu"),
+&"RESET": SubResource("Animation_r15my")
+}
 
 [sub_resource type="Animation" id="Animation_r61y1"]
 resource_name = "HurryUp"
@@ -558,6 +600,11 @@ update_scale = false
 
 [node name="CheckpointRemoteTransform" type="RemoteTransform2D" parent="Environment/LevelTileMap1" index="1" unique_id=848509199]
 remote_path = NodePath("../../../Entities/Gizmos/Checkpoints")
+update_rotation = false
+update_scale = false
+
+[node name="MovingGirderRemoteTransform2D" type="RemoteTransform2D" parent="Environment/LevelTileMap1" index="2" unique_id=381164471]
+remote_path = NodePath("../../../Entities/Gizmos/MovingGirders")
 update_rotation = false
 update_scale = false
 
@@ -1056,8 +1103,17 @@ curve = SubResource("Curve2D_nkkik")
 [node name="PathFollow2D" type="PathFollow2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Path" index="0" unique_id=363398469]
 position = Vector2(132, -164)
 
-[node name="GirderPlatform1" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders" index="1" unique_id=1460794319]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1Path/PathFollow2D" index="0" unique_id=884251061]
+remote_path = NodePath("../../../GirderPlatform1")
+update_rotation = false
+update_scale = false
+
+[node name="GirderPlatform1" type="AnimatableBody2D" parent="Entities/Gizmos/MovingGirders" index="1" unique_id=1460794319 node_paths=PackedStringArray("platformTrigger", "platformAnim")]
 position = Vector2(132, -164)
+collision_mask = 0
+script = ExtResource("9_nkkik")
+platformTrigger = NodePath("GirderPlatformTrigger")
+platformAnim = NodePath("GirderPlatform1Anim")
 
 [node name="GirderTiles" type="TileMapLayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform1" index="0" unique_id=1296351257]
 position = Vector2(-12, -4)
@@ -1067,6 +1123,20 @@ tile_set = ExtResource("9_3l17p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1" index="1" unique_id=603905017]
 shape = SubResource("RectangleShape2D_1caxu")
 one_way_collision = true
+
+[node name="GirderPlatformTrigger" type="Area2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1" index="2" unique_id=1723265008]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="TriggerDetect" type="CollisionShape2D" parent="Entities/Gizmos/MovingGirders/GirderPlatform1/GirderPlatformTrigger" index="0" unique_id=1852002406]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_3l17p")
+
+[node name="GirderPlatform1Anim" type="AnimationPlayer" parent="Entities/Gizmos/MovingGirders/GirderPlatform1" index="3" unique_id=1915631746]
+root_node = NodePath("../..")
+callback_mode_process = 0
+libraries/ = SubResource("AnimationLibrary_df8aq")
 
 [node name="Soda" parent="Entities/PickUps/Collectibles" parent_id_path=PackedInt32Array(754295626) index="0" unique_id=1836820992 instance=ExtResource("7_r61y1")]
 position = Vector2(216, -128)
