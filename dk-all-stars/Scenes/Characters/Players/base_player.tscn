@@ -117,6 +117,9 @@ _data = {
 &"Land": SubResource("Animation_rbu1c")
 }
 
+[sub_resource type="Animation" id="Animation_kjr81"]
+resource_name = "GoldenHammer"
+
 [sub_resource type="Animation" id="Animation_vjqn6"]
 resource_name = "Hammer"
 
@@ -125,6 +128,7 @@ resource_name = "NoHammer"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5knd1"]
 _data = {
+&"GoldenHammer": SubResource("Animation_kjr81"),
 &"Hammer": SubResource("Animation_vjqn6"),
 &"NoHammer": SubResource("Animation_tgnj3")
 }

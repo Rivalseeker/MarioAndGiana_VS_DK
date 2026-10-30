@@ -35,8 +35,8 @@ public partial class PlayerGroundMove : State
 
         // 1. DYNAMIC RAYCAST TOGGLING
         // THE FIX: Prevent raycasts from turning on if the player has the hammer!
-        Player.LadderDetector.Enabled = Input.IsActionPressed("Up") && !Player.HasHammer;
-        Player.LedgeDetector.Enabled = Input.IsActionPressed("Down") && !Player.HasHammer;
+        Player.LadderDetector.Enabled = Input.IsActionPressed("Up") && (!Player.HasHammer && !Player.HasGoldenHammer);
+        Player.LedgeDetector.Enabled = Input.IsActionPressed("Down") && (!Player.HasHammer && !Player.HasGoldenHammer);
         Player.ChestLedgeDetector.Enabled = false;
 
         // Force an immediate physics update on the active rays
@@ -81,7 +81,7 @@ public partial class PlayerGroundMove : State
         // THE FIX: Intercept the Jump button to drop the hammer!
         if (Input.IsActionJustPressed("Jump"))
         {
-            if (Player.HasHammer)
+            if (Player.HasHammer || Player.HasGoldenHammer)
             {
                 // Cancel the hammer! (Because it doesn't call EmitSignal, they won't jump)
                 Player.CancelHammer();

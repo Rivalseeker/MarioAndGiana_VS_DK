@@ -22,6 +22,7 @@ public partial class BaseDkLevel : Node2D
 
     [ExportCategory("Hammer Settings")]
     [Export] private AudioStream _hammerMusicTrack;
+    [Export] private AudioStream _goldenHammerMusicTrack;
     [Export] private PackedScene _smashEffectScene;
 
     [ExportCategory("Node References")]
@@ -77,6 +78,7 @@ public partial class BaseDkLevel : Node2D
 
     // Add state property
     public bool IsHammerActive { get; private set; } = false;
+    public bool IsGoldenHammerActive { get; private set; } = false;
 
     public override void _Ready()
     {
@@ -531,9 +533,19 @@ public partial class BaseDkLevel : Node2D
             MusicManager.Instance.PlayTrack(_hammerMusicTrack);
     }
 
+    public void StartGoldenHammerMusic()
+    {
+        IsGoldenHammerActive = true;
+        UpdateFireballPalettes(true);
+
+        if (MusicManager.Instance != null && _goldenHammerMusicTrack != null)
+            MusicManager.Instance.PlayTrack(_goldenHammerMusicTrack);
+    }
+
     public void StopHammerMusic()
     {
         IsHammerActive = false;
+        IsGoldenHammerActive = false;
         UpdateFireballPalettes(false);
 
         if (MusicManager.Instance != null)

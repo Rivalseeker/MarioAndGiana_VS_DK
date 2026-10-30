@@ -5,10 +5,12 @@ public partial class Hammer : Area2D
     [ExportCategory("Timers")]
     [Export] public float ActiveTime = 8.0f;
     [Export] public float WarningTime = 2.0f; // When it starts flashing/playing "HammerRunningOut"
+    [Export] public bool isGoldenHammer = false;
 
     [ExportCategory("Node References")]
     [Export] public Area2D SmashHitbox;
     [Export] public Sprite2D HammerSprite;
+    [Export] public Sprite2D GoldenHammerSprite;
     [Export] public AnimationPlayer HammerAnim;
 
     private BasePlayer _wielder;
@@ -30,8 +32,22 @@ public partial class Hammer : Area2D
             SmashHitbox.SetDeferred(Area2D.PropertyName.Monitoring, false); 
         }
 
-        if (HammerAnim != null && HammerAnim.HasAnimation("Stationary"))
-            HammerAnim.Play("Stationary");
+        // 1. Immediately enforce correct sprite visibility in code
+        UpdateSpriteVisibility();
+
+        // 2. Queue the stationary animation and force-evaluate frame 0 immediately
+        string stationaryAnim = isGoldenHammer ? "GoldenStationary" : "NormalStationary";
+        if (HammerAnim != null && HammerAnim.HasAnimation(stationaryAnim))
+        {
+            HammerAnim.Play(stationaryAnim);
+            HammerAnim.Advance(0); // Flushes all animation keyframes immediately before the level freezes
+        }
+    }
+
+    private void UpdateSpriteVisibility()
+    {
+        if (HammerSprite != null) HammerSprite.Visible = !isGoldenHammer;
+        if (GoldenHammerSprite != null) GoldenHammerSprite.Visible = isGoldenHammer;
     }
 
     private void OnPickup(Node2D body)
@@ -43,7 +59,7 @@ public partial class Hammer : Area2D
             // ==========================================
             // THE FIX: Check if the player already has a hammer
             // ==========================================
-            if (player.HasHammer)
+            if (player.HasHammer || player.HasGoldenHammer)
             {
                 // Find the currently equipped hammer on the player and reset it
                 foreach (Node child in player.GetChildren())
@@ -65,7 +81,17 @@ public partial class Hammer : Area2D
             // Normal pickup logic continues for empty-handed players
             _isEquipped = true;
             _wielder = player;
-            player.HasHammer = true;
+            
+            if (!isGoldenHammer)
+            {
+                player.HasHammer = true;
+                player.HasGoldenHammer = false;
+            }
+            else
+            {
+                player.HasHammer = false;
+                player.HasGoldenHammer = true;
+            }
 
             if (!player.IsOnFloor())
             {
@@ -84,11 +110,28 @@ public partial class Hammer : Area2D
 
             CallDeferred(MethodName.ReparentToWielder, player);
 
-            if (HammerAnim != null && HammerAnim.HasAnimation("Active")) HammerAnim.Play("Active");
+            if (!isGoldenHammer)
+            {
+                if (HammerAnim != null && HammerAnim.HasAnimation("NormalActive")) HammerAnim.Play("NormalActive");   
+            }
+            else
+            {
+                if (HammerAnim != null && HammerAnim.HasAnimation("GoldenActive")) HammerAnim.Play("GoldenActive");
+            }
             
-            // Tell the Level to swap the music
-            BaseDkLevel level = GetLevel();
-            if (level != null) level.StartHammerMusic();
+            if (!isGoldenHammer)
+            {
+                // Tell the Level to swap the music
+                BaseDkLevel level = GetLevel();
+                if (level != null) level.StartHammerMusic();
+            }
+            else
+            {
+                // Tell the Level to swap the music
+                BaseDkLevel level = GetLevel();
+                if (level != null) level.StartGoldenHammerMusic();
+            }
+            
 
             StartExpiration();
         }
@@ -119,6 +162,7 @@ public partial class Hammer : Area2D
             }
             
             if (HammerSprite != null) HammerSprite.FlipH = _wielder.FacingDirection < 0;
+            if (GoldenHammerSprite != null) GoldenHammerSprite.FlipH = _wielder.FacingDirection < 0;
 
             // ==========================================
             // NEW: MANUAL TIMER TRACKING
@@ -132,8 +176,18 @@ public partial class Hammer : Area2D
                 if (!_warningPlayed && _currentActiveTime <= WarningTime)
                 {
                     _warningPlayed = true;
-                    if (HammerAnim != null && HammerAnim.HasAnimation("HammerRunningOut"))
-                        HammerAnim.Play("HammerRunningOut");
+                    
+                    if (!isGoldenHammer)
+                    {
+                        if (HammerAnim != null && HammerAnim.HasAnimation("NormalHammerRunningOut"))
+                        HammerAnim.Play("NormalHammerRunningOut");
+                    }
+                    else
+                    {
+                        if (HammerAnim != null && HammerAnim.HasAnimation("GoldenHammerRunningOut"))
+                        HammerAnim.Play("GoldenHammerRunningOut");
+                    }
+                    
                 }
 
                 // 2. Check if the time has completely run out
@@ -162,10 +216,21 @@ public partial class Hammer : Area2D
         _isExpiring = true;
 
         // Force the active animation to replay from the beginning
-        if (HammerAnim != null && HammerAnim.HasAnimation("Active"))
+        if (!isGoldenHammer)
         {
-            HammerAnim.Play("Active");
+            if (HammerAnim != null && HammerAnim.HasAnimation("NormalActive"))
+            {
+                HammerAnim.Play("NormalActive");
+            }
         }
+        else
+        {
+            if (HammerAnim != null && HammerAnim.HasAnimation("GoldenActive"))
+            {
+                HammerAnim.Play("GoldenActive");
+            }
+        }
+        
     }
 
     private void ExpireHammer()

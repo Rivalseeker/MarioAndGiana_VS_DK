@@ -102,6 +102,7 @@ public partial class BasePlayer : CharacterBody2D
     // HAMMER & WEAPON STATE
     // ==========================================
     public bool HasHammer { get; set; } = false;
+    public bool HasGoldenHammer { get; set; } = false;
 
     [ExportCategory("Hammer Sprites")]
     [Export] public Sprite2D PlayerSpriteHammerArms1;
@@ -143,7 +144,7 @@ public partial class BasePlayer : CharacterBody2D
     if (_landingTimer > 0)
     {
         // Revert immediately if the hammer is grabbed during the 0.1s window
-        if (HasHammer)
+        if (HasHammer || HasGoldenHammer)
         {
             RevertLandingVisual();
         }
@@ -160,7 +161,7 @@ public partial class BasePlayer : CharacterBody2D
     }
 
     // ARM VISIBILITY LOGIC (Keep your existing code here)
-    if (HasHammer && PlayerHammerAnim != null && PlayerHammerAnim.AssignedAnimation == "Hammer")
+    if ((HasHammer || HasGoldenHammer) && PlayerHammerAnim != null && (PlayerHammerAnim.AssignedAnimation == "Hammer" || PlayerHammerAnim.AssignedAnimation == "GoldenHammer"))
     {
         int frame = _playerSprite.Frame;
         
@@ -406,7 +407,7 @@ public partial class BasePlayer : CharacterBody2D
     public void TriggerLandingVisual()
     {
         // Do not occur if wielding a hammer
-        if (HasHammer) return; 
+        if (HasHammer || HasGoldenHammer) return; 
         
         _landingTimer = 0.1;
         if (_playerSprite != null) _playerSprite.Visible = false;
@@ -505,9 +506,11 @@ public partial class BasePlayer : CharacterBody2D
     // ==========================================
     public void PlayAnimation(string animName)
     {
-        if (HasHammer)
+        if (HasHammer || HasGoldenHammer)
         {
-            string hammerAnim = animName + "Hammer";
+            // Map "Idle" to "GroundMoveHammer" since there is no separate "IdleHammer" animation
+            string hammerAnim = (animName == "Idle") ? "GroundMoveHammer" : animName + "Hammer";
+            string swingAnim = HasGoldenHammer ? "GoldenHammer" : "Hammer";
             
             if (animName == "Jump" || animName == "Fall")
             {
@@ -516,10 +519,10 @@ public partial class BasePlayer : CharacterBody2D
             }
             else if (animName == "GroundMove" || animName == "Idle")
             {
-                if (PlayerHammerAnim != null && PlayerHammerAnim.HasAnimation("Hammer"))
+                if (PlayerHammerAnim != null && PlayerHammerAnim.HasAnimation(swingAnim))
                 {
                     // If it was just paused in Idle, this safely resumes it.
-                    PlayerHammerAnim.Play("Hammer");
+                    PlayerHammerAnim.Play(swingAnim);
                 }
             }
 
@@ -527,8 +530,12 @@ public partial class BasePlayer : CharacterBody2D
             {
                 PlayerAnim.Play(hammerAnim);
                 
-                // If Mario was standing still when he grabbed it, instantly pause the swing loop
-                if (animName == "Idle") PauseAnimations(); 
+                // When entering Idle with a hammer, start at 0.3s and pause the legs
+                if (animName == "Idle")
+                {
+                    PlayerAnim.Seek(0.3, true);
+                    PauseAnimations(); 
+                }
                 
                 return;
             }
@@ -539,6 +546,86 @@ public partial class BasePlayer : CharacterBody2D
             PlayerAnim.Play(animName);
         }
     }
+
+    // // ==========================================
+    // // ANIMATION CONTROL
+    // // ==========================================
+    // public void PlayAnimation(string animName)
+    // {
+    //     if (HasHammer)
+    //     {
+    //         string hammerAnim = animName + "Hammer";
+            
+    //         if (animName == "Jump" || animName == "Fall")
+    //         {
+    //             // Stop it entirely in the air. This guarantees it restarts from 0 when hitting the ground!
+    //             PlayerHammerAnim?.Stop();
+    //         }
+    //         else if (animName == "GroundMove" || animName == "Idle")
+    //         {
+                
+    //             if (PlayerHammerAnim != null && PlayerHammerAnim.HasAnimation("Hammer"))
+    //             {
+    //                 // If it was just paused in Idle, this safely resumes it.
+    //                 PlayerHammerAnim.Play("Hammer");
+    //             }
+
+    //             // else if (HasGoldenHammer)
+    //             // {
+    //             //     if (PlayerHammerAnim != null && PlayerHammerAnim.HasAnimation("GoldenHammer"))
+    //             //     {
+    //             //         // If it was just paused in Idle, this safely resumes it.
+    //             //         PlayerHammerAnim.Play("GoldenHammer");
+    //             //     }
+    //             // }
+                
+    //         }
+
+    //         if (PlayerAnim != null && PlayerAnim.HasAnimation(hammerAnim))
+    //         {
+    //             PlayerAnim.Play(hammerAnim);
+                
+    //             // If Mario was standing still when he grabbed it, instantly pause the swing loop
+    //             if (animName == "Idle") PauseAnimations(); 
+                
+    //             return;
+    //         }
+    //     }
+
+    //     if (HasGoldenHammer)
+    //     {
+    //         string hammerAnim = animName + "Hammer";
+            
+    //         if (animName == "Jump" || animName == "Fall")
+    //         {
+    //             // Stop it entirely in the air. This guarantees it restarts from 0 when hitting the ground!
+    //             PlayerHammerAnim?.Stop();
+    //         }
+    //         else if (animName == "GroundMove" || animName == "Idle")
+    //         {
+    //             if (PlayerHammerAnim != null && PlayerHammerAnim.HasAnimation("GoldenHammer"))
+    //             {
+    //                 // If it was just paused in Idle, this safely resumes it.
+    //                 PlayerHammerAnim.Play("GoldenHammer");
+    //             }
+    //         }
+
+    //         if (PlayerAnim != null && PlayerAnim.HasAnimation(hammerAnim))
+    //         {
+    //             PlayerAnim.Play(hammerAnim);
+                
+    //             // If Mario was standing still when he grabbed it, instantly pause the swing loop
+    //             if (animName == "Idle") PauseAnimations(); 
+                
+    //             return;
+    //         }
+    //     }
+
+    //     if (PlayerAnim != null && PlayerAnim.HasAnimation(animName))
+    //     {
+    //         PlayerAnim.Play(animName);
+    //     }
+    // }
 
     // NEW: Cleanly pauses both the body and the hammer!
     public void PauseAnimations()
@@ -558,6 +645,7 @@ public partial class BasePlayer : CharacterBody2D
     public void RemoveHammer()
     {
         HasHammer = false;
+        HasGoldenHammer = false;
         
         // 1. Explicitly ensure the Hammer overlay animation is completely stopped
         PlayerHammerAnim?.Stop();
@@ -599,7 +687,7 @@ public partial class BasePlayer : CharacterBody2D
     // ==========================================
     public void CancelHammer()
     {
-        if (!HasHammer) return;
+        if (!HasHammer && !HasGoldenHammer) return;
 
         // 1. Instantly revert Mario's animations back to normal and set HasHammer to false
         RemoveHammer();

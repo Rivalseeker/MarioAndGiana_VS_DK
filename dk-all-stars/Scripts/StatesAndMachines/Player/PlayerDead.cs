@@ -11,7 +11,7 @@ public partial class PlayerDead : State
         Player.Velocity = Vector2.Zero;
 
         // THE FIX: If the player has the hammer, destroy it and stop the music!
-        if (Player.HasHammer)
+        if (Player.HasHammer || Player.HasGoldenHammer)
         {
             Player.CancelHammer();
         }

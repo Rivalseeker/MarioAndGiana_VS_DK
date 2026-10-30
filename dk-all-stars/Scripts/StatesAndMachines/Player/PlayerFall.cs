@@ -6,15 +6,15 @@ public partial class PlayerFall : State
     private bool _isLethalFall;
     private bool _fallSoundPlayed;
     
-    // NEW: A flag to strictly track if they walked off a ledge
+    // A flag to strictly track if they walked off a ledge
     private bool _walkedOffLedge; 
 
     public override void Enter()
     {
-        // NEW: Instantly revert the visual if the player falls (e.g. walks off a ledge) within the 0.1s window
+        // Instantly revert the visual if the player falls (e.g. walks off a ledge) within the 0.1s window
         Player.RevertLandingVisual();
 
-        if (Player.IsSpinJumping && !Player.HasHammer)
+        if (Player.IsSpinJumping && (!Player.HasHammer && !Player.HasGoldenHammer))
         {
             Player.PlayAnimation("SpinFall");
         }
@@ -23,7 +23,6 @@ public partial class PlayerFall : State
             Player.PlayAnimation("Fall");
         }
         
-        // ... Keep the rest of your Enter() code identical
         _startFallY = Player.GlobalPosition.Y;
         _isLethalFall = false;
         _fallSoundPlayed = false;
@@ -51,8 +50,6 @@ public partial class PlayerFall : State
 
         // 2. Standard Fall Damage Math
         float fallDistance = Player.GlobalPosition.Y - _startFallY;
-        
-        // THE FIX: Use our new flag instead of checking CurrentJumps!
         float safeDistance = _walkedOffLedge ? 17.0f : (Player.JumpHeight + 17.0f);
 
         if (fallDistance > safeDistance)
@@ -76,14 +73,13 @@ public partial class PlayerFall : State
             }
             else
             {
-                // NEW: Trigger the visual swap upon hitting the floor safely
                 Player.TriggerLandingVisual();
 
                 float direction = Input.GetAxis("Left", "Right");
 
                 if (direction == 0)
                 {
-                    if (Player.HasHammer)
+                    if (!Player.HasHammer && !Player.HasGoldenHammer)
                     {
                         Player.PlayAnimation("GroundMove");
                         Player.PlayerAnim?.Seek(0.1f, true);
@@ -91,6 +87,8 @@ public partial class PlayerFall : State
                     }
                     else
                     {
+                        // Calls BasePlayer.PlayAnimation("Idle"), which now plays 
+                        // "GroundMoveHammer", seeks to 0.3s, and pauses the legs!
                         Player.PlayAnimation("Idle");
                     }
                     EmitSignal(SignalName.Transitioned, this, "Idle"); 
@@ -99,40 +97,70 @@ public partial class PlayerFall : State
                 {
                     EmitSignal(SignalName.Transitioned, this, "GroundMove");
                     
-                    if (Player.HasHammer)
+                    if (!Player.HasHammer && !Player.HasGoldenHammer)
                     {
                         Player.PlayerAnim?.Seek(0.1f, true);
+                    }
+                    else
+                    {
+                        // Start "GroundMoveHammer" at the 0.3s mark when landing into a run
+                        Player.PlayerAnim?.Seek(0.3f, true);
                     }
                 }
             }
             return;
         }
 
-        // 3. Hit the Ground[cite: 10]
+        // // 3. Hit the Ground
         // if (Player.IsOnFloor())
         // {
-        //     Player.IsSpinJumping = false;[cite: 10]
+        //     Player.IsSpinJumping = false; 
             
         //     if (_isLethalFall)
         //     {
-        //         EmitSignal(SignalName.Transitioned, this, "Dead");[cite: 10]
+        //         EmitSignal(SignalName.Transitioned, this, "Dead");
         //     }
         //     else
         //     {
-        //         // NEW: Transition directly to the Land state instead of Idle/GroundMove
-        //         EmitSignal(SignalName.Transitioned, this, "Land");
+        //         Player.TriggerLandingVisual();
+
+        //         float direction = Input.GetAxis("Left", "Right");
+
+        //         if (direction == 0)
+        //         {
+        //             if (!Player.HasHammer && !Player.HasGoldenHammer)
+        //             {
+        //                 Player.PlayAnimation("GroundMove");
+        //                 Player.PlayerAnim?.Seek(0.1f, true);
+        //                 Player.PauseAnimations();
+        //             }
+        //             else
+        //             {
+        //                 Player.PlayAnimation("Idle");
+        //             }
+        //             EmitSignal(SignalName.Transitioned, this, "Idle"); 
+        //         }
+        //         else
+        //         {
+        //             EmitSignal(SignalName.Transitioned, this, "GroundMove");
+                    
+        //             if (!Player.HasHammer && !Player.HasGoldenHammer)
+        //             {
+        //                 Player.PlayerAnim?.Seek(0.1f, true);
+        //             }
+        //         }
         //     }
         //     return;
         // }
 
         // 4. Double Jump Support
-        if (Input.IsActionJustPressed("Jump") && Player.CurrentJumps < Player.MaxJumps)
+        if (Input.IsActionJustPressed("Jump"))
         {
-            if (Player.HasHammer)
+            if (Player.HasHammer || Player.HasGoldenHammer)
             {
                 Player.CancelHammer();
             }
-            else
+            else if (Player.CurrentJumps < Player.MaxJumps)
             {
                 EmitSignal(SignalName.Transitioned, this, "Jump");
                 return;

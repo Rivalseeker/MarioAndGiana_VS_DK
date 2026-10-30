@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://w2t46uiu76mj" path="res://Assets/Audio/BGM/NES_DK_Hammer.ogg" id="4_0yfkl"]
 [ext_resource type="Script" uid="uid://cw5h0pgwt5110" path="res://Scripts/Levels/PauseScreen/PauseScreen.cs" id="5_5gonp"]
 [ext_resource type="PackedScene" uid="uid://xjyrgenimxvc" path="res://Scenes/ImpactFX/impact.tscn" id="5_lpf2b"]
+[ext_resource type="AudioStream" uid="uid://f6imm7ddyqe5" path="res://Assets/Audio/BGM/NES_WreckingCrew_Golden Hammer.ogg" id="5_ou1js"]
 [ext_resource type="FontFile" uid="uid://bdcy0d6dekdpf" path="res://Assets/Art/Fonts/Super Mario Bros. NES.ttf" id="5_p43sq"]
 [ext_resource type="PackedScene" uid="uid://cjb2l3x4rccti" path="res://Scenes/Characters/Enemies/Bosses/donkey_kong.tscn" id="5_vav1i"]
 [ext_resource type="AudioStream" uid="uid://cxp8p1va8r2bg" path="res://Assets/Audio/BGM/NES_DK_HurryUp.ogg" id="6_brhxu"]
@@ -26,6 +27,8 @@ shader_parameter/color_1_original = Color(0, 0, 0, 1)
 shader_parameter/color_1_replace = Color(0, 0, 0, 1)
 shader_parameter/color_2_original = Color(0, 0, 0, 1)
 shader_parameter/color_2_replace = Color(0, 0, 0, 1)
+shader_parameter/color_3_original = Color(0, 0, 0, 1)
+shader_parameter/color_3_replace = Color(0, 0, 0, 1)
 shader_parameter/tolerance = 0.01
 
 [sub_resource type="Animation" id="Animation_2an6r"]
@@ -590,6 +593,7 @@ script = ExtResource("1_lssxe")
 _failureMusicTrack = ExtResource("2_ury4g")
 _stageClearMusicTrack = ExtResource("3_b11xn")
 _hammerMusicTrack = ExtResource("4_0yfkl")
+_goldenHammerMusicTrack = ExtResource("5_ou1js")
 _smashEffectScene = ExtResource("5_lpf2b")
 _playerSpawn = NodePath("PlayerSpawn")
 _gizmosContainer = NodePath("Entities/Gizmos")
